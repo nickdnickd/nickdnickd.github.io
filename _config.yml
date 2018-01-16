@@ -1,4 +1,4 @@
 name: Nick D, Nick D
 markdown: kramdown
+hilighter: rouge
 permalink: /blog/:year/:month/:day/:title
-#theme: jekyll-theme-cayman
