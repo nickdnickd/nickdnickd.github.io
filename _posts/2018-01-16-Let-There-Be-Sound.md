@@ -16,7 +16,7 @@ computational power to describe the motion of every air molecule, I still think
 it would have to be within a wide confidence interval. How would this system
 deal with electromagnetics on that small of a scale without knowing where
 electrons are? And there, without quantum computing, perfect models will be
-unable to know the exact speed if we a position measurement is made and [vice
+unable to know the exact speed if a position measurement is made and [vice
 versa](https://en.wikipedia.org/wiki/Uncertainty_principle)! Everyone sort of
 knows that the world is not fully defined but even in the comfort of simple
 equations and guarantees, there lurks a noisy hum of the real world.
@@ -209,12 +209,12 @@ hope to seek the answers to some of these questions in later posts.
     closest_freq = takeClosest(base_freq_arr, getBaseFreqFromSingalFreq(sp_highest_freq, base_freq_arr, verbosity=1))
     print("Closest Note Frequency to Base Freq: " + str(closest_freq))
     print("Determined Note: " + freq_to_note[closest_freq])
-
+```
     Frequncy with most amplitude: 440.0
     Base Frequeuncy: 27.5
     Closest Note Frequency to Base Freq: 27.5
     Determined Note: A
-```
+
 
 Now, I was kind of stuck back there. We can very clearly see in the Frequency
 plot where the peak frequency is. How can we programatically look at that and
@@ -270,12 +270,12 @@ a fourier transform?
     plt.ylabel("Magnitude")
     plt.xlim(xmax=2*frequency, xmin = 0)
     plt.show()
-
+```
     Frequncy with most amplitude: 440.0
     Base Frequeuncy: 27.5
     Closest Frequency to Base Freq: 27.5
     Determined Note: A
-```
+
 
 
 ![png](audio_0_files/audio_0_7_1.png)
