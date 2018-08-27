@@ -1,66 +1,46 @@
 ---
-layout: post
 title: "Let There Be Sound"
 date: 2018-01-16
 ---
 
 ## Beautiful Soup
-Take a breath and realize that your sampling from a chaotic system right in
-front of your face. Amongst the dust, nitrogen and carbon dioxide, you vacuum
-the precious oxygen consistently keeping you going. The rules governing fluids
-including air are well defined in pipes and narrow scenarios, yet that requires
-a massive textbook that I didn't read. When I think about trying to model and
-capture the whole world in complete detail, I can't really imagine a way that it
-can be accomplished. There's just so much going on. Even if the earth had the
-computational power to describe the motion of every air molecule, I still think
-it would have to be within a wide confidence interval. How would this system
-deal with electromagnetics on that small of a scale without knowing where
-electrons are? And there, without quantum computing, perfect models will be
-unable to know the exact speed if a position measurement is made and [vice
-versa](https://en.wikipedia.org/wiki/Uncertainty_principle)! Everyone sort of
-knows that the world is not fully defined but even in the comfort of simple
-equations and guarantees, there lurks a noisy hum of the real world.
+Does it bother anyone else to think about how we can't accurately describe complicated things? Most of us have heard of the [Uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle) describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Things already don't look good, but even if we didn't have wave particle duality to worry about, computational complexity will ramp up quickly to bring an honest simulation to it's knees. We probably do not have enough compute on planet earth to describe say a cold front, let alone weather, in this way. Single particles, that's fine, but the more we add to a system things get out of hand quickly, exponentially quickly.
 
 ## It's All Good... Enough
 Small gusts of wind are hard enough to predict but we still have meteorologists
 measuring distributed pressure readings to deliver broad weather patterns. The
 cones and rods of the eye enable us to take in enough data to read, drive and
-explore. Our vocal transmitters and receivers are fine tuned to the propagation
-of waves through air, enough to say "Hey" and hear the reply in the same ~16kHz
-frequency band. In fact several of these disruptions in air are beautiful to us
-and people devote their lives to shaping and grooming the production of their
+explore. Our vocal transmitters and receivers are tuned to receive the propagation of waves through air, enough to say "Hey" and hear the reply in the same ~16kHz frequency band. In fact several of these disruptions in air are beautiful to us and people devote their lives to shaping and grooming the production of their
 features. I'm talking about audio engineers, musicians, producers and writers.
-This doesn't stop at the ear; mechanical engineers study the characteristics of
+This doesn't stop at the ear - mechanical engineers study the characteristics of
 physical vibration through materials and RF (radiofrequency) engineers study the
 propagation of waves that require no medium, just like our eyes, but beyond our
 own capacity to see. What are the tools used that unite all of these seemingly
 disparate people?
 
 ## Penny Fourier Thoughts?
-Is there a better way we can talk about this? When we look at a typical audio
-recording (can you tell me much about
-[this](https://i.stack.imgur.com/x3mF3.jpg) image?) we just see a bunch of fuzz,
-same goes for a radio signal. But sometimes, on certain music players, they
-display the EQ (equalizer). This contains a binned up view of different
+When I look at a typical audio recording (can you tell me much about
+[this](https://i.stack.imgur.com/x3mF3.jpg) image?) I just see chaos,
+and the same goes for a radio signal. But sometimes, on certain music players, 
+the display is equipped with an EQ (equalizer). This contains a binned up view of different
 _frequencies_. Say you hear a large bass boom in the track, when that happens
 the lower ends of the EQ light up. If the EQ is adjustable you can even feel and
 hear the difference as you turn the knob. If these bins give us such a clear
 picture, could we enhance our understanding by creating smaller and smaller bins
-on the EQ? What if the bins were infinitely small? That is what a French
+on the EQ? What if the bins were infinitely small? That is for what a French
 mathematician and aid to Napoleon, [Joseph
-Fourier](https://en.wikipedia.org/wiki/Joseph_Fourier), laid down the pillars
-for without fully knowing it yet. He proposed that one can completely break down
+Fourier](https://en.wikipedia.org/wiki/Joseph_Fourier), laid the mathematical bedrock. He proposed that one can completely break down
 a (periodic) function into component sine waves, each with their own frequency.
 After some revisions from future mathematicians we are left with the Fourier
-Transform, granting us the mathematical intuition our ears and eyes had all
+Transform, granting our minds the intuition our ears and eyes had all
 along.
 
 Still, there is a long way to go from this different interpretation of a signal
 to creating something amazing. So let's start with the simplest wave to the ears
 and eyes, the sine wave. Below we have a plot of a sine wave and its
-corresponding Fourier Transform (FFT means Fast Fourier Transform, it was an
-algorithm later developed using the butterfly method to speed up the digital
-computation). What you will see and hear in various forms is an "A" note.
+corresponding Fourier Transform. FFT below means Fast Fourier Transform, it was an
+algorithm later developed to accelerate the DFT (Discrete Fourier Transform). 
+What you will see and hear in various forms is an "A" note.
 
 ```python
 
@@ -114,19 +94,16 @@ computation). What you will see and hear in various forms is an "A" note.
     plt.show()
 ```
 
-![png](audio_0_files/audio_0_1_0.png)
+![png](./audio_0_1_0.png)
 
-
-
-![png](audio_0_files/audio_0_1_1.png)
-
+![png](./audio_0_1_1.png)
 
 Feel free to adjust the frequency, amplitude and duration to kick the tires. As
 you can see the frequency signal energy can be _mostly_ found at the generating
 frequency. This I attribute to the imperfections of the discrete domain which
 could have its own post. Also, you can rest assured about negative frequencies
 (not shown here). If the original signal is real (and the sine wave is real...
-whew) there should be a symmetrical graph about 0 Hz (more info
+whew) there should be a symmetrical graph about 0 Hz. Think of it like turning a wheel in a different direction (more info
 [here](https://en.wikipedia.org/wiki/Negative_frequency)).
 
 At this point it is safe to say that we can design an algorithm to bin the
@@ -247,7 +224,7 @@ frequency will not work out in high noise situations.
     plt.show()
 ```
 
-![png](audio_0_files/audio_0_5_0.png)
+![Noisy Signal](./audio_0_5_0.png)
 
 
 We took the same signal and just garbagized it. Now, this is a lot more noise
@@ -277,8 +254,7 @@ a fourier transform?
     Determined Note: A
 
 
-
-![png](audio_0_files/audio_0_7_1.png)
+![DFT of Noisy Signal](./audio_0_7_1.png)
 
 
 How could this be? The real reason is that when we add "white" noise, we are
