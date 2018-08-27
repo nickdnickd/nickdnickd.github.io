@@ -1,0 +1,374 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="preload" href="/component---src-layouts-index-js-b9c9172e643453a7c8dd.js" as="script"/><link rel="preload" href="/component---src-templates-blog-post-js-c3570594483fe830c0dd.js" as="script"/><link rel="preload" href="/path---fft-basics-2018-01-16-let-there-be-sound-4b5f099ab88daeb05130.js" as="script"/><link rel="preload" href="/app-c3020cff3c51c0cfcecc.js" as="script"/><link rel="preload" href="/commons-6e82eaae3f56c620a9ec.js" as="script"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><title data-react-helmet="true">Let There Be Sound | Nick D Blog</title><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:112.5%/1.44 'Fira Sans',sans-serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.8);font-family:'Fira Sans',sans-serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:2.15rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.58293rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1.35824rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.85805rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;color:hsla(0,0%,0%,1);font-family:'Playfair Display',serif;font-weight:700;text-rendering:optimizeLegibility;font-size:0.79482rem;line-height:1.1;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}ul{margin-left:1.44rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;list-style-position:outside;list-style-image:none;}ol{margin-left:1.44rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;font-size:0.85rem;line-height:1.44rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;font-size:1rem;line-height:1.44rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}blockquote{margin-left:0;margin-right:1.44rem;margin-top:0;padding-bottom:0;padding-left:1.17rem;padding-right:0;padding-top:0;margin-bottom:1.08rem;font-size:1.16543rem;line-height:1.44rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.27rem solid hsla(0,0%,0%,0.2);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.08rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.08rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.08rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.44rem;margin-bottom:calc(1.08rem / 2);margin-top:calc(1.08rem / 2);}li > ul{margin-left:1.44rem;margin-bottom:calc(1.08rem / 2);margin-top:calc(1.08rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.08rem / 2);}code{font-size:0.85rem;line-height:1.44rem;}kbd{font-size:0.85rem;line-height:1.44rem;}samp{font-size:0.85rem;line-height:1.44rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:0.96rem;padding-right:0.96rem;padding-top:0.72rem;padding-bottom:calc(0.72rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}a{color:#9f392b;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.44rem;color:hsla(0,0%,0%,0.8);font-weight:400;}blockquote cite:before{content:"— ";}@media only screen and (max-width:480px){blockquote{margin-left:-1.08rem;margin-right:0;padding-left:0.81rem;}}</style><link href="//fonts.googleapis.com/css?family=Playfair+Display:700|Fira+Sans:400,400i,700,700i" rel="stylesheet" type="text/css"/><style id="gatsby-inlined-css">code[class*=language-],pre[class*=language-]{color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::-moz-selection,code[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection{background:#073642}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#073642}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{color:#657b83;background:#eee8d5}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100.50d27986.woff2) format("woff2"),url(/static/montserrat-latin-100.5e334eff.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic.8c070533.woff2) format("woff2"),url(/static/montserrat-latin-100italic.03e19243.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200.4343d3d9.woff2) format("woff2"),url(/static/montserrat-latin-200.f2022ecd.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic.116c4c4b.woff2) format("woff2"),url(/static/montserrat-latin-200italic.89614a60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300.d2ad295b.woff2) format("woff2"),url(/static/montserrat-latin-300.3a371ee0.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic.f6b6bf24.woff2) format("woff2"),url(/static/montserrat-latin-300italic.16521668.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400.240a8444.woff2) format("woff2"),url(/static/montserrat-latin-400.b20cc131.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic.86172bb8.woff2) format("woff2"),url(/static/montserrat-latin-400italic.9405e787.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500.fb8d6b71.woff2) format("woff2"),url(/static/montserrat-latin-500.50825d47.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic.c0a555a4.woff2) format("woff2"),url(/static/montserrat-latin-500italic.635de59c.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600.d5615136.woff2) format("woff2"),url(/static/montserrat-latin-600.f300da4f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic.10f29d13.woff2) format("woff2"),url(/static/montserrat-latin-600italic.2bc37d86.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700.7d77e1f0.woff2) format("woff2"),url(/static/montserrat-latin-700.81826529.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic.1dd2b53f.woff2) format("woff2"),url(/static/montserrat-latin-700italic.c162d257.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800.d4e7bf86.woff2) format("woff2"),url(/static/montserrat-latin-800.895aadbf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic.fc0cbe44.woff2) format("woff2"),url(/static/montserrat-latin-800italic.b3362875.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900.c8bdd772.woff2) format("woff2"),url(/static/montserrat-latin-900.1b99ef78.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic.cb72c1f9.woff2) format("woff2"),url(/static/montserrat-latin-900italic.b78bb9f8.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300.f015f1e9.woff2) format("woff2"),url(/static/merriweather-latin-300.92dfe81b.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic.7fd86b32.woff2) format("woff2"),url(/static/merriweather-latin-300italic.878b76f5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400.12dbf4c0.woff2) format("woff2"),url(/static/merriweather-latin-400.1fffad22.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic.1e0d3e81.woff2) format("woff2"),url(/static/merriweather-latin-400italic.de18d4c4.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700.dc8fec81.woff2) format("woff2"),url(/static/merriweather-latin-700.d7d2ed8e.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic.b7b7e5da.woff2) format("woff2"),url(/static/merriweather-latin-700italic.6210a5fc.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900.43f870d5.woff2) format("woff2"),url(/static/merriweather-latin-900.8f3806df.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic.168c1ab2.woff2) format("woff2"),url(/static/merriweather-latin-900italic.ae7778f0.woff) format("woff")}</style></head><body><div id="___gatsby"><div style="margin-left:auto;margin-right:auto;max-width:34.56rem;padding:2.16rem 1.08rem;" data-reactroot="" data-reactid="1" data-react-checksum="-753966238"><h3 style="font-family:Montserrat, sans-serif;margin-top:0;margin-bottom:-1.44rem;" data-reactid="2"><a style="box-shadow:none;text-decoration:none;color:inherit;" href="/" data-reactid="3">Nick D Blog</a></h3><div data-reactid="4"><br data-reactid="5"/><!-- react-empty: 6 --><h1 data-reactid="7">Let There Be Sound</h1><p style="font-size:0.85805rem;line-height:1.44rem;display:block;margin-bottom:1.44rem;margin-top:-1.44rem;" data-reactid="8">January 16, 2018</p><div data-reactid="9"><h2>Beautiful Soup</h2>
+<p>Does it bother anyone else to think about how we can’t accurately describe complicated things? Most of us have heard of the <a href="https://en.wikipedia.org/wiki/Uncertainty_principle">Uncertainty principle</a> describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Things already don’t look good, but even if we didn’t have wave particle duality to worry about, computational complexity will ramp up quickly to bring an honest simulation to it’s knees. We probably do not have enough compute on planet earth to describe say a cold front, let alone weather, in this way. Single particles, that’s fine, but the more we add to a system things get out of hand quickly, exponentially quickly.</p>
+<h2>It’s All Good… Enough</h2>
+<p>Small gusts of wind are hard enough to predict but we still have meteorologists
+measuring distributed pressure readings to deliver broad weather patterns. The
+cones and rods of the eye enable us to take in enough data to read, drive and
+explore. Our vocal transmitters and receivers are tuned to receive the propagation of waves through air, enough to say “Hey” and hear the reply in the same ~16kHz frequency band. In fact several of these disruptions in air are beautiful to us and people devote their lives to shaping and grooming the production of their
+features. I’m talking about audio engineers, musicians, producers and writers.
+This doesn’t stop at the ear - mechanical engineers study the characteristics of
+physical vibration through materials and RF (radiofrequency) engineers study the
+propagation of waves that require no medium, just like our eyes, but beyond our
+own capacity to see. What are the tools used that unite all of these seemingly
+disparate people?</p>
+<h2>Penny Fourier Thoughts?</h2>
+<p>When I look at a typical audio recording (can you tell me much about
+<a href="https://i.stack.imgur.com/x3mF3.jpg">this</a> image?) I just see chaos,
+and the same goes for a radio signal. But sometimes, on certain music players,
+the display is equipped with an EQ (equalizer). This contains a binned up view of different
+<em>frequencies</em>. Say you hear a large bass boom in the track, when that happens
+the lower ends of the EQ light up. If the EQ is adjustable you can even feel and
+hear the difference as you turn the knob. If these bins give us such a clear
+picture, could we enhance our understanding by creating smaller and smaller bins
+on the EQ? What if the bins were infinitely small? That is for what a French
+mathematician and aid to Napoleon, <a href="https://en.wikipedia.org/wiki/Joseph_Fourier">Joseph
+Fourier</a>, laid the mathematical bedrock. He proposed that one can completely break down
+a (periodic) function into component sine waves, each with their own frequency.
+After some revisions from future mathematicians we are left with the Fourier
+Transform, granting our minds the intuition our ears and eyes had all
+along.</p>
+<p>Still, there is a long way to go from this different interpretation of a signal
+to creating something amazing. So let’s start with the simplest wave to the ears
+and eyes, the sine wave. Below we have a plot of a sine wave and its
+corresponding Fourier Transform. FFT below means Fast Fourier Transform, it was an
+algorithm later developed to accelerate the DFT (Discrete Fourier Transform).
+What you will see and hear in various forms is an “A” note.</p>
+<div class="gatsby-highlight">
+      <pre class="language-python"><code class="language-python">    <span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+    <span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+    <span class="token comment">#import winsound # if you are on windows</span>
+    
+    two_pi <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>pi
+    phase <span class="token operator">=</span> np<span class="token punctuation">.</span>pi<span class="token operator">/</span><span class="token number">2</span>
+    frequency <span class="token operator">=</span> <span class="token number">440</span> <span class="token comment"># "A" note in Hz</span>
+    duration_ms <span class="token operator">=</span> <span class="token number">50</span> <span class="token comment"># miliseconds</span>
+    snr_level_db <span class="token operator">=</span> <span class="token number">0</span>
+    duration_s <span class="token operator">=</span> duration_ms<span class="token operator">/</span><span class="token number">1000.0</span>
+    sample_rate <span class="token operator">=</span> <span class="token number">44.1</span> <span class="token operator">*</span> <span class="token number">1000</span>  <span class="token comment"># Hz or samples/second</span>
+    fig_size <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span>
+    
+    <span class="token comment"># Beeeeep</span>
+    <span class="token comment">#winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">createCosineAudioSignal</span><span class="token punctuation">(</span>freq<span class="token punctuation">,</span> duration_s<span class="token punctuation">,</span> sample_rate<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        two_pi <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>pi
+        x_samples <span class="token operator">=</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>duration_s<span class="token operator">*</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x_time <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token builtin">float</span><span class="token punctuation">(</span>x_sample<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token builtin">float</span><span class="token punctuation">(</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x_sample <span class="token keyword">in</span> x_samples<span class="token punctuation">]</span>
+        cosine_signal <span class="token operator">=</span> np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span><span class="token punctuation">[</span>two_pi <span class="token operator">*</span> frequency <span class="token operator">*</span> time_el <span class="token operator">+</span> phase <span class="token keyword">for</span> time_el <span class="token keyword">in</span> x_time<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>cosine_signal<span class="token punctuation">,</span> x_samples<span class="token punctuation">,</span> x_time<span class="token punctuation">)</span>
+    
+    
+    <span class="token keyword">def</span> <span class="token function">computeFourierTransformOfSingal</span><span class="token punctuation">(</span>signal_amplitudes<span class="token punctuation">,</span> x_samples<span class="token punctuation">,</span> sample_rate_hz<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        fft_signal <span class="token operator">=</span> np<span class="token punctuation">.</span>fft<span class="token punctuation">.</span>fft<span class="token punctuation">(</span>signal_amplitudes<span class="token punctuation">)</span>
+        fft_freq <span class="token operator">=</span> np<span class="token punctuation">.</span>fft<span class="token punctuation">.</span>fftfreq<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>x_samples<span class="token punctuation">)</span><span class="token punctuation">,</span> d<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span>sample_rate_hz<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span><span class="token punctuation">(</span>fft_signal<span class="token punctuation">,</span> fft_freq<span class="token punctuation">)</span>
+    
+    x_samples <span class="token operator">=</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>duration_s<span class="token operator">*</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    x_time <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token builtin">float</span><span class="token punctuation">(</span>x_sample<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token builtin">float</span><span class="token punctuation">(</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x_sample <span class="token keyword">in</span> x_samples<span class="token punctuation">]</span>
+    <span class="token punctuation">(</span>y_0<span class="token punctuation">,</span> x_samples<span class="token punctuation">,</span> x_time<span class="token punctuation">)</span> <span class="token operator">=</span> createCosineAudioSignal<span class="token punctuation">(</span>frequency<span class="token punctuation">,</span> duration_s<span class="token punctuation">,</span> sample_rate<span class="token punctuation">)</span>
+    
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span>fig_size<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x_time<span class="token punctuation">,</span> y_0<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'A-note in time and frequency'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Time (seconds)'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Magnitude'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    sp <span class="token operator">=</span> np<span class="token punctuation">.</span>fft<span class="token punctuation">.</span>fft<span class="token punctuation">(</span>y_0<span class="token punctuation">)</span>
+    freq <span class="token operator">=</span> np<span class="token punctuation">.</span>fft<span class="token punctuation">.</span>fftfreq<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>x_samples<span class="token punctuation">)</span><span class="token punctuation">,</span> d<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span>fig_size<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>freq<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>sp<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"Frequency (Hz)"</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"Magnitude"</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlim<span class="token punctuation">(</span>xmax<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>frequency<span class="token punctuation">,</span> xmin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+      </div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-fc90f.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 45.52941176470588%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABfUlEQVQoz11Ry06DQBRl49/4E4aatLGJ/ktx17gw8Sd8xKVf04URaggJWEJiH7zmBRSE8d4ZarGTnJyZc++cORcMA1YURRMminmS01lKmJXmzIL9LWFiFoTR3Pl07xHvH/aD53/dZZRj3cJe5AzvAIQQFvoZjJI3CYu3Uv4A76XmGtD05/rkjPVq0IfApQwFo4/gJdekLHesamLAhpTNhlY18hr3PSO2tFIY9Cm9abtGGXJGX9B9qwtdwqsOeUerDi5oUI1D/Tv/34fctG2Hfmec8yepE+KLEi5KZEiLj6AOrHWtlUrbKL1SesL3x5EJIc8dGuZl/ZeG6DRxnyLle8Xbk9RgDmmLjpY1WqiERt4bwhj1WjVqE2QEpNJGB7O/ut7j+KQYGO7i5FV9Q1J0qajlAVlRywQZEMNIeB7Wh4D/cxzZtp1zz/NuhOAXWZaNXNe9SpPkkjJmrlar8XK5nC4Wi2vbcaa+708oISalxEQ9TdMR49wMgmAShuH4FzR3ctdZKCytAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="png"
+        title=""
+        src="/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-fb8a0.png"
+        srcset="/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-1a291.png 148w,
+/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-2bc4a.png 295w,
+/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-fb8a0.png 590w,
+/static/audio_0_1_0-ff834a2b7abc5d4fbba35dae157f7189-fc90f.png 850w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-65690.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 44.37869822485207%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABM0lEQVQoz42R20rDQBCGA176Dt4JsdJWwffziaSV1rgl9UBoBKlQ0VJBaEXQXqmJbfbUPbm7SWOtDe0PP8POznw7mTiOVhRFx4SQAGPsaYNlU0LAJIEAIgx0HVhVo/N+kiQnhudACFtqjYRaL845tUBNrpmElJJq82XrGx4jyhkX3PStqGGmnzH2YXhbCKF6BmSLL+pzHmM0U0LIP/mFOpkBIwPc3hTINwSaHeZAWSD9yVIDZdr+TyIDflkgQvB0vteihX9jpmTx/7BXQvB0ws8othNCTBgiVEJMVRblPE7xjE/R79ma5FFQJtQEonTCVnC78zh6L3lXYaU/GruNdlDtv4zd8+ubysPwza2By4NG8+yo7vmH4f1TKewN9tvhXbk7GO75nW659/zqNi86VV27+wPLqH/NiYw9DgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="png"
+        title=""
+        src="/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-fb8a0.png"
+        srcset="/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-1a291.png 148w,
+/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-2bc4a.png 295w,
+/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-fb8a0.png 590w,
+/static/audio_0_1_1-8bd0415c7a0e043d93500dabe9b5e00c-65690.png 845w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>Feel free to adjust the frequency, amplitude and duration to kick the tires. As
+you can see the frequency signal energy can be <em>mostly</em> found at the generating
+frequency. This I attribute to the imperfections of the discrete domain which
+could have its own post. Also, you can rest assured about negative frequencies
+(not shown here). If the original signal is real (and the sine wave is real…
+whew) there should be a symmetrical graph about 0 Hz. Think of it like turning a wheel in a different direction (more info
+<a href="https://en.wikipedia.org/wiki/Negative_frequency">here</a>).</p>
+<p>At this point it is safe to say that we can design an algorithm to bin the
+frequencies up and infer the signal from an input sine wave. Essentially
+wherever there is more energy in the frequency plot is where we most likely to
+find the frequency of our original wave. Our machine can listen to a perfect
+beep and tell us what note it is. Great. Now, what if we recorded a guitar
+plucking an A note? What if a truck is going by in the background of that
+recording? How does our methodology hold up when we start approaching the
+looming real world? Can we generate audio that sounds like the real world? I
+hope to seek the answers to some of these questions in later posts.</p>
+<div class="gatsby-highlight">
+      <pre class="language-python"><code class="language-python">    min_freq <span class="token operator">=</span> <span class="token number">16.35</span>
+    max_freq <span class="token operator">=</span> <span class="token number">32.70</span>
+    
+    note_to_freq <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">"C"</span> <span class="token punctuation">:</span> <span class="token number">16.35</span><span class="token punctuation">,</span>
+        <span class="token string">"Cshp_Dflt"</span> <span class="token punctuation">:</span> <span class="token number">17.32</span><span class="token punctuation">,</span>
+        <span class="token string">"D"</span> <span class="token punctuation">:</span> <span class="token number">18.35</span><span class="token punctuation">,</span>
+        <span class="token string">"Dshp_Eflt"</span> <span class="token punctuation">:</span> <span class="token number">19.45</span><span class="token punctuation">,</span>
+        <span class="token string">"E"</span> <span class="token punctuation">:</span> <span class="token number">20.60</span><span class="token punctuation">,</span>
+        <span class="token string">"F"</span> <span class="token punctuation">:</span> <span class="token number">21.83</span><span class="token punctuation">,</span>
+        <span class="token string">"Fshp_Gflt"</span> <span class="token punctuation">:</span> <span class="token number">23.12</span><span class="token punctuation">,</span>
+        <span class="token string">"G"</span> <span class="token punctuation">:</span> <span class="token number">24.50</span><span class="token punctuation">,</span>
+        <span class="token string">"Gshp_Aflt"</span> <span class="token punctuation">:</span> <span class="token number">25.96</span><span class="token punctuation">,</span>
+        <span class="token string">"A"</span> <span class="token punctuation">:</span> <span class="token number">27.50</span><span class="token punctuation">,</span>
+        <span class="token string">"Ashp_Bflt"</span> <span class="token punctuation">:</span> <span class="token number">29.14</span><span class="token punctuation">,</span>
+        <span class="token string">"B"</span> <span class="token punctuation">:</span> <span class="token number">30.87</span>
+        <span class="token comment">#"C1" : 32.70</span>
+    <span class="token punctuation">}</span>
+    
+    freq_to_note <span class="token operator">=</span> <span class="token punctuation">{</span>val<span class="token punctuation">:</span>key <span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> note_to_freq<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+    base_freq_arr <span class="token operator">=</span> <span class="token punctuation">[</span>val <span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> note_to_freq<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    freq_arr <span class="token operator">=</span> <span class="token punctuation">[</span>val<span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">**</span>mult<span class="token punctuation">)</span> <span class="token keyword">for</span> mult <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span> <span class="token keyword">for</span> key<span class="token punctuation">,</span> val <span class="token keyword">in</span> note_to_freq<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    
+    <span class="token keyword">def</span> <span class="token function">getHighestEnergyFreq</span><span class="token punctuation">(</span>amp_list<span class="token punctuation">,</span> freq_list<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># We only care about positive frequencies which are the first half</span>
+        amp_freq_list <span class="token operator">=</span> <span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token builtin">abs</span><span class="token punctuation">(</span>amp_list<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq_list<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+        <span class="token comment"># Get max freq</span>
+        max_amp_freq <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> amp_freq <span class="token keyword">in</span> amp_freq_list<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> amp_freq<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> max_amp_freq<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                max_amp_freq <span class="token operator">=</span> amp_freq
+                
+        <span class="token keyword">if</span> verbosity <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span> 
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Frequncy with most amplitude: "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>max_amp_freq<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            
+        <span class="token keyword">return</span> max_amp_freq<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        
+    <span class="token keyword">def</span> <span class="token function">getBaseFreqFromSingalFreq</span><span class="token punctuation">(</span>starting_frequency<span class="token punctuation">,</span> base_freq_arr<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""reduce the frequency to base frequency"""</span>
+        target_base_freq <span class="token operator">=</span> starting_frequency
+        <span class="token keyword">while</span> target_base_freq <span class="token operator">></span> base_freq_arr<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>base_freq_arr<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            target_base_freq <span class="token operator">=</span> target_base_freq <span class="token operator">/</span> <span class="token number">2</span>
+            
+        <span class="token keyword">if</span> verbosity <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Base Frequeuncy: "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>target_base_freq<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            
+        <span class="token keyword">return</span> target_base_freq
+    
+    <span class="token keyword">def</span> <span class="token function">takeClosest</span><span class="token punctuation">(</span>myList<span class="token punctuation">,</span> myNumber<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> bisect <span class="token keyword">import</span> bisect_left
+        
+        pos <span class="token operator">=</span> bisect_left<span class="token punctuation">(</span>myList<span class="token punctuation">,</span> myNumber<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> myList<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>myList<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> myList<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        before <span class="token operator">=</span> myList<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+        after <span class="token operator">=</span> myList<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> after <span class="token operator">-</span> myNumber <span class="token operator">&lt;</span> myNumber <span class="token operator">-</span> before<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> after
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> before
+        
+    sp_highest_freq <span class="token operator">=</span> getHighestEnergyFreq<span class="token punctuation">(</span>sp<span class="token punctuation">,</span> freq<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    closest_freq <span class="token operator">=</span> takeClosest<span class="token punctuation">(</span>base_freq_arr<span class="token punctuation">,</span> getBaseFreqFromSingalFreq<span class="token punctuation">(</span>sp_highest_freq<span class="token punctuation">,</span> base_freq_arr<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Closest Note Frequency to Base Freq: "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>closest_freq<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Determined Note: "</span> <span class="token operator">+</span> freq_to_note<span class="token punctuation">[</span>closest_freq<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+      </div>
+<div class="gatsby-highlight">
+      <pre class="language-text"><code class="language-text">Frequncy with most amplitude: 440.0
+Base Frequeuncy: 27.5
+Closest Note Frequency to Base Freq: 27.5
+Determined Note: A</code></pre>
+      </div>
+<p>Now, I was kind of stuck back there. We can very clearly see in the Frequency
+plot where the peak frequency is. How can we programatically look at that and
+say “A”? One easy way that came to mind is to select the frequency with the
+maximum amplitude. This works for now, as seen above. When the picture looks
+that clear we could have done things such as count the y = 0 axis crossings of
+the signal over time, but take a look below and you’ll see that time-domain
+(signals where the independant variable is time) visual guessing of the
+frequency will not work out in high noise situations.</p>
+<div class="gatsby-highlight">
+      <pre class="language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">addAwgNoiseToSignal</span><span class="token punctuation">(</span>input_discr_signal<span class="token punctuation">,</span> snr_dB<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Calculates signal power and generates additive white gaussian noise to match SNR param"""</span>
+        sigp_dB <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">*</span> <span class="token punctuation">(</span>np<span class="token punctuation">.</span>log10<span class="token punctuation">(</span>np<span class="token punctuation">.</span>linalg<span class="token punctuation">.</span>norm<span class="token punctuation">(</span>input_discr_signal<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">/</span>\
+                             <span class="token builtin">len</span><span class="token punctuation">(</span>input_discr_signal<span class="token punctuation">)</span>
+        noisep_dB <span class="token operator">=</span> sigp_dB <span class="token operator">-</span> snr_dB
+        noisep <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">**</span><span class="token punctuation">(</span>noisep_dB<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span>
+        noise <span class="token operator">=</span> np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>noisep<span class="token punctuation">)</span><span class="token operator">*</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>input_discr_signal<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>sig <span class="token operator">+</span> noise <span class="token keyword">for</span> <span class="token punctuation">(</span>sig<span class="token punctuation">,</span>noise<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>input_discr_signal<span class="token punctuation">,</span> noise<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    
+    
+    <span class="token comment"># Construct a new signal based off y_0 but with added noise to match the snr</span>
+    y_1 <span class="token operator">=</span> addAwgNoiseToSignal<span class="token punctuation">(</span>y_0<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">15</span><span class="token punctuation">)</span>
+    
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span>fig_size<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x_time<span class="token punctuation">,</span> y_1<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'A-note in time'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Time (seconds)'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Magnitude'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+      </div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-4bdf2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 46.016646848989296%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACPklEQVQoz61SS2gTQRheKLbeG0EPQlOfoIWgKHgSFEUFL2LaqknR4qWV4iMRY1IrokcR8SDqpQUf9YG2SGx7E7Qasklbk9QmNq9N85R0k2x2dnbrZGacXcWjXhz4+V8fP/9838+1m9uaRFG0qxC6NBU6ZACciqIYVpHqTghVR6lYHIxFo7cKxaJHz/UehIoTAOZ/YR1AUVzVatXGmdatb9FUNU7/w1NVNcbtsnSs0jTNz2ck6k+JWgWsoEiuhgJpEcW/y4aJrJYuA5SrQDSfl5jV0HS8jL6V6iisYwVxJV6GFKqajzu5f2dLHcCAcyxKzwz7GwPPZsmJRz7SO8wT95swGRqPENfrEHG+/GLE3Q995NKLOWJ98Jn0P5kh50dnyeG7H3DfaJjWFchzFvPa1qoM+QP3fNTs8jY2XH1HN7knaNsVL+24PkW3DU3RjW5W80z8ifX6Zpa3M+zWwUm65uI43ntnmkqADRw4unt1uSYHr3kX6dkRvnHu6Qy58HyO7Lv93tjm2P1PpO9xkPSO8KSf9W68nSc6xjMWNra8/CpE9J/dnGQyNH7w3ME9lmZZgYFcHdGgUEHCMsCMG/xxsYy/5iXsSy7jhYKEGa94SVRwoQYx48/oMS5xSVIx4x4V5QalGPm5Hdu3NAMFRv6mHv6HuuS3Z+KGOJOptSmRSBzJFwo97AaPi2KlO5PJ2Ko1qVOW5c6lbNaWSKbsC9HY6WQqbc9mc6cUBVglSepKC4Kd3V4Xu0NrPp/vEQTh0E/y0j4v/JNMIAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="Noisy Signal"
+        title=""
+        src="/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-fb8a0.png"
+        srcset="/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-1a291.png 148w,
+/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-2bc4a.png 295w,
+/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-fb8a0.png 590w,
+/static/audio_0_5_0-7b17a0f8f1370fa1529624a738c5f4ba-4bdf2.png 841w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>We took the same signal and just garbagized it. Now, this is a lot more noise
+than we would typically see in an audio setting because our noise is now twenty
+times larger than our signal. Do you think we’ll be able to see the signal using
+a fourier transform?</p>
+<div class="gatsby-highlight">
+      <pre class="language-python"><code class="language-python">    <span class="token punctuation">(</span>F_y_1<span class="token punctuation">,</span> freq<span class="token punctuation">)</span> <span class="token operator">=</span> computeFourierTransformOfSingal<span class="token punctuation">(</span>y_1<span class="token punctuation">,</span> x_samples<span class="token punctuation">,</span> sample_rate<span class="token punctuation">)</span>
+    
+    Fy1_highest_freq <span class="token operator">=</span> getHighestEnergyFreq<span class="token punctuation">(</span>F_y_1<span class="token punctuation">,</span> freq<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    closest_freq <span class="token operator">=</span> takeClosest<span class="token punctuation">(</span>base_freq_arr<span class="token punctuation">,</span> getBaseFreqFromSingalFreq<span class="token punctuation">(</span>Fy1_highest_freq<span class="token punctuation">,</span> base_freq_arr<span class="token punctuation">,</span> verbosity<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Closest Frequency to Base Freq: "</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>closest_freq<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Determined Note: "</span> <span class="token operator">+</span> freq_to_note<span class="token punctuation">[</span>closest_freq<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span>fig_size<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>freq<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>F_y_1<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>freq<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'A-note in Frequency with a ton of noise'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"Frequency (Hz)"</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"Magnitude"</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlim<span class="token punctuation">(</span>xmax<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>frequency<span class="token punctuation">,</span> xmin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+      </div>
+<div class="gatsby-highlight">
+      <pre class="language-text"><code class="language-text">Frequncy with most amplitude: 440.0
+Base Frequeuncy: 27.5
+Closest Frequency to Base Freq: 27.5
+Determined Note: A</code></pre>
+      </div>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-65690.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 45.798816568047336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABd0lEQVQoz62RTU/CQBCG8ePsH/LoWQMKB2O8+gcwJnKEH6UePBu8SPCgUqlFIyEtLbTdz25368xCEyTEk5NM992d6bPv7lYqEGEY1hljLUppE/ISk3PeDILg2nGctuMMOi+vb52B1U7b9/0W1steTPj/KoqiC+TtpGn6UPxDwCYzBG4TQm6WawJS/UpjlNZGzalUGjTOl7VspQ+1EUK8WyDYvUWaMSY3a4HLADJzlpk/Qls3QnwgcE9KeVMC148BsIJneZHwrFjwF7GqcYofwrgF7sYpuVsWVJZrg4fDEZ2hjog0MTi0x1K5gQ2shhbbhw4FWJnGxAK3/Ci2QCgqaNZ4XRGVmoFOhdIzKg0RyjCZG6yB1uB4UedKh0TmCraYJdRFYIVRem9fKdMbXw/tlJXyTni+6ZXZtwW6rrufxPPjr5F3Esfx0XA4rCeJHRuEpIe93tNZt/t4/tzvn6aw7nlefRoE1clkUhuPx7XA96ufI68RRbODHx+7gLQu7kixAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="DFT of Noisy Signal"
+        title=""
+        src="/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-fb8a0.png"
+        srcset="/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-1a291.png 148w,
+/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-2bc4a.png 295w,
+/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-fb8a0.png 590w,
+/static/audio_0_7_1-4825db09aeeb351bc328bd5ea5af8c0b-65690.png 845w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>How could this be? The real reason is that when we add “white” noise, we are
+adding noise enery that is distributed across the frequency spectrum. So even
+though the signal is 20 times weaker than the noise, if we know where to look,
+we will find the signal in an even (white) noise distribution. Nosie isn’t
+always white and sometimes noise can look a lot like our signal of interest. And
+that is someting we can explore at another time.</p></div><hr style="margin-bottom:1.44rem;" data-reactid="10"/><div style="display:flex;margin-bottom:3.6rem;" data-reactid="11"><img src="/static/profile-pic.630d6de4.jpg" alt="Kyle Mathews" style="margin-right:0.72rem;margin-bottom:0;width:2.88rem;height:2.88rem;" data-reactid="12"/><p data-reactid="13"><!-- react-text: 14 -->Written by <!-- /react-text --><strong data-reactid="15">Nick D</strong><!-- react-text: 16 -->. A software engineer with an affinity for audio.<!-- /react-text --></p></div><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0;" data-reactid="17"><li data-reactid="18"></li><li data-reactid="19"></li></ul></div></div></div><script id="webpack-manifest">/*<![CDATA[*/window.webpackManifest={"231608221292675":"app-c3020cff3c51c0cfcecc.js","99219681209289":"component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js","107818501498521":"component---src-templates-blog-post-js-c3570594483fe830c0dd.js","162898551421021":"component---src-pages-404-js-e745a290dc41e1f81162.js","35783957827783":"component---src-pages-index-js-34527f9ff120051155a2.js","60335399758886":"path----557518bd178906f8d58a.js","210333531512890":"path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js","166518909136743":"path---fft-basics-2018-01-16-let-there-be-sound-4b5f099ab88daeb05130.js","254022195166212":"path---404-a0e39f21c11f6a62c5ab.js","142629428675168":"path---index-2e9e37a4248f5029d658.js","178698757827068":"path---404-html-a0e39f21c11f6a62c5ab.js","114276838955818":"component---src-layouts-index-js-b9c9172e643453a7c8dd.js"}/*]]>*/</script><script>/*<![CDATA[*/!function(e,t,r){function n(){for(;d[0]&&"loaded"==d[0][f];)c=d.shift(),c[o]=!i.parentNode.insertBefore(c,i)}for(var s,a,c,d=[],i=e.scripts[0],o="onreadystatechange",f="readyState";s=r.shift();)a=e.createElement(t),"async"in i?(a.async=!1,e.head.appendChild(a)):i[f]?(d.push(a),a[o]=n):e.write("<"+t+' src="'+s+'" defer></'+t+">"),a.src=s}(document,"script",["/commons-6e82eaae3f56c620a9ec.js","/app-c3020cff3c51c0cfcecc.js","/path---fft-basics-2018-01-16-let-there-be-sound-4b5f099ab88daeb05130.js","/component---src-templates-blog-post-js-c3570594483fe830c0dd.js","/component---src-layouts-index-js-b9c9172e643453a7c8dd.js"])/*]]>*/</script></body></html>
