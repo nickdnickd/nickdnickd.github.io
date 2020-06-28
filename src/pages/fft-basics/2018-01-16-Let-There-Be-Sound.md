@@ -4,14 +4,13 @@ date: 2018-01-16
 ---
 
 ## Beautiful Soup
-Does it bother anyone else to think about how we can't accurately describe complicated things? Most of us have heard of the [Uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle) describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Things already don't look good, but even if we didn't have wave particle duality to worry about, computational complexity will ramp up quickly to bring an honest simulation to it's knees. We probably do not have enough compute on planet earth to describe say a cold front, let alone weather, in this way. Single particles, that's fine, but the more we add to a system things get out of hand quickly, exponentially quickly.
+Does it bother anyone else to think about how we can't completely describe complicated things? Most of us have heard of the [Uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle) describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Here breadth, by principle, is sacrificed for depth. On a larger scale, we probably do not have enough compute on planet earth to describe a cold front, let alone weather, in a way that yeilds complete confidence in weather reports. Instead, we'd like to know generally if it will rain. This is us sacrificing depth, by lack of resources, for beadth.
 
 ## It's All Good... Enough
 Small gusts of wind are hard enough to predict but we still have meteorologists
 measuring distributed pressure readings to deliver broad weather patterns. The
 cones and rods of the eye enable us to take in enough data to read, drive and
-explore. Our vocal transmitters and receivers are tuned to receive the propagation of waves through air, enough to say "Hey" and hear the reply in the same ~16kHz frequency band. In fact several of these disruptions in air are beautiful to us and people devote their lives to shaping and grooming the production of their
-features. I'm talking about audio engineers, musicians, producers and writers.
+explore. Our vocal transmitters and receivers are tuned to receive the propagation of waves through air, enough to say "Hey" and hear the reply in the same ~16kHz frequency band. In fact several of these disruptions in air are beautiful to us and people devote their lives to shaping and grooming the production of their features. I'm talking about audio engineers, musicians, producers and writers.
 This doesn't stop at the ear - mechanical engineers study the characteristics of
 physical vibration through materials and RF (radiofrequency) engineers study the
 propagation of waves that require no medium, just like our eyes, but beyond our
