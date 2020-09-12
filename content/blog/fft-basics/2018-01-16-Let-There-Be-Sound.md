@@ -1,6 +1,7 @@
 ---
 title: "Let There Be Sound"
 date: 2018-01-16
+description: "And Light"
 ---
 
 ## Beautiful Soup
