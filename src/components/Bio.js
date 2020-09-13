@@ -60,7 +60,7 @@ const Bio = () => {
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
-          This is his twitter, solely used to request fake eth
+          This is his twitter, solely used to request goerli test ether.
         </a>
       </p>
     </div>
