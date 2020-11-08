@@ -1,4 +1,157 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nick D Blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://nickdnickd.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 13 Sep 2020 20:23:20 GMT</lastBuildDate><item><title><![CDATA[Avoiding Manual Data Entry]]></title><description><![CDATA[Interview Season Doctors have it rough. After graduating medical school, they enter a period of indentured servitude known as residency. It…]]></description><link>https://nickdnickd.com/web-scraping/2020-09-12-Avoiding-Manual-Data/</link><guid isPermaLink="false">https://nickdnickd.com/web-scraping/2020-09-12-Avoiding-Manual-Data/</guid><pubDate>Sat, 12 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Interview Season&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nick D Blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://nickdnickd.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 08 Nov 2020 20:27:47 GMT</lastBuildDate><item><title><![CDATA[Asynchronous Uploads]]></title><description><![CDATA[I will never forget the first time I killed the music in a local coffee shop. Struggling to teach myself “machine learning”, I decided to…]]></description><link>https://nickdnickd.com/async-uploads/2020-11-1-Async-Uploads/</link><guid isPermaLink="false">https://nickdnickd.com/async-uploads/2020-11-1-Async-Uploads/</guid><pubDate>Sun, 01 Nov 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;I will never forget the first time I killed the music in a local coffee shop.&lt;/h2&gt;
+&lt;p&gt;Struggling to teach myself “machine learning”, I decided to download large dataset from the internet. As is typical with these types of workloads, the download size was well over 100 GB.
+When I clicked download, Google Drive split the file into several chunks available to download simultaneously.&lt;/p&gt;
+&lt;p&gt;The competing music streaming device yeilded immediately, and acoustic pop covers were replaced with &lt;a href=&quot;https://en.wikipedia.org/wiki/4%E2%80%B233%E2%80%B3&quot;&gt;4’33”&lt;/a&gt; on repeat until I realized what I’d done.&lt;/p&gt;
+&lt;p&gt;I think that browsers are actually polite by default. If we begin a single download of a file, the download code doesn’t try to use up all of the bandwidth and will likely only download one part at a time. This is what allows the network to live in harmony, with multiple people able to download what they need at a reasonable speed.
+This Drive download acted differently and it felt sort of powerful.&lt;/p&gt;
+&lt;h2&gt;Bandwidth&lt;/h2&gt;
+&lt;p&gt;The Media &amp;#x26; Entertainment Industry struggles with a similar problem with large files. The original formats of files from the camera will typically exceed hundreds of Gigabytes. To cope with the long transfer times, a proprietary industry standard tool, Aspera, has been the de facto leader. Aspera uses a custom protocol (FASP) to transfer files and uses a browser plugin to implement the protocol.&lt;/p&gt;
+&lt;p&gt;Aspera is brilliant &lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. The user can manually alter their upload speed and quickly meet the constraints of their hardware.&lt;/p&gt;
+&lt;p&gt;Recently, Aspera added integrations with cloud object storage, such as s3. But I wonder if this misses the point. Object storage &lt;strong&gt;is&lt;/strong&gt; a service in front of storage already. Can we push these existing servers to their limit with coffee shop buckling magic?&lt;/p&gt;
+&lt;h2&gt;A sink&lt;/h2&gt;
+&lt;p&gt;The general reason we want to transfer large assets to a centralized location is that the source created something valuable. The sensor on the camera shooting Selling Sunset in 4K produces, for now, uniquely valuable information. Reams of sensor data must be shipped back to home base for post prodcution to be around computers that can handle the job.&lt;/p&gt;
+&lt;p&gt;Starting out, this is how it can be done.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 504px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1a593cb03bc811628806e8de05692f88/08115/s3_simple.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACH0lEQVQoz2NgAIJDV56suPXu//+zDz7+33jwggtIbMvRyye2n7j+f9vxa583Hrrw9dCVxx+vvvz1f+/5eyUg+Xuf/jOD6GXWuoyXfe0YQexTnlYMYHDw8uM1h68++3/x6bf/mw9fCgaJbT5y6eGec3f/gwwFWXTt1Z//H////3/g0qMmkPzVO69ZLvvZMzNAwQZ7AzibYc/ZO1XHbr48DjT48O6zd4xAYjtP3czceepW25ajVxr2nb/fcuzGizqgT7qAfFsGJLDGVk/pX5yvEFwAaCkDNrDp0EUJoCFym49cVmjqm6G54+QNmaVbDiosXLGFD+xVWwPhI+4WgYssdR7vczHbOcdcw+p/XjwbWPPt9/8ZH33/z3j85ksmoAXg8Nh/4cGpE7df/we6+icQ/zly7dn360Bvbz92pRYk32NtYHXDz/7/dkfjf0uttP8vsdJ5+H92NyfYwC1HLjMAvcUQGBEPdzHQyzdP3Hr9f//Fh/+PXn/xHxgk/98AJfecvtUKMdDQ+qaf3f+DHpa/NjgY/l9kqf30/+JJnCjeVNfWgxsIdGHWsRsvu45ef94MxK1AFzYBXdq35eB5B5D8HAdj1RPuFhv2B7n83+5t+2a+mXrf/wkNHFjDD1e4wsDsSTMYYey5puoFjwIcPUHseWbqTCgKNXT04YYBXcN8/NYrFqBXmWH4+M1XLDtOXAcbZq6twvAi2AWeVLbZG4LZAP/ZNDoN5+dGAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/1a593cb03bc811628806e8de05692f88/08115/s3_simple.png&quot;
+        srcset=&quot;/static/1a593cb03bc811628806e8de05692f88/12f09/s3_simple.png 148w,
+/static/1a593cb03bc811628806e8de05692f88/e4a3f/s3_simple.png 295w,
+/static/1a593cb03bc811628806e8de05692f88/08115/s3_simple.png 504w&quot;
+        sizes=&quot;(max-width: 504px) 100vw, 504px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+This is fairly straightforward.&lt;/p&gt;
+&lt;h2&gt;And a wait&lt;/h2&gt;
+&lt;p&gt;The problem makes itself apparent when the source size exceeds memory capacity. What happens when the file is 15 times larger than your memory capacity? To get around this we leave the rest of the file on disk and only read one chunk at a time and send it.
+Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chunk size is often less than 100 MB. For each request, it comes in phases that will often look like this drawing:&lt;/p&gt;
+&lt;p&gt;Standard chunked upload of a file.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 583px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/9fc4b/s3_chunk.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 71.62162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsSAAALEgHS3X78AAADEElEQVQ4y41Te0hTYRS/d5OkIijNAiWzIptKuYnlA59D0YhEUIQMogyi/CNBCOmfsrAiXWhma6Ji+Q4fzTkf06lX59RtbvM1dXOb+cbSTekhmPV17t0cSkUe+DiX8zvf+X7nnN/FsG1W1kDgpBdKRxnS8UV2z9hCMDE8E9yuMoY39Iwwt/KyeKWUJyL9KF8fysLGYkItYMbLAkwk1+Hlwm580ozoZKy6TVbfptSjpj4NnDGkMJgQPKACaC+Jz3xD1N32iPMYP5SFfwhh0qVR/rRCPw9shyGEaKQXdA+V8Ak1EkiGzVDIrDCaN3snlsQA7YODQx6WwjiO/dXSHnPwMmGXQ1F1i4M1ZMfJL3d4L+pzSee8cXuYxXXNfVvj8iyv2BGwPXBoNgJ3r+FZzJOH60KYr3Wx4WFUMLuwyql/8vOoXL9i6hicuknGxErD/V7tkliimRdINAsC2eSyCJg+B8ieYliYQ806z9fdpTc6YKIxzAcV+3uuN4b7JGE1bTLnrpFZpF9DCObGIxNbZFpiYvknUn5cRcPz39En6BEeNAJ0kJwj65gLNcs0T1fG4KUgREQHbvBDmUgYxnqAZRdVHeoenasCBp2tCt1VMhGWFA+xp2Kl/l672pjao1nIaFcZrlsZ0nSptymGvAsMp+5Ivwoilo1q2b7quqCzUX/MtEM9ZZtRYXWLe1GNyCYXR6ejthlmep+w3akM8IxDyYmWHXDL+JhyapU2OPuV3tiroTZIabFnJAE0uK6e+YLEKkOK9a79Ga9z9K1CyaeOYOhWgo3AwMVA2zeWzuFiq1bZAMtH2hWEKpokv6DlH/MbCDX3j1cC5HYl6Q6Vc8DOUtcRmq8N8abNxUXgO1p9kluELW4iKtiqmAwAdkPNIGpQAAIdTkPBGBIrrm21dbEr254MRXmdQ9P8y/GJ+7dioITdFYKXKf8iv5xe0yb3gN/u9Kt3tYwbyansjJwCb2DolcktIbeMlQqI/xck/2fS13Uonfu0S3rV9NqaUDqyAotaHjCaTXKDyVTfNehjGYmO9q86vwF0sIqvjpvUdAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/9fc4b/s3_chunk.png&quot;
+        srcset=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/12f09/s3_chunk.png 148w,
+/static/b01ecf09c721e5ca7d168ead92c421aa/e4a3f/s3_chunk.png 295w,
+/static/b01ecf09c721e5ca7d168ead92c421aa/9fc4b/s3_chunk.png 583w&quot;
+        sizes=&quot;(max-width: 583px) 100vw, 583px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;When dealing with this type of web request, the typical loop looks like this in a straightforward loop.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/93d8656cd01125fb68a90be8e216a08c/cc155/s3_time.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 15.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAAsklEQVQI12M4cH43EwMQHL68T+3kjcP/b76+8v/Liwv/P98+8v/XkzP/fz0+8//DrcP//z079///38f///95CMSP/v//DaT/Aflfb/+/c2KzOciMh2e3MzFsPbIBxGY4cH4Xz6rtSws3HlhbdPHYpsw7xzZm3z6+CYxvAdl3jm/OvndyS/ZdKAays+6e2Jxz/9TW9Ev7VwuDzLi4bxXYLIaatkoGKAC5lpGBDLB/7WwwDQB25HA3yUpd4wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/93d8656cd01125fb68a90be8e216a08c/fcda8/s3_time.png&quot;
+        srcset=&quot;/static/93d8656cd01125fb68a90be8e216a08c/12f09/s3_time.png 148w,
+/static/93d8656cd01125fb68a90be8e216a08c/e4a3f/s3_time.png 295w,
+/static/93d8656cd01125fb68a90be8e216a08c/fcda8/s3_time.png 590w,
+/static/93d8656cd01125fb68a90be8e216a08c/efc66/s3_time.png 885w,
+/static/93d8656cd01125fb68a90be8e216a08c/cc155/s3_time.png 886w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can see that stacking multiple requests can add up over time. Come to think of it, is there really a strict dependency on the last web request finishing from s3? If the target can handle it, we shouldn’t care either. Let’s get something going like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/319a29518c8545c702d90762dcf7240c/ef3e1/s3_async.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAACWklEQVQoz5WSSWgTYRTHp2kOoh5EmoOCoOJBaLwKXj2InvTkWfAsKHgpLgcPllpsVSwNeoiXUpC6pM2ezGTfJtskk8UkTSbrZKltozaNJZ15vpmSYA8eHBje+7753p/f//8NQfznc+HsGQIA/n3gwdS9IzduXT+vWZw+qVteUK1o5yaMS29VXz/Mqxamp1SLM49U718+ndC8eKz6op0/Ab31cT5hU0izsJ0hGoz1sKAtqL/rSTshmyQ71eBaDQ/wJdrA12IW/neF5vvlEL9TCtR7XHBrK+d2Dee6ec94MaQfk/qNjIPI+3UHH8iw6bKLpZ7EEvZwq8VAO+eB7ykKcBh+FLzQ4wKw34gCtBOwU/J3ce91J0XdGQoj7QiuHv+L1kIb71MsxedYcrPCWIUmS+5XY2ahnaKEvSotIKn8wh4HSBdFunPVqPm0lCeuZdJBPUIQoax7LNNhFY7A2lFp0xExk4WNFDTSjkGbsQ6aSbvIhY2wmXWCwMdEjGGAwn1AN2h1dgi0nXMrWefKwULn/DQidTL2K+ag/nYkYW/VmwwgqdhirGILK9oT0bKIxKIUw07RX/xV9JnQ6rWRwEfTklznNDPEquuzYrhPxm1v3EnSv56i+pW0A1AQ8MIku7DLBWG3HBTkbPtF2Prm0nbSjqsYw6mRMJ33yjWQdSm8aadS6p8/e3gMhZtMwQe1uEVAQsBcoUTr4ee6DyTSfiU0kIW7WUDSm4d+oVW0LoX86t2sXG2+VaWXpS56I6ZLlahJjZegRko15ir3XNigLoeNao42TCLdZNS6fPwPvtWzzr2MeCgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/319a29518c8545c702d90762dcf7240c/fcda8/s3_async.png&quot;
+        srcset=&quot;/static/319a29518c8545c702d90762dcf7240c/12f09/s3_async.png 148w,
+/static/319a29518c8545c702d90762dcf7240c/e4a3f/s3_async.png 295w,
+/static/319a29518c8545c702d90762dcf7240c/fcda8/s3_async.png 590w,
+/static/319a29518c8545c702d90762dcf7240c/ef3e1/s3_async.png 759w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Quite literally, 7 requests can happen in the time of two requests. The tradeoff is that we are a bit rude on the network and hog our own networking card for resources. If no constraints are in place we could very well use up all of the bandwidth.&lt;/p&gt;
+&lt;p&gt;The power is in the ability to wait for multiple chunks to complete at the same time.&lt;/p&gt;
+&lt;h2&gt;Not Magic&lt;/h2&gt;
+&lt;p&gt;Can we just keep lobbing chunks at the network until it is saturated? Well not quite. Yet again we run into memory constraints. Each of those chunks may require a retry, and in order to do so I hold on to the buffer in memory.&lt;/p&gt;
+&lt;p&gt;This introduces a slew of other problems. To demonstrate the complexity we take on, I will put off the buffering mechanism to another post.&lt;/p&gt;
+&lt;p&gt;To get a look at the code you can find it &lt;a href=&quot;https://github.com/nickdnickd/botnica&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;That’s not say Aspera didn’t have its own quirks in the field. In atypical network environments for documentary filmmakers, we saw issues particularly within univerisity networks. And it is pretty expensive. On top of the current infrastructure, it costs about $1 USD per GB transferred in their SaaS offering. Under enough load these Faspex servers would also go down.&lt;/p&gt;
+&lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Avoiding Manual Data Entry]]></title><description><![CDATA[Interview Season Doctors have it rough. After graduating medical school, they enter a period of indentured servitude known as residency. It…]]></description><link>https://nickdnickd.com/web-scraping/2020-09-12-Avoiding-Manual-Data/</link><guid isPermaLink="false">https://nickdnickd.com/web-scraping/2020-09-12-Avoiding-Manual-Data/</guid><pubDate>Sat, 12 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Interview Season&lt;/h2&gt;
 &lt;p&gt;Doctors have it rough. After graduating medical school, they enter a period of indentured servitude known as &lt;em&gt;residency&lt;/em&gt;. It is not uncommon to hear of over 80 hour weeks, 12 hour shifts and DOMA’s. DOMA stands for “Day Off, My Ass” which describes the period of time between a night shift, letting out at 7am, and a day shift starting at 7am. Technically 24 hours, but most of it is spent asleep. In between these brutal shifts, a resident very near and dear to my heart has begun interviewing for a fellowship. A fellowship is a brief extension to residency that allows a doctor to focus on a specific area within their field of medicine. One example is ultrasound. This is a rapidly developing subspecialty of emergency medicine because it provides a quick, noninvasive view of a patient’s internal state. &lt;/p&gt;
 &lt;p&gt;Throughout the country there are over 100 ultrasound fellowship programs, all vying for candidates on &lt;a href=&quot;https://eusfellowships.com/&quot;&gt;this website&lt;/a&gt;. I have visited this site over 100 times to help my SO compare and contrast.
 It’s not the most beautiful website, but it gets the job done. One can tell that the data are organize in some sort of database behind the scenes and uses PHP (something I know nothing about). However, the site’s frontend takes the form of a tree-like structure with different characteristics nested in links on the side pane.&lt;/p&gt;
@@ -131,7 +284,7 @@ What I was met with was an entire platform for running distributed web crawlers 
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 209.45945945945948%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,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&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 209.45945945945948%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,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&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
