@@ -5,13 +5,14 @@ module.exports = {
       name: `Nick D`,
       summary: `who wants to remember interesting EE topics.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `A blog covering how to use programming to address simple questions.`,
     siteUrl: `https://nickdnickd.com`,
     social: {
       twitter: `nickdnickd`,
     },
   },
   plugins: [
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -53,7 +54,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `G-Q9WSJS3J91`,
       },
     },
     `gatsby-plugin-feed`,
