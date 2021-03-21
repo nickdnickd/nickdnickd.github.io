@@ -8,30 +8,41 @@ However, I found they are actually two different kinds of report. </p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Timestamp,Transaction Type,Asset,Quantity Transacted,USD Spot Price at Transaction,USD Subtotal,USD Total (inclusive of fees),USD Fees,Notes</code></pre></div>
 <p>TurboTax, however, is looking for this <sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup>:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ASSET NAME,RECEIVED DATE,COST BASIS(USD),DATE SOLD,PROCEEDS</code></pre></div>
-<p>Support responses in the TT <a href="https://ttlc.intuit.com/community/taxes/discussion/coinbase-csv-file-not-compatible-on-turbotax-no-headers-found-in-this-file-error/00/1820285/page/_18">forum</a> vasciate from the mildly confused to the overtly inaccurate.
-There are a slew of “aggregators” mentioned in the forums, but the top option seems to cost about $50 per season.</p>
+<p>Support responses in the TT <a href="https://ttlc.intuit.com/community/taxes/discussion/coinbase-csv-file-not-compatible-on-turbotax-no-headers-found-in-this-file-error/00/1820285/page/_18">forum</a> vasciate from the mildly confused to the overtly inaccurate.</p>
 <h2>What is actually needed</h2>
-<p>Say I buy one bitcoin for one dollar last week (can you imagine?). This week, I buy another bitcoin two dollars. Immediately after, the price goes way up and I sell one token for ten dollars, keeping the other one just in case.</p>
-<p>Next year, I have to tell the IRS <em>which token I sold</em>. If I sold the first one, I made $9 USD in profit, but if I sold the second one, I only reveal $8 USD in profit to the Uncle Sam. The first way is known as FIFO (First In, First Out). The second is LIFO (Last In, First Out) and is more favorable when the price generally rises.</p>
-<p>I’m currently working on some <a href="https://github.com/nickdnickd/taxmycrypto">code</a> that will calculate this on the coinbase file but I still have a few challenges.</p>
+<p>Say I buy one bitcoin for one dollar last week (can you imagine?). This week, I buy another bitcoin at two dollars. Immediately after, the price goes way up and I sell one token for ten dollars, keeping the other one just in case.</p>
+<p>Next year, I have to tell the IRS <em>which token I sold</em>. If I sold the first one, I made $9 USD in profit, but if I sold the second one, I only reveal $8 USD in profit to the Uncle Sam. The first way is known as FIFO (First In, First Out). The second is LIFO (Last In, First Out) and is more favorable when the price generally rises because less taxable profit is displayed.</p>
+<p>There are a slew of “aggregators” mentioned in the forums, but the top option seems to cost about $50 per season. Furthermore I worry about the potential for “lock in”. For example if I use one aggregator, the service would have to remember what I used for cost basis last year. Is this easily transferred to another provider?
+I’m currently working on some open source <a href="https://github.com/nickdnickd/taxmycrypto">code</a> that will calculate this on the coinbase file but I still have a few challenges.</p>
 <h2>Questions</h2>
 <ul>
 <li>Do I have to choose between either LIFO or FIFO? HIFO (Highest In, First Out) has the best results but doesn’t differ significantly.</li>
 <li>
 <p>Can I split a buy transaction to cover the exact amount I sold when calculating cost basis? Robinhood seems to do this.</p>
 <ul>
-<li>If the answer is yes, do I split the fees evenly as well? Am currently doing this.</li>
+<li>If the answer is yes, do I split the fees evenly as well? I am currently doing this.</li>
 </ul>
 </li>
-<li>I am recording how much of each buy asset I am attributing to cost basis in an output csv. do we have to save this between years? It seems like we do.</li>
-<li>(Extra paranoid) How exact do the calculations have to be? Cryptocurrency goes way beyond three decimal points, wondering where rounding errors come into play.</li>
+<li>I am recording how much of each buy asset I am attributing to cost basis in an output csv. do we have to save this between years? It seems like we do. I refer to this above with concerns about lock-in or losing these data.</li>
+<li>(Extra paranoid) How exact do the calculations have to be? Cryptocurrency goes way beyond two decimal points, wondering where rounding errors come into play.</li>
 </ul>
 <h2>Early conclusions</h2>
 <ul>
-<li>This now seems to be a case study in the communication breakdowns between large companies as well as between companies and their customers.</li>
-<li>CSV as a file format is fantastic for starting a project, but will quickly break down in the long term since it does not communicate much structure.</li>
-<li>These companies should integrate more tightly, putting the burden on the customer. </li>
-<li>These customers are in a captive market.</li>
+<li>This now seems to be a case study in the communication breakdowns between large companies as well as between companies and their customers. Coinbase and TurboTax had a different understaning and now many customers of both are confused.</li>
+<li>
+<p>CSV as a file format is fantastic for starting a project, but will quickly break down in the long term since it does not communicate much structure.</p>
+<ul>
+<li>These companies should integrate more tightly. TurboTax should connect directly to Coinbase’s API with limited read permissions.</li>
+</ul>
+</li>
+<li>These customers (including me) are in a captive market with a very low barrier to entry. It takes 5 mintues to set up a coinbase account for free and start buying and selling cryptocurrency but there isn’t much choice to avoid audit exposure without paying the piper.</li>
+<li>
+<p>This code may eventually manifist into a web service that retains cost basis in a database, but I will leave the core part open source.</p>
+<ul>
+<li>It would be more secure and less error prone to connect to Coinbase’s API and allow users to use oauth to only grant transaction history</li>
+<li>The user would still need to specify if receiving an asset on an exchange was actually income or an internal transfer from another wallet outside the exchange.</li>
+</ul>
+</li>
 </ul>
 <h2>Disclaimer</h2>
 <p>None of this is tax advice. Please consult with you financial advisor.</p>
