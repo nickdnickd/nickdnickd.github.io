@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nick D Blog]]></title><description><![CDATA[A blog covering how to use programming to address simple questions.]]></description><link>https://nickdnickd.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Mar 2021 16:13:27 GMT</lastBuildDate><item><title><![CDATA[IRS v BTC]]></title><description><![CDATA[Crypto grows up This year in TurboTax, the paywall maze willed into existance by lobbying, a question will pop up asking if you’ve sold or…]]></description><link>https://nickdnickd.com/crypto-taxes/2021-3-1-Crypto-Taxes/</link><guid isPermaLink="false">https://nickdnickd.com/crypto-taxes/2021-3-1-Crypto-Taxes/</guid><pubDate>Mon, 01 Mar 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Crypto grows up&lt;/h2&gt;
-&lt;p&gt;This year in TurboTax, the paywall maze willed into existance by &lt;a href=&quot;https://gimletmedia.com/shows/reply-all/6nhgol&quot;&gt;lobbying&lt;/a&gt;, a question will pop up asking if you’ve sold or received cryptocurrency in 2020. If you decided to get off the crypto rollercoaster this past year, you will wind up being cornered into paying for TurboTax Premier; for “cryptocurrency support”. Coinbase, the largest crypto exchange, similary advertises a TurboTax cupon code to allow compaibility on their &lt;a href=&quot;https://www.coinbase.com/reports&quot;&gt;reports&lt;/a&gt; page. All you have to do, says Coinbase, is upload their “CSV” to TurboTax.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Nick D Blog]]></title><description><![CDATA[A blog covering how to use programming to address simple questions.]]></description><link>https://nickdnickd.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 19 Apr 2021 01:12:15 GMT</lastBuildDate><item><title><![CDATA[IRS v BTC]]></title><description><![CDATA[UPDATE TurboTax has now pulled Coinbase from the list of providers for CSV uploading. While less confusing, the workaround I created no…]]></description><link>https://nickdnickd.com/crypto-taxes/2021-3-1-Crypto-Taxes/</link><guid isPermaLink="false">https://nickdnickd.com/crypto-taxes/2021-3-1-Crypto-Taxes/</guid><pubDate>Mon, 01 Mar 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;UPDATE&lt;/h3&gt;
+&lt;p&gt;TurboTax has now pulled Coinbase from the list of providers for CSV uploading. While less confusing, the workaround I created no longer allows us to “spoof” a proper CSV. You can still use the output from this blog to enter into TurboTax… but unfortunately it’s gotta be manual.&lt;/p&gt;
+&lt;h2&gt;Crypto grows up&lt;/h2&gt;
+&lt;p&gt;This year in TurboTax, the paywall maze willed into existance by &lt;a href=&quot;https://gimletmedia.com/shows/reply-all/6nhgol&quot;&gt;lobbying&lt;/a&gt;, a question will pop up asking if you’ve sold or received cryptocurrency in 2020. If you decided to get off the crypto rollercoaster this past year, you will wind up being cornered into paying for TurboTax Premier; for “cryptocurrency support”. &lt;/p&gt;
+&lt;p&gt;Coinbase, the largest crypto exchange, similary advertises a TurboTax cupon code to allow compaibility on their &lt;a href=&quot;https://www.coinbase.com/reports&quot;&gt;reports&lt;/a&gt; page. All you have to do, says Coinbase, is upload their “CSV” to TurboTax.&lt;/p&gt;
 &lt;p&gt;The problem is that the two systems are not actually compatible. What follows is the uncovering of a rather large miscommunication between two large companies.&lt;/p&gt;
 &lt;h2&gt;Silent hot potato&lt;/h2&gt;
 &lt;p&gt;After happily downloading the &lt;code class=&quot;language-text&quot;&gt;.csv&lt;/code&gt; (Comma Separated Values- Excel sheet with commas instead of lines) from Coinbase in one tab and uploading to TurboTax in another, the TurboTax UI returns an error that the column names are wrong. Coinbase does produce a &lt;code class=&quot;language-text&quot;&gt;.csv&lt;/code&gt;  and TurboTax accepts &lt;code class=&quot;language-text&quot;&gt;.csv&lt;/code&gt;‘s.
@@ -11,28 +14,74 @@ However, I found they are actually two different kinds of report. &lt;/p&gt;
 &lt;p&gt;Support responses in the TT &lt;a href=&quot;https://ttlc.intuit.com/community/taxes/discussion/coinbase-csv-file-not-compatible-on-turbotax-no-headers-found-in-this-file-error/00/1820285/page/_18&quot;&gt;forum&lt;/a&gt; vasciate from the mildly confused to the overtly inaccurate.&lt;/p&gt;
 &lt;h2&gt;What is actually needed&lt;/h2&gt;
 &lt;p&gt;Say I buy one bitcoin for one dollar last week (can you imagine?). This week, I buy another bitcoin at two dollars. Immediately after, the price goes way up and I sell one token for ten dollars, keeping the other one just in case.&lt;/p&gt;
-&lt;p&gt;Next year, I have to tell the IRS &lt;em&gt;which token I sold&lt;/em&gt;. If I sold the first one, I made $9 USD in profit, but if I sold the second one, I only reveal $8 USD in profit to the Uncle Sam. The first way is known as FIFO (First In, First Out). The second is LIFO (Last In, First Out) and is more favorable when the price generally rises because less taxable profit is displayed.&lt;/p&gt;
+&lt;p&gt;Next year, I’ll have to tell the IRS &lt;em&gt;which token I sold&lt;/em&gt;. If I sold the first one, I made $9 USD in profit, but if I sold the second one, I only reveal $8 USD in profit to the Uncle Sam. The first way is known as FIFO (First In, First Out). The second is LIFO (Last In, First Out) and is more favorable when the price generally rises because less taxable profit is displayed.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 580px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/17d04ec4334606bf7770d1f4aa48112c/b6272/fifo_vs_lifo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.93670886075949%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAACK0lEQVQoz62Ry09TURDGv3tPi8ESRTQuFIVGo7EETTRxaVy4UTeuXfgP+E58YIILJb4gRmNAogaF1JiW3JSCtWnppb2UtpfePuyL2jetqQXRFqImbEiOOdi4duGXzOLM+TLzmxkIYgDj0xFMuKN8jVIOANYo5SzeBN87qEdrmxYqlZrlCf5Fo5OzGHdHYLTLoJSylGZhjeKDbw73nw1ht3YPK7QRQBMANTNc7b7HMS+LEbMTz9+acanrDm7e7QMEhx8Gm69pKlw4YPEmdF09j4+bpoIdrmhR92hgeAvAANXbAewEsIEV1O7d9xfo2ImTOHj4KDoOHcF+XSdg8cTZyKc8yQp1RUurgqj8dIRyv7yfFqjB5jsbKNRgVzJk0+ZmqBsaVAAa65O08DzfDoCvxx/ZlTSscvKMkqtSX2qRTszEqDtRpuxt8cbPsX8lXyOUUi67TNmuewP5WtURzBbGXOGinP5aljNLcw/632x7abAAY64QBFFpd0WKlx3B7IVRu3zR5k+dl2Kla0+HjJ2M5rVg5+pU3DvrzGlPsnLbKievm5yhG1KsdEuKlq70PHmh6R8xAWIov04ZLv2AL7UIg80Ld6KM4PwK5PQSmlu2agDsYjvc0drWYJY+IvZlFWI4D7MURnB+GaHiCvoG9awxYPOn1y+q5KrEk6wQQVTIdPwzcUaKpE5FwHHsyo369xKkaIlj3slAhpicITKb/Ub82e/k4cAwXhmt+O/6DWikIdCl2mgKAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;fifo_vs_lifo&quot;
+        title=&quot;fifo_vs_lifo&quot;
+        src=&quot;/static/17d04ec4334606bf7770d1f4aa48112c/b6272/fifo_vs_lifo.png&quot;
+        srcset=&quot;/static/17d04ec4334606bf7770d1f4aa48112c/c26ae/fifo_vs_lifo.png 158w,
+/static/17d04ec4334606bf7770d1f4aa48112c/6bdcf/fifo_vs_lifo.png 315w,
+/static/17d04ec4334606bf7770d1f4aa48112c/b6272/fifo_vs_lifo.png 580w&quot;
+        sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;There are a slew of “aggregators” mentioned in the forums, but the top option seems to cost about $50 per season. Furthermore I worry about the potential for “lock in”. For example if I use one aggregator, the service would have to remember what I used for cost basis last year. Is this easily transferred to another provider?
-I’m currently working on some open source &lt;a href=&quot;https://github.com/nickdnickd/taxmycrypto&quot;&gt;code&lt;/a&gt; that will calculate this on the coinbase file but I still have a few challenges.&lt;/p&gt;
-&lt;h2&gt;Questions&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Do I have to choose between either LIFO or FIFO? HIFO (Highest In, First Out) has the best results but doesn’t differ significantly.&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Can I split a buy transaction to cover the exact amount I sold when calculating cost basis? Robinhood seems to do this.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If the answer is yes, do I split the fees evenly as well? I am currently doing this.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;I am recording how much of each buy asset I am attributing to cost basis in an output csv. do we have to save this between years? It seems like we do. I refer to this above with concerns about lock-in or losing these data.&lt;/li&gt;
-&lt;li&gt;(Extra paranoid) How exact do the calculations have to be? Cryptocurrency goes way beyond two decimal points, wondering where rounding errors come into play.&lt;/li&gt;
-&lt;/ul&gt;
+I’m currently working on some open source &lt;a href=&quot;https://github.com/nickdnickd/taxmycrypto&quot;&gt;code&lt;/a&gt; that will calculate this on the Coinbase file.&lt;/p&gt;
+&lt;p&gt;At the heart of it is a Coinbase Transaction class that will calculate cost basis so that we don’t hav eto pay taxes on the whole asset:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token decorator annotation punctuation&quot;&gt;@dataclass&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CoinbaseTransaction&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token triple-quoted-string string&quot;&gt;&quot;&quot;&quot;Class for keeping track of transactions.&quot;&quot;&quot;&lt;/span&gt;
+
+    timestamp&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; datetime
+    transaction_type&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; TransactionType
+    asset&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; AssetType
+    quantity_transacted&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;
+    usd_spot_price_at_transaction&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;
+    usd_subtotal&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;
+    usd_total&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# inclusive of fees&lt;/span&gt;
+    usd_fees&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# How many of this asset did we attribute to profit&lt;/span&gt;
+    BASIS_COLUMN_NAME &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;quantity_attributed_to_profit&quot;&lt;/span&gt;
+    quantity_attributed_to_profit&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.0&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cost_basis_usd&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; quantity_considered&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token triple-quoted-string string&quot;&gt;&quot;&quot;&quot;Cost basis is how much we had to spend to acquire this asset
+        Includes the list price of the asset plus any fees.
+        Since assets are divisible, we attribute the fraction of the fees
+        use to buy this assset.
+        &quot;&quot;&quot;&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; quantity_considered &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;usd_spot_price_at_transaction
+            &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;usd_fees &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; self&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;quantity_transacted
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Early conclusions&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;This now seems to be a case study in the communication breakdowns between large companies as well as between companies and their customers. Coinbase and TurboTax had a different understaning and now many customers of both are confused.&lt;/li&gt;
+&lt;li&gt;This seems to be a case study in the communication breakdowns between large companies as well as between companies and their customers. Coinbase and TurboTax had a different understaning and now many customers of both are confused.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;CSV as a file format is fantastic for starting a project, but will quickly break down in the long term since it does not communicate much structure.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;These companies should integrate more tightly. TurboTax should connect directly to Coinbase’s API with limited read permissions.&lt;/li&gt;
+&lt;li&gt;These companies should integrate more tightly. TurboTax should connect directly to Coinbase’s API with limited read permissions, while Coinbase provide this aggregation as a service.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;These customers (including me) are in a captive market with a very low barrier to entry. It takes 5 mintues to set up a coinbase account for free and start buying and selling cryptocurrency but there isn’t much choice to avoid audit exposure without paying the piper.&lt;/li&gt;
@@ -84,15 +133,15 @@ This Drive download acted differently and it felt sort of powerful.&lt;/p&gt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAACbklEQVQoz1WQy08TURTGz7TFqhsMK1dGw0olDZQYqAyxPJRaYyCCLogLiSFsWPkHGI0bYqKrGhOIQUEi4gM7fVgIBewDKLVCH7RTHqWlLZQWsaggauvxTBOJ3OSbe3Pmnt/9zgeICB+80V5XOI0T/PomZ3XLhZpx0s8NOxeWTI6gR2/z+uiO2xn6Eh12zt/wJzPAp7IiPAgwwMpg5hILUypFTpChZosvpqUmtM6t4huzs14AchZ38oXRhq9HppEgOLWQQk98B8c9kdtLWwh8JC1xqFmRoaoE8NEdeFUpY4Q+ED6jM8tdBP1q8UY3zJ9CitA3BIJ0Gibmxughoz2QGHIsftZPBtdtJgffyKcx1yc4WmiozMOYWQDmahDZRng6OHKIXs7vN9nzOzTd4kAqC7XqBkkvNy5pbG6RAsARkpiUJwEQtZ44Cqaq0sOcsqSwR3F60qVmH94tOlaAN5skEP2B0KMdExyB1jILwsrl6lkxTPCJmM2/GiT3IToHaOykwepu8w/qQMMWKwiU4ZRyfFJ2CvvOFrnwXbcUdqhZb/cJYzOd/YZcDoKGpoNRHeVKYyOdkf6jO7aNww7+Hu4iPKgoVn5UV6C59szuS1aG5DSENu4A/L/KK6vhH3BsNvzY6ouPkju9dS5uJOnsgTXre5unaaDjPnSdk5dOqxQR+9U6fHuhPPus7KQBuR7pPmC16vIecJGC5zf+wPwmwvJ3hDBlnaT6Sgahmfa1eqWQqbiPlT1fulLTjq3XINJ0XrwPWHOxfg8Y+4lM/Dcyq6REFpl1RGaLFP6FwNBdb10ZaOSFglPYaWmEW8cLANuvw1/7t5dp3BEZtQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 47.46835443037975%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAACfklEQVQoz1WQ309SARTHzxXM6sXmU0+t5lPpmOKakteFP0qjNV1aD66HXHO9+NQf0Gq9uLZ6srXpmoW5zH6YVy4hE3/ce0GBSOFe4AKKIBdFMMNKs4ROu2y5/G7nPHy389n3fAERYYaPDbgiabSJ65sU61bLnnHWR5mdoSWTPeAxcLwww8fczvDXmNkZvOlLZkBMZfPwMMAwqYL5yyTMNWlyAxlEYARp1MDxyHpX8Z3F2SwDKcadfGXk8O2EA83OIM6FUuiJ7+C0J3p3aQtBjKaVdh2ZR9eWAz65B29qVIR8B/KanF/uYwTpG8PHNiyfw5rwdwSzM9hL27xTBo43Wv2JcfviF8NsYJ0z2cVWMY25OzlRqKUmHyWLDMx5EN1GeD4ycWTaEy0cMlkLu3v6Ff5UFhp0LcoBalrZ2t5RAADHAEABAPlKgLzOU8fBVFtxlNKWF+s1JbMuHfn4fumJIrzVpoTYTwT96JScCEaZBZCV69WzQtvEhMT5VgOMIIVtYsI/F0oladZ92zcyBj1kmcalIzOUVo3PKs/g4LlSF37oL4AdRDBYBfltoneIzvUgz7gjEBvjeKRtXhx3BHByfhnd0jaa7eID3EV4VF2m/aSrRkvD2d3XpAr1mpIwctQh+F9VNXXwDzi1EHnKCvFJRpAMrDduZL3xMat/jf3IedqGux9C33l1haNJE7Vea8T3F6uyLypP00jpCw4A65qu7AMX0wjixh8IbiIs/0CIbCMkEWElg9COCGvNWrlTxSCperl0tb4LO69DtO2C4gCw/lLzPlD6hUR8D4nVPSQSWSTWEYktRCLyG4EAAL6xEnrUxXJS2OlohTsniwC7bsBf+7eXaT9lAScAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
         src=&quot;/static/1a593cb03bc811628806e8de05692f88/08115/s3_simple.png&quot;
-        srcset=&quot;/static/1a593cb03bc811628806e8de05692f88/12f09/s3_simple.png 148w,
-/static/1a593cb03bc811628806e8de05692f88/e4a3f/s3_simple.png 295w,
+        srcset=&quot;/static/1a593cb03bc811628806e8de05692f88/c26ae/s3_simple.png 158w,
+/static/1a593cb03bc811628806e8de05692f88/6bdcf/s3_simple.png 315w,
 /static/1a593cb03bc811628806e8de05692f88/08115/s3_simple.png 504w&quot;
         sizes=&quot;(max-width: 504px) 100vw, 504px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
@@ -118,15 +167,15 @@ Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chun
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 71.62162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAADhElEQVQ4y4WUe0hTcRTHz72zxMr0jxZFRUSmmNgaTZepaWWlvSGpNIio/oig7B296UUFEYFRSWUPq2mauYcu3Zyb2927bTmnzuWUXKu00l70gn6d36X6L/zBgQu/cz73nPP93gvw56i4VmhuDcHjJhcoTd58g7d3n6HlxQ6NM7Cj0R3cV2/3Lw9+JEAIgeI7j/ia/AnRkDwSQJEthk8FS/iAGw/VoHV1sTUGNxv6TlhaUKWx+SvqLUTR/IzUWdqIsTVETG1hMzKYfkKY75jDLUqB8oxksObOYWvmiuBaSgKrzUlhoESmAu3TLsAOYOehU/yba7nWKwhz15p9JlvgrckZHPBg9+fwit26+xBLc0pSE6ECgba8OdCxIp25LIkHXU4qwNX78iiduzsdR5t9V64bgbkRF6/LYpXGljF7j5+fWHTw5LgDJy8Idx05E413w0eNjmF4oDQJXEvSo6oyRYvlWWK7YZF0/U1p4mio0tqTLJ19P62BftLgCGykI+PO5NjRIEbI5Av3OoLvP5g7XpfSDpetLhAclYoE+pxZcDstSWLJTfv1KENESqWJRLcwtQDqzD4Rdkd0nh66r8N9CHxi63DhuKTe3klwHcTe9Y5w7a8bEBg5NT4xKnWcMIrIT0OxJCETRyaGZXN/IpxoF0g2wa1qjdDc8eaIxf/mlNraLm50BaHB0ZmBkJVyg2c+PmfrW16swhdI6Dq2bN/PK31RPA1qs8VCTU7KCe3yrA/KBZLLNZkz4uB2tQawmA8spiHQOJ+Dp/cL7XQTCpT/LPQFrlfUQULSjOFU6TVxk+BE8hTmqmQafCpcCuWz4qYDSuXITQO4p9SD0ReO4NpfRahMXrZczcGDWmMMruFmo7ubOLsHCXry0p5jZ6ko0YWbt/Gi1M+bCVck8cy7dXkCBMLUGAFjXTyb/etrOFtcyo9CA8WoRBEIdv8VBfrR8vIretJzD9PG4j2Dq4AxkcNg7cQYWCiMBEWWmBlclwcDGP9OiUwJ3vA3HoienIwdKtA6hEMwwmXVOuf4+bkrqM34nCHPE5sfsAgqNTYwtb2C7s8Emjw9RTI1V0QB+Ax/LAXo26GBNXo39SQFxuKnuMHoe7mhTNG0Fk2+TcV5t+J3XXhNphxZptCDTG0aGohjsmgN+pOYbvH39TiCA2HcVRit1IvChK2d/YH7qubJdILHTU+Z/3F+A3QkAisPCAu3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 71.51898734177216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAADsUlEQVQ4y4WUa0xTZxjH/+fAJMwhfpDFZS5mESFIsGsoIDdhikqduiUjE1hiFrcPxmSym1vm3BZ1i1uykCUYlTAZm7rCRKQ3ajml5fTe00NbeoFe1pbQWhHGwDnjnMne5Zy4fVt4kv+35/m9z+WfF3gcGlsQ5mAaN0weqK2BFjaQOs76Z48xfOzYmDdxXM9F9id+JyCEoOuH62JNy7N5KFsNqBqluNe2VxS++1kHgydOD7NeOv2Q0ELBIOOKDOgdRGWeJCOOKWIJpol1KmMHQC0QQj0kBLbdFeivK4OzuYYe3i7BxYpi2tBUQaFboYFhIg49F8E7J86IL2ttwfMq86RXaw9ZXbFfrXxiyWcOpr8CQB957wQt5HRXlmCgrgwueQ3CB2qpc7IiGJsqgQtXlblGb7KW4WPbflQanwSQ3dmjWKu2+Nd98PnXGzo+Pr3+o9PfFLx78ss8AKueWpNPicCqUnj21uYO1kv2KBukHLu76vVLVSVrMGjgSh3R+UfO2AIZdcfeEEYe8yaU5mB62RxMp62hTMqd+O2uPTzXK3S479W2rE+rJFnjTeXoqy6VOZqr/75eJyG9VSXEuKuyDSP2kIThY8TomxH29ck8IbjpCnu09hDRc1FimIgTLr5IbNNzowByNhWV5FauL8glyi/QJSuud8lrCLtv+6O+6lJi2Ck7jO+HmAJ7+M5JR+TOGZ1zWjrmSWDUHa3j4osvK1nfjlF3tHHcP/uK1h6SCet46+0PxUt3SjdD2ygtYJoqThn2N9xV75SdG67fWoi+IQZcfFHUqDsqKIvhf4EvdV/o9LDWFmyZTN9Hz8AIiku3rhIu/VrhczhV9jx1QbYZ99pfQn954RbQgLu5GriiHocllMm2Td/O1lgDdL/Ohp+0lnyGj10a8yYJn1wmbCD17fufnRWOktf+5lHxKPoXX8B5WRG12CrP6i8vxKb8LMq5Zxv9r69xtqtXHEWQOZi+Zg/Pkb4h5sGYN/GX/9YDojL7rgB4mhBCKVkf1uU8gYMb8rGrIAeqBim13CrHUqv8Px66FWoEMn+KQD0X2cjwMZXa4ie28Byxh+cUQ0b+mR3NBwSbiTkrxk1XBENGHtcYF6xTt5H8g8Dkm+lQ6GwdAsDkm8FjS8HoTa4MHB73Cp4UgGsNnvghS+jWocsq08HOHsVRjS1whPXPtl9UqFdfVo1DobOuDNRzEVprDwmfxBZHZH7GnVjKKFlfRuecTvHJ5YwzuhC7qjFvFCa4YZqg/g/0D3QkAitOQOHlAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
         src=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/9fc4b/s3_chunk.png&quot;
-        srcset=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/12f09/s3_chunk.png 148w,
-/static/b01ecf09c721e5ca7d168ead92c421aa/e4a3f/s3_chunk.png 295w,
+        srcset=&quot;/static/b01ecf09c721e5ca7d168ead92c421aa/c26ae/s3_chunk.png 158w,
+/static/b01ecf09c721e5ca7d168ead92c421aa/6bdcf/s3_chunk.png 315w,
 /static/b01ecf09c721e5ca7d168ead92c421aa/9fc4b/s3_chunk.png 583w&quot;
         sizes=&quot;(max-width: 583px) 100vw, 583px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
@@ -137,7 +186,7 @@ Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chun
 &lt;p&gt;When dealing with this type of web request, the typical loop looks like this in a straightforward loop.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -148,19 +197,18 @@ Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chun
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 15.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQI12PYd3anzrGrB3Lvnd+V8uzCrrQn53elPQXSn+4cAeKjYPzx9pG0kxf3pp2+tDft8dkdac8u7k57eGZ72qsr++DyQDrj1dV9kQxbj2xM2Xdmx89bp7fdf3Bq6+N7QHz/9NbHQAWPP9899vgziAbi4+d3Pzp5cc+j+6e2Pnp8bsej28c3P3p5Zd+jbw9OPPpy99jDr/ePP3t74+BRBlsnazZTKxPB/pYytlk9teyze+vYZ3TVsDtYmbDbWRixW5kasNuZG7L9//+fCYiZoTQUP2Nqq8plWjipmWluXwMTUB8TAARKne7z7vNNAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 15.822784810126581%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA9ElEQVQI12PYd3anzrGrB3Lvnd+V8uzCrrQn53elPb2wK+3TnSNpn+4cBeOPt4+knby4N+30pb1pj8/uSHt2cXfawzPb015d2QeX/3TnaMarq/siGbYe2Ziy78yOn7dOb7v/4NTWx/dObX18//TWx5/uHH38+e6xx59B9J2jj4+f3/3o5MU9j+6f2vro8bkdj24f3/zo5ZV9j749OPHoy91jD7/eP/7s7Y2DRxlsnazZTK1MBPtbythm9dSyz+6tY5/RVcPuYGXCbmdhxG5lasBuZ27I9v//f6b///8zQ2kofsbUVpXLtHBSM9PcvgamGV01TAAESp3uDOobkwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/93d8656cd01125fb68a90be8e216a08c/fcda8/s3_time.png&quot;
-        srcset=&quot;/static/93d8656cd01125fb68a90be8e216a08c/12f09/s3_time.png 148w,
-/static/93d8656cd01125fb68a90be8e216a08c/e4a3f/s3_time.png 295w,
-/static/93d8656cd01125fb68a90be8e216a08c/fcda8/s3_time.png 590w,
-/static/93d8656cd01125fb68a90be8e216a08c/efc66/s3_time.png 885w,
+        src=&quot;/static/93d8656cd01125fb68a90be8e216a08c/f058b/s3_time.png&quot;
+        srcset=&quot;/static/93d8656cd01125fb68a90be8e216a08c/c26ae/s3_time.png 158w,
+/static/93d8656cd01125fb68a90be8e216a08c/6bdcf/s3_time.png 315w,
+/static/93d8656cd01125fb68a90be8e216a08c/f058b/s3_time.png 630w,
 /static/93d8656cd01125fb68a90be8e216a08c/cc155/s3_time.png 886w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -169,7 +217,7 @@ Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chun
 &lt;p&gt;You can see that stacking multiple requests can add up over time. Come to think of it, is there really a strict dependency on the last web request finishing from s3? If the target can handle it, we shouldn’t care either. Let’s get something going like this:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -180,18 +228,18 @@ Scale up the file to 400 GB. Libraries usually reccomend a chunk size. This chun
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAACl0lEQVQoz22Ty08TURTGTwEXkrgyMamugRpXbvgLTIw7d7rUpWsXutAlEiMuREXl5QKKPKpASjt9zExn2gKdtvQxnZZCoY+BPm1BUaHYzlzPzIKExJucnMW99zu/8517gRACWtDUNGRWl0DkLLC9tgwJzNziOPCLE3p4lyYh5DSDZWIIbt7og4j7C/x3PRt42n3/wb0+89TwFcfCqNE2895IL3wyUpin3g0YzSMvjHOjL40zHwavuuc/Xianuc6ySHeQwxSQmgiluPu8oDtge+SJ0SQt0nU5YC0VY65qNmir7Ued1VM5WD3JC9U/2fXycS5wdLDlZUlDglqShR/bvs5dwWqoSizUMM4WE6L6+QT7JBKnw5LkIfsSSyoxF8FDpJ7iCF4kzUIQQyC/s2uNnxn/CO49PEh7dVuKSIjEgACwF3ECSIUQ+JMcOIP2x2yClbdEplGIuZVygmnLEYeCl5WmHFRO8gEMQdXEsUgwH7L34P41DQqLGJACSCUKIGx6DWIp2smuLl9cr8TBE3bw/gRLiknPXyRtYXU1F7KTxiZPlFJEE2yhcPMEib+nPINqKQKVBGM43PJ1acTw2TIGFtesPmmnYAM+RvdT69a7oThdF7FlPKygsIpZRX/Vo4xfPdWJdQuyv3bXWGz3Vn2T018CzFFmmMd4MzYEy9y3DjbqgrJaBCbqHvaJjDcjsc1cgtGECQoSJCE4JHKcD+jta6QHaX4SaW/vCivGs+EIaR/4JQ+sJrkOzF1sioehV88voXAlnOIJGt4qxVxtecPRzgor7aMdv4KkLRRsosdaAbIXdd4594S+Yuvaejv+WreACaxcQD97fEH79UKYMskblAkpTeirCYdi2glYTUil5V78DL0CNd39DzRxAmSY+DjsAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAACuElEQVQoz22SzU/TcBjHH148SOLJxGR6FmY8eeEvMDHevOlRj5496EGPSIx4EAWVNw8w5GUKC7CuXftruxVYO1i7toyxsbEVtnXjHYUN9/Iz7UFD4pM8eW6f5/t8vw9gjMFqmhiD5OIsqJwbEkse0Dg3cDNDwM8M2x2YHYEw6QL3cA/cud0BEf83+G+97HrR9ujxww7XaO813/SAY2G8z0FPf3EQ432O0Y9dDlf/a8fkwBvH+Kfu6/6pz1fx+VZLQaWb8WEMcEmFfNR/EegPLTxlFRrHVXrPCM3lcwpVTEsLpR2ZLJ4bUrGcEYun6eXC2Vbo5GAjgPC+DqU1BEeJYEtKnGsq6ghKOvoHZMJEJ6+h55EovaLrLN7RETYVCpd0hPdiHD5KBHElK+FKVsS/0kv7x0mhv6SjJwfxgG1LLuqHgkrDjkzCdoQE0LNhENY4ICXvM6QhY0Nl9rOKv17QmJoR8dVLOqpXDKlezoTq5YzYsOBHiaCUCXtvGhHfDUvUcVJowqYC2JQBxPVAk5qXW9Ci5/KyGQV2xccLGsK5Nfa3qVDVgko3tsJevL/O43o+YgGr5YxYKWdFvBtjuxv5CJga03S4EWy1FMNX9yC4qQk7aVJcAF6hO4nluQfhKL2nxjhsakzdVKiGqTGNnEI1TpJC49xWbFuQ/plaQjsyeXdvnbM/ASYJF0wRLng/2AMe7kczkikoNHLAyP7eoMoEkjqqbGmMBcY5hcKHG0F8ml7GZ5mQfb6l9CDOj+zG2Hspcd7xNxwxHgRBZ2FxjWsWdLYVxXjoefvqCiP7zZUYj7cjZDWvUDVj1VdLi/O1k02hfm5I1XJWrFQMyVqAt2Xy/oUX+k5N2PPD0DvbAiY0f0nQ0M2g5L2VXSGcxirhzCmUs6DSzkzY69wMzTlT4rw12xNLnnaRGGv7AzRxAmQy3himAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/319a29518c8545c702d90762dcf7240c/fcda8/s3_async.png&quot;
-        srcset=&quot;/static/319a29518c8545c702d90762dcf7240c/12f09/s3_async.png 148w,
-/static/319a29518c8545c702d90762dcf7240c/e4a3f/s3_async.png 295w,
-/static/319a29518c8545c702d90762dcf7240c/fcda8/s3_async.png 590w,
+        src=&quot;/static/319a29518c8545c702d90762dcf7240c/f058b/s3_async.png&quot;
+        srcset=&quot;/static/319a29518c8545c702d90762dcf7240c/c26ae/s3_async.png 158w,
+/static/319a29518c8545c702d90762dcf7240c/6bdcf/s3_async.png 315w,
+/static/319a29518c8545c702d90762dcf7240c/f058b/s3_async.png 630w,
 /static/319a29518c8545c702d90762dcf7240c/ef3e1/s3_async.png 759w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -219,7 +267,7 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
 &lt;p&gt;Say I want to compare the salaries of 20 different programs. To view all of the programs, you have to go to &lt;a href=&quot;https://eusfellowships.com/program-list-new/&quot;&gt;/program-list-new&lt;/a&gt;. Once there you must click on a program, then click &lt;strong&gt;Read More&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -230,20 +278,20 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 61.48648648648649%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB20lEQVQoz42R3W7UMBCF8/4PwQWXBVXQrrgo5QaJNwBBaRGwy252EztO4p/EziaHmUm224obIn0640lyfMbObm/e48PNDd6u3uHFq2u8ubzE64sLrK6uhOuF1X+SRQATsaXiY36EiSNq4rj0T/B6JBxRDoCmhiLN+7lmZbKDiyh8wrayeNjkuN8e8LArcLfZ4+s6x7f1rGtt5bu9jY8cGDdrbnvpZViecRzRWgfnPJrWwlqLGByit+iJaYhzxumUdanH49KbRLNxouI4IJDRj8Lit/a4Lxz2TQdtAyXz2JqAP5UXdsZTz+FXadGGiGkaEeKALxuFzUEj4/PBkDD1ZNB6FI2HcR3iMOBgHD5vDL7nNb0LgrGdqCJCTJJ0Vzm8/PQTdztDhpNYysHzTr5PcESXBhrfoTEGpqpQVVpUMBVqgTaStYG3DVLsF0OClXctKSXDdd00KMoSSmsopc9KlITW1eOa6xDCk4SkbRfRhB617yQhX8zpB6WUwIkENqMNynLuV5TyX0Mx68WUx27adjE6J9RLSjF6ktzT8cS+f24oY1I6OUdKyyOXSp2N9DyaXtZc8xSWzDhMpEt6Zsip2CymhKFt6EJquaghzb3EGqP8mNIZ7nXpiJ4S/gUOS4wd29N/WAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 61.39240506329114%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB20lEQVQoz42RzW7UMBSF8/4PwYJlQRW0IxYFNki8AQhKi4AZ5jd2nMQ/iZ2JP7CT6bQSCyJ9OtdX8fG5dvHu5i3vb254vXjDsxfXvLq85OXFBYurq8z1zOI/KTwQgbWHD9sjyo/UfuQ490+k9QgYoBxAHkEMsO2nOmmi2BvPwQbWleZ+teVuved+c+B2tePLcsvX5aRLqfN/O+0f2CfMpFvd517B/I3jSKsNxliaVqO1xjuDt5reauLgp4zxlHWux+Pci1mLMUY4Djhj+X7Q/JKWu4Nh13RI7VhKy1o5flc2s1GWpTT8LDWt88Q44vzA55VgtZcU6X4YArHvkK3l0FiU6fDDwF4ZPq0U37Y1snUZpbusonU4H3LSTWV4/vEHtxtFEWO2zBefTrJ9wPSBLgwYY2iUQlUVVSWzZlRFnamRea2wuiH4fjaMkaTp1LK1mVTXTcOhLBFSIoQ8q5CUQiJl9bBOtXPuUcIYaTtP43pq2+WE6WFOG4QQmZQok8ykpCynfqXUPwyzWZ9N09hN285G54RyTpmNHiW3xuD7/qlhHtN20z12Po9cCnE2ktNocl6nOk2hjclhvA9PDVOqZOZDYGgbGlXnhxrC1AtJvc8bQziTel040v9N+AcOS4wdNl7LyAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/84164261b6dac6fdb9b1b6f2c67f9239/fcda8/program-list.png&quot;
-        srcset=&quot;/static/84164261b6dac6fdb9b1b6f2c67f9239/12f09/program-list.png 148w,
-/static/84164261b6dac6fdb9b1b6f2c67f9239/e4a3f/program-list.png 295w,
-/static/84164261b6dac6fdb9b1b6f2c67f9239/fcda8/program-list.png 590w,
-/static/84164261b6dac6fdb9b1b6f2c67f9239/efc66/program-list.png 885w,
-/static/84164261b6dac6fdb9b1b6f2c67f9239/c83ae/program-list.png 1180w,
+        src=&quot;/static/84164261b6dac6fdb9b1b6f2c67f9239/f058b/program-list.png&quot;
+        srcset=&quot;/static/84164261b6dac6fdb9b1b6f2c67f9239/c26ae/program-list.png 158w,
+/static/84164261b6dac6fdb9b1b6f2c67f9239/6bdcf/program-list.png 315w,
+/static/84164261b6dac6fdb9b1b6f2c67f9239/f058b/program-list.png 630w,
+/static/84164261b6dac6fdb9b1b6f2c67f9239/40601/program-list.png 945w,
+/static/84164261b6dac6fdb9b1b6f2c67f9239/78612/program-list.png 1260w,
 /static/84164261b6dac6fdb9b1b6f2c67f9239/0e758/program-list.png 2502w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -252,7 +300,7 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
 &lt;p&gt;We are then met with the program page. Once there, on the left pane, under Fellowship Program header, click the Fellowship Program link.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -263,20 +311,20 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 59.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACD0lEQVQoz3WSTW/TQBCG/Xv5CXw0aZuWqgeOICQuqBJUAqm3cqGcKkGktqQ0iDQ4sdukcez4+yuOE+dh121CoOpIj2fW3pn1vLPKzs4uT2u7VDdqPFurslnbZnvrObXNLSqV6pL1qmT9Hhur8foGSg78cOdMp1MRFTxkM0EmkLvGgvzOR/Pb9zJORKy0nZS3TZc3Fy6vzh0Ofvv0vRjdibi6Q7ND2mZQ0hr6tAyJhzqK6Yh8zU3p3qGk+YyD713enV2xd3LFsWbjegHqtSEYcqkPuDFMfMcm8j1818ZzRjgjk2k2vteJ4vshe3WV/Uafl990Dtsj/DCme2NhehFBVjB5WAmK+Zz5CkocJ3yst9gXfGhc87Vr4ZgGURiQTzKKaU6eTwR5mVAUxZJFEWkLr8ySiE6zgd76SWwPmQgC18XzfZIkIYrEXwZBGT9ki2JlwYmY7snFL+rnTS5UHcMNME0TTdOwbZs4jsuiCy+Lh2FY4otDb28Hf1v20pwXxxprRyqPP3d437QIPQdN17Esq0yYzWYlq+1KFsX+GYqd5FS+qDw56vDok8rrM5NIFDSGQ7IsI01TxuPxErmWyG+yoNR2FSUTj9NLjYba47TTp2t6WKLlrmjZMAwGg0EpwVAcIL1cSxzHKWVYtC+lkGsFOTkxxSIX9306EWIU2GJzr9crNZPIhFX9ZCz1k3/5v/0Bg5B1Fq/sdkEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 59.49367088607595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACC0lEQVQoz3WS30/TUBTH+/f6J/gDBgwkPPioMfHFkCiJJrzpi/hEoksAh8w4sFsLg7Xdevt7XXu79mNu3XBKOMkn55z2nm96vrfa9vYOj5s7NNabPFlpsNHcYmvzKc2NTVZXG7esNRRrd1hfrtfW0STw3asoigIouS9mQAaoU1NAznNc/Xmu6kkF2oVIed3xeHXm8eJUsP8r4NpPMEXM5RzDjbhwwpquHdC1FD76OKEnUgwvpT9HS+WM/W993pxcsnt0yaHh4vkh+pWFfmVzbg65sRwC4RIHPoHn4osxYuxQZNM7m2hBELHb0tlrX/P8q8mHizFBlNC/GeH4MWFWkt/vBGVVUS2hJcmE960ue60u79pXfOmPEI5FHIXIPKMsJFLmSCnrgbIsb1mIqFhkbTaJ6XXamN0fJK5N7tqEnocfBEwmE+I4JgzDur4vFmK1YF4UHJ39pHXa4Uw3sbwQx3EwDAPXdUmSpBZdZCUeRVFNEATzv4O/K/up5NmhwcqBzsNPPd52RkS+wDBNRqNRPTCbzWqW11UsxP65FHciWf2s8+igx4OPOi9PHGJfYNk2WZaRpinT6fQW1SvUOyWovF1Gy6Tk+NygrQ847l3Td3xGjkPfMLAsi+FwWFtg23adVa8QQtQ2LNZXVqheQ92czCllBkUOVYkrBIPBoPZMoQaW/VO18k995f8r/waDkHUW2eMF3QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/48bdce51b7312bbb5087d6fcc09812fc/fcda8/program-salary.png&quot;
-        srcset=&quot;/static/48bdce51b7312bbb5087d6fcc09812fc/12f09/program-salary.png 148w,
-/static/48bdce51b7312bbb5087d6fcc09812fc/e4a3f/program-salary.png 295w,
-/static/48bdce51b7312bbb5087d6fcc09812fc/fcda8/program-salary.png 590w,
-/static/48bdce51b7312bbb5087d6fcc09812fc/efc66/program-salary.png 885w,
-/static/48bdce51b7312bbb5087d6fcc09812fc/c83ae/program-salary.png 1180w,
+        src=&quot;/static/48bdce51b7312bbb5087d6fcc09812fc/f058b/program-salary.png&quot;
+        srcset=&quot;/static/48bdce51b7312bbb5087d6fcc09812fc/c26ae/program-salary.png 158w,
+/static/48bdce51b7312bbb5087d6fcc09812fc/6bdcf/program-salary.png 315w,
+/static/48bdce51b7312bbb5087d6fcc09812fc/f058b/program-salary.png 630w,
+/static/48bdce51b7312bbb5087d6fcc09812fc/40601/program-salary.png 945w,
+/static/48bdce51b7312bbb5087d6fcc09812fc/78612/program-salary.png 1260w,
 /static/48bdce51b7312bbb5087d6fcc09812fc/ddb69/program-salary.png 2684w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -287,7 +335,7 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
 &lt;p&gt;Wait a second… check out the url bar. &lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -298,19 +346,18 @@ It’s not the most beautiful website, but it gets the job done. One can tell th
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 8.108108108108107%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAX0lEQVQI112NUQ6AIAxDPZAiY6iJgCAa73+jmu7DDz+avibdOtTakUvDnoq5xg0pV3iJcHMwTU6+PHvFOPmP6V7UmL2hXw/OfqO2C+Q9HcZBV3suYbEjZvJfHKKzS34Ba5NA2MjrTVYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 7.59493670886076%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAX0lEQVQI112NUQ6AIAxDPZAiY6iJgCAa73+jmu7DDz+avibdOtTakUvDnoq5xg0pV3iJcHMwTU6+PHvFOPmP6V7UmL2hXw/OfqO2C+Q9HcZBV3suYbEjZvJfHKKzS34Ba5NA2MjrTVYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;program page url&quot;
         title=&quot;program page url&quot;
-        src=&quot;/static/4e738fe7ccbc38975be5986700025839/fcda8/url-bar.png&quot;
-        srcset=&quot;/static/4e738fe7ccbc38975be5986700025839/12f09/url-bar.png 148w,
-/static/4e738fe7ccbc38975be5986700025839/e4a3f/url-bar.png 295w,
-/static/4e738fe7ccbc38975be5986700025839/fcda8/url-bar.png 590w,
-/static/4e738fe7ccbc38975be5986700025839/efc66/url-bar.png 885w,
+        src=&quot;/static/4e738fe7ccbc38975be5986700025839/f058b/url-bar.png&quot;
+        srcset=&quot;/static/4e738fe7ccbc38975be5986700025839/c26ae/url-bar.png 158w,
+/static/4e738fe7ccbc38975be5986700025839/6bdcf/url-bar.png 315w,
+/static/4e738fe7ccbc38975be5986700025839/f058b/url-bar.png 630w,
 /static/4e738fe7ccbc38975be5986700025839/f1901/url-bar.png 942w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -344,15 +391,15 @@ What I was met with was an entire platform for running distributed web crawlers 
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 209.45945945945948%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,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&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 209.49367088607596%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAqCAYAAACz+XvQAAAACXBIWXMAABYlAAAWJQFJUiTwAAAGHElEQVRIx4VX63MaVRTni99sap8mJTx32V122eVNeJVHoIQQIIG8CIEkJGlsQ53Rqa3TdrTWD1W/WNtRqzPqqDP+nT/nHLoUAmk/nNx793LvPb/z+p1YRNEDj0eCqmpQFC80zccSCoWRyWQRjydgGH4EAkHEYguIRmM893pVmGdHxWJ+NH+4ubnFsrJSxenpKXZ22jg6OsLh4SHa7V30eofo9+8hm83B6XRNXkh/6FJBEOFyuXluisPhZKHvNpudxe0WWOx2B58xz09cKEkywyR4+fwiMpkMisVb6HS6WF1dQ61WY1lba2BtbY3HcDjCl09oaF6q6wbbslRawtLSEsOq1eooFouoVmtYXq4gl8ujWq2i2WyyAhMXmvBoQZvkGLKNKfPzdoZntdp4n+DT+p2QR7VcWIgPNW00mjg6Osb2dgvHx7exv3+A4+NjLC2VIcsKm+mspy2jL4xuki0jkSjDogdoTUJzsh1FxNSwGdWOXjS1SySSSCZTyOfzSKfTvCZzEGSCPgp3KmTzI73u8+nY29tDq9XiONzd7WB9fYNjlS4iuGcRnQvZtIsZmxR7N25Y2Tnz87ahU2gc1dC8w3L2BVXzsWMotWhN4bOxscmZQxm0tbXFGZNKpYewp9rQQ69wTqtQZZntRbl761aJvUrxVy4vc35ns1mk0zcRDIYmvUyXDGQAVfOHICXyEEQJbsEDr1eDrvshSQpm56zwSDIEMgcrIOPt+YFYZMGFgbghOW0wYnEE7jyGV1UR1jWsr9ax325htVKGJnuwu7WBk94+NMnD5xTRDUVw80hry8fBRbyVAuyRIq758zy3JVYwFynhipHH9XAJ8/EK5mLLLBe1DMuMehOX9CxmtAyuGjlYLOVHYFl+BMvSl/iw+QQf9V/jg9Wv4Tj4Adfbz+G98xOKT/6CfvoS8smPUD55gfBnvyLw6c/Q7r7EXOd7yCcvMLPxLSyWpYcYSukBLtQf4uKdV/iw+RTFx38g/vkvCN17heo3fyP9xW+oP/sXpSd/InX/NerP/mHJPPgdm8//g637HSxWIwUWPQmrkYY9lMOsEsOslsAVZQFzegqzvgRmxDAuy1FcEEK4JEdxWY7hqneB59fUOK5rccz5ErBI5Ax2iAOK7oe//xSKT4cmiVitVtBtt7BSLkF0OtCorWB/dwc+RWYnKqLAIrNDBmIZd7sMTyACSVERCkUQjkRh+AOIxhYQCkeQTKWRXyxw6IiiNBEy4ngui/B4NcjZMryaj/OWqovfH+CsoUCnokE1clp1miwObgGSEYJ2+zH8sQT2ul2ugd1ulwsDpdvJyQkzopnzdM4cx3J5+KIgQLTbILjdsL8hKCoOplajxEXfqEDQfLSUndEwCF/vPrRAGLVqjSv29vY2l7B6vc68QkKkRfltcg5pbV460JCLgwiPokEqbUA1gshlc0xWlcoKkxONdLhSqXCRKJfLvN9srrOdTbJ6o6GHvSbLInSvDZIkwGZzwOl08g9N6CSjkM29KZA9cLkkhCMi6msOJFMa2u09dgjxLzmECKrRaAwdYTrjbMUf01CSRKieecjygKOJCggOhQ/ZiUo/aWVqN43g3jqF1FYNKLUOJK8P6VSaqzI1S4uLBZ6nUikEg0Emr/ezniBA8vmhtvsIxBLodjo4PDxCq7XDFEDc3O3usXfpOz1i8sr5JMVxaOeRYJETiJgGJGWD1TrPl4wS2bmdg+h2Q/KH4bv7FfRwDMVCgTPEzBLSjOKyUCiMkdPUzmG4ISuQk4tQNB/bjrowsh0RFBE9BTWR06hD3nOhF3I0yWvyKBUFMj7NSeg3VCTO614niwNBPn0KPbKAvU4Hx7dP0Ov1mIv7/T7DJydRJzGNk8daYhrdLjcEj8wOMTUyu1pqmuibYRgcm++ETK9RDcyt1KH7A0zmZDtqlMiO1EmQDal7oIAf7a3Pv1D1IbtchREModlociHY2trmhp2gUjE4OOhxQaD8ndYbjkHmDtblHsYfNUTmaDZNtEfzsw3SVA2pjyH+oGJARqfGiMKFMoTij5r3g4MDroXneXgsUygczP9X4vE4d69kO7IlOYRGSjfaf9eF/wMguzDqWNoZqAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;scrapy project layout&quot;
         title=&quot;scrapy project layout&quot;
         src=&quot;/static/605f6270deeace5c7c047fd234f60c0e/d99f2/scrapy-layout.png&quot;
-        srcset=&quot;/static/605f6270deeace5c7c047fd234f60c0e/12f09/scrapy-layout.png 148w,
-/static/605f6270deeace5c7c047fd234f60c0e/e4a3f/scrapy-layout.png 295w,
+        srcset=&quot;/static/605f6270deeace5c7c047fd234f60c0e/c26ae/scrapy-layout.png 158w,
+/static/605f6270deeace5c7c047fd234f60c0e/6bdcf/scrapy-layout.png 315w,
 /static/605f6270deeace5c7c047fd234f60c0e/d99f2/scrapy-layout.png 336w&quot;
         sizes=&quot;(max-width: 336px) 100vw, 336px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
@@ -408,7 +455,7 @@ position_headers &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt
 With Developer tools open, click one of the links and hover around the header. You would see somethoing like the following:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -419,20 +466,20 @@ With Developer tools open, click one of the links and hover around the header. Y
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 50.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACWElEQVQoz2WS205TQRSG+w4KHmIUkB5ou9u9u3s+IBGRZ8AXERKBxES5M1Eh0hY5JBjwwgcgFYqRC1ESAbWRVmw3LQgWkKYmnCSfwy6aECb586+ZZL78s2YZRkdf0NM7SDz+nIFYjKHBQeFxYtEo8WiMuDiL9vczPDRMW9sdaq7VokgSqqzgcson7sTjchEMhDDsAfMl2DqE0hHsi/3hiQ6o7MtU1v2HPdgaLLSGfQRVJ7JkxyHZkKwWHLYGrGYjhu2dXdYKZVbyZXZK+/zaKbHxc5P1jSKl8m8O/hyxu3egA++2d3C51khTOESrR8IvS3gUGYdd4nq9ibq6Ogw/NteZXlhkLpNmPptmQVtiIbck6q+kCsuk13N8ymfY3tuiu/MeV67WcKMxTEvYSWNYJRLx4Q2qyKoDu82KYbmY5VEixdNJjb6prFCOvmSOXuHRNxoDbzU6X6V4nf5Gz4Nu6o1mwi3NBG6Lnt2SCd5UUZpllEbRR7cbQ7a4wrPJDLHkKvFkvqLpfyro/mRC40N+TSRs59z5ahRfmLBbpUmVCTjt2E0WbBYrJrMFw/eiJoBLApgnOqWdUSwpkic05lZXdWBV9SUUVTxRfIbLKSHLTmx2OxaLBaPJdBp4fPmsRAsSOR3YpQMv4vX5xJjI+Nwu3CJpg9WK2WzWoTqwL5Ghf3JNgPNCBVGf1uOJlcqTuwSw6gLBUAi3x4PrOKki5lDMoCLcdJwwKz5lZGaO8dkUY+8+Mzb7hfH3KV0vTzQys8jHH1mRsINqkTASiRAIBPD7/Xi9XpHS/d//Amj2CO2CVf7DAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 50.632911392405056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACV0lEQVQoz2WPa0+SARiG+Q+lHdZKTQ4CL7wnQBDMZeZvsD+SbqFbW/mtrZIBL+Zhs2kf+gGOEFt+yHJLrVhCBq/gKdRktHnKXU2wtvLZrt17PjzX7scwNvac/oEhYrFnDGoaw0NDDGoxtGiUWFQjpmlEIxFGhkfo6rpD3bV6JEFAESVkp3iaTlyyjM/bgmEfmC/B9hGUjuEAODrlkOpepjr3H/Zja7LQ6ffgU5yIgh2HYEOwWnDYmrCajRh2dvdYK5RZyZfZLR3wY7fE5vctNjaLlMo/Ofx1zN7+YUV4t7uHy/VG2vwtdLoEmkUBlyTisAtcbzTR0NCAYX1rg+mFReYyaeazaRb0JRZyS8xnv5AqLJPeyPExn2Fnf5u+4D2uXK3jRqufDr+TVr9CIODB7VMQFQd2mxXDcjHLo3iKpwmd0FSW0FSOUDLHwFSO6GudwTc6wZcpXqW/0v+gj0ajGX9HO97bMr5bIr6bClK7iNTqxKWqGLLFFcKJDFpylVgyX2X6D4VKPpnUeZ9foy/YzbnztUgeP35VoU0R8Trt2E0WbBYrJrMFw7eiTjixhJbME53Sz6AldUJxnbnV1YqwpvYSkqIgCjZkp4AoOrHZ7VgsFowm07/Ck+Oz5AjFcxVhb0V4EbfHg0sW8agyqqrQZLViNpsr0oowFM8QSawRTuQJJwpE/uPx5Er15d5uamou4GtpQXW5kE+aShKyLCNJEqaThtliltGZOSZmU4y//cT47Gcm3qUqvDhldGaRD+tZeoM91NZeJBAI4PV6aW5uxu12o6rq3/wNaPYI7Rg8hvAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;program detail&quot;
         title=&quot;program detail&quot;
-        src=&quot;/static/8dc6aa3a7340d63612716a5e7f659e13/fcda8/program-detail.png&quot;
-        srcset=&quot;/static/8dc6aa3a7340d63612716a5e7f659e13/12f09/program-detail.png 148w,
-/static/8dc6aa3a7340d63612716a5e7f659e13/e4a3f/program-detail.png 295w,
-/static/8dc6aa3a7340d63612716a5e7f659e13/fcda8/program-detail.png 590w,
-/static/8dc6aa3a7340d63612716a5e7f659e13/efc66/program-detail.png 885w,
-/static/8dc6aa3a7340d63612716a5e7f659e13/c83ae/program-detail.png 1180w,
+        src=&quot;/static/8dc6aa3a7340d63612716a5e7f659e13/f058b/program-detail.png&quot;
+        srcset=&quot;/static/8dc6aa3a7340d63612716a5e7f659e13/c26ae/program-detail.png 158w,
+/static/8dc6aa3a7340d63612716a5e7f659e13/6bdcf/program-detail.png 315w,
+/static/8dc6aa3a7340d63612716a5e7f659e13/f058b/program-detail.png 630w,
+/static/8dc6aa3a7340d63612716a5e7f659e13/40601/program-detail.png 945w,
+/static/8dc6aa3a7340d63612716a5e7f659e13/78612/program-detail.png 1260w,
 /static/8dc6aa3a7340d63612716a5e7f659e13/7f486/program-detail.png 3010w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -622,7 +669,7 @@ What you will see and hear in various forms is an “A” note.&lt;/p&gt;
     plt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;show&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -633,18 +680,18 @@ What you will see and hear in various forms is an “A” note.&lt;/p&gt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABl0lEQVQoz31Ry07CQBRl5b/4A36FaFQwJn4AuGJlNHEBLlz4b8YXD0XKIwQopS2dV+mUoTPembZIjLHJyZ0598yZe6YFpVTBsqwDysLaEpEKoJrhCtOwMhpPaq/vzdu3Zuvm6fnlrv3RvQ4wTTU41eZ7xli1oA2XvvcYxkI5aKVcEikHr5RHI7UwlQPiFCxWPkDzWjdHmS47w9dCGUMc+HUWb9QcR5FLuQAT4eBIOIQL4AycrGosgN/qSAobRWK9SYQxDHzvXhvCTWs4KEEo4aB0s6o5h6R1vtOHabc6G61kLBJZgG8PBcs6XKaAXDt6fB0HRyau2eM8VqTcHS7XuoQbSCnTyL7vN8ArN/x/GsLTifOpARBXBmEswUsaQ89zG/A0aoZWMQgTECVzU7kBTJUstBHwpo/z/s8aDBPwSoyhbdsP8Hzbv/cbOrqO5DP+Z18jCLnabJI0crvT2e/3B5eE0kOE8dFgMCh5nndMKCtOZ7OTr16v3Gq1Lj673fPhcFRCCB9RSos9yyprHWWsOJlOT8fj8dk3+7GFzrwBMXsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 45.56962025316456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABo0lEQVQoz31RzW7UMBjMiXfhBXgKthWlRUg8QMuppwokDi0HDrwbokC3hWXTbbXqbuKNs/Ff8tnx2l9lJ1kqVPUwGvv7xqMZOUHEJE3TF1LVx2smDtdMHPV4z2V9eDu/O/7x6+Ljz4vxh2/fzz9d/p6cVFx2Gt5ph7tS6igJhuuSfq2NRcIaLAQg4Q1SCbiKrJFK00EZLJWJ86DLWa/r3+jWYjTkVXmqzAZzDlBIbanUlnCwRGibc4ggPQeshLZbneiQMbDtxtloWJX0czBcCWgJB0+l9jkHX/QcZkR0nD/Yl8psdRlrvLHOJ0mSPGPV+lRqixlrWhLihzocYt1450MtwOLBbNAWQkd477vKZVmesaYdDJ9OI3SXeEgtwGcMfFUbj4g+GlJanHGwuGSNIRwcEeDyyDqikNqtgpEAF/d82P87V7VxiOiiYZZlXwS029/7H6F6qFQq/eg+oKo1bjauq3x5dfX8+nr2Tkj5knG+M5vN9imlu0Kq0WK5fPV3Oj0Yj8dv/0wmb25ubvcZ4ztSytE0TQ+CTio1ulss9ubz+et7+7GFzmebWdcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/ff834a2b7abc5d4fbba35dae157f7189/fcda8/audio_0_1_0.png&quot;
-        srcset=&quot;/static/ff834a2b7abc5d4fbba35dae157f7189/12f09/audio_0_1_0.png 148w,
-/static/ff834a2b7abc5d4fbba35dae157f7189/e4a3f/audio_0_1_0.png 295w,
-/static/ff834a2b7abc5d4fbba35dae157f7189/fcda8/audio_0_1_0.png 590w,
+        src=&quot;/static/ff834a2b7abc5d4fbba35dae157f7189/f058b/audio_0_1_0.png&quot;
+        srcset=&quot;/static/ff834a2b7abc5d4fbba35dae157f7189/c26ae/audio_0_1_0.png 158w,
+/static/ff834a2b7abc5d4fbba35dae157f7189/6bdcf/audio_0_1_0.png 315w,
+/static/ff834a2b7abc5d4fbba35dae157f7189/f058b/audio_0_1_0.png 630w,
 /static/ff834a2b7abc5d4fbba35dae157f7189/ae694/audio_0_1_0.png 850w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -652,7 +699,7 @@ What you will see and hear in various forms is an “A” note.&lt;/p&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -663,18 +710,18 @@ What you will see and hear in various forms is an “A” note.&lt;/p&gt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABRklEQVQoz62RS0vDQBSFo9WNK1dKtUQLBf+v4KIVEa0rUWuxCFW0WBOllCCCiLSgiIIKinnMZF7JxDsxgSi13XjhcHIf880dommalnNdt8w5txhjbZDxW5wzw0G+QSg1+ID+9wy/xBg3gKdNUkqvohFh+zwKQjl0RgjhKWCOEGKqgpSSgYKsosRtzIAHefSzn0io87DliwJOwcopMMjeCHnsAIo3TPPUM3MyAb4p4DQAL/4TOA5PToFCDogQiPBkGco/I0yArwo4wRjtpJcN+ymjIhDiXQG1j0+nhQmLXEw85FPkYYIRSRxyqCOPMNdBBMV9n+JE8E2UeyBmu+hB8cbqJ+aMed0rbNUOFzq393Pr2/Wi1XvKb+4cLFr95/zy6kapXKksraxVS6fdm/naUVvfPz7Xm6ZV2Gue6S2oVXcbxe7d4+wXJxF8agOIGU0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 44.30379746835443%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABTElEQVQoz62R0UsCQRDGt6yXnnoqTLEEof836EEjouwpKpMksCjJzkLkiEAiDIooqKDovNu92dm7m4vVO7AwfemDj4/Zmf3NwjLGWMK27bxSykTEOiIav60UGl3uGiCloYb0+zPqSghRYYyxaSnldThGlqtCP6CRM57nORqYAICGPiAiJCJ/0GGUlkA/0HX4sx/Z0/eVUq8aOIOIMdAf3EjUf1FA1HthXMc5MEcR8F0DZxHx8j+BkwAQAz0aoiAgsgRSQH8qiIBvGjiFKJvxslGfMk6+531oIPv86tYEYGgLcLgruSNAcIjSldwWwB1Au8uB9/quFJG544JOx3ElWjZ/1LyJ8mljrnHTSW+Xjhabtw8LGzvlrNl5Tm7tHi6Z9y/JlbXNXL5QWF5dL+bOWu1U6bieOTi5yFQbZnq/ep6ptdqp4l4l27p7mv8GJxF8alzkWD4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;png&quot;
         title=&quot;png&quot;
-        src=&quot;/static/8bd0415c7a0e043d93500dabe9b5e00c/fcda8/audio_0_1_1.png&quot;
-        srcset=&quot;/static/8bd0415c7a0e043d93500dabe9b5e00c/12f09/audio_0_1_1.png 148w,
-/static/8bd0415c7a0e043d93500dabe9b5e00c/e4a3f/audio_0_1_1.png 295w,
-/static/8bd0415c7a0e043d93500dabe9b5e00c/fcda8/audio_0_1_1.png 590w,
+        src=&quot;/static/8bd0415c7a0e043d93500dabe9b5e00c/f058b/audio_0_1_1.png&quot;
+        srcset=&quot;/static/8bd0415c7a0e043d93500dabe9b5e00c/c26ae/audio_0_1_1.png 158w,
+/static/8bd0415c7a0e043d93500dabe9b5e00c/6bdcf/audio_0_1_1.png 315w,
+/static/8bd0415c7a0e043d93500dabe9b5e00c/f058b/audio_0_1_1.png 630w,
 /static/8bd0415c7a0e043d93500dabe9b5e00c/8bd7c/audio_0_1_1.png 845w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -797,7 +844,7 @@ frequency will not work out in high noise situations.&lt;/p&gt;
     plt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;show&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -808,18 +855,18 @@ frequency will not work out in high noise situations.&lt;/p&gt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 45.94594594594595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACc0lEQVQoz0VSTUwTQRReBUHjTyImRA8mqGg0hLvxpvGCRwMFgjX4c1ATo20IQiVIPHnQgxcVD6KRqJiIaBC5GH+hUCpgi1QoLQu0BS3bdtvZ2b+Zec4ugoeXee973+y++b4nbNpYuF6SpDoV40ZNxa4cQm5FUexIyVk3xqprcTHhCYUmb8YTCY9VWz2MFTdC/FzhupCiNKbT6TpBENYV8A9NqQaBrKoDAAOTEKCUgmES0DluEJ5Txmtq93WOa8Z/jkksHEBV1WmhaNvmfE3ThrwRCYajkpZCujkRz5gjs5IZ/p2zQ+KYuIzMWAqbP+Oy3f8WTppTS1kzEONcUdJDi1nAqjYsHD20qyCnYJ+raxzqHw2Ty89GWe1DLzvb4WOe7gBr7Qmyplc/WMPLcdb6Jshq2r3M3TXGHA8G2aXO7+zK81F24u4Xev7JCMgI+4XS4q1FGaQOHb/zCUqaesm+5new39MHJdd6obytH8pa+6HUw7HrfWt5+Y1+OMDrvZx7sOU9FLt66JFbHyCdU/xC7eE9hckM8jV3B+DcYx+x/nr1xRg7dvsjq24fZCfvDbALT/32xBc7/azt7YQ9mTV95f0Be/IzHT7S8joIjBh+oWz3jg3WkyNJBFw3I5pElGtDP0//oRNxmXojy5TrRoOxDBWXFZpIY/o1nFzDlmSVcu25xgoANUeEndu3FHDLAwZZcdByjvCwnFytsW6C8c/JVedVw7R5hONWbrmua1pQyM/LywvPzFTwHTvNd7BSSqVqxLk5ZzojO3I55JhfWDg1E4k6J0O/6iPRWef8QqxOQahKlmXHrCg6+e5V8z2ssu6LoljxF4EUOWy6vVkOAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 46.202531645569614%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAACe0lEQVQoz0WRS0wTURSGR0HQ+EjEhOjCBBWMhrA37jRucGmgQLAGHws1MdrGIBSCxJULXbhRceEjEhUTEQ0gG+MTSh8CUqBCaTtAW9B2Op323pnp3McxMwguTnLO+f+b8998wpbNxRslSWrUVLVZ11RHDiEnxtiqtJJ1qqrmWF5OuILBmVvxRMJlzqamqtiJEHaqq14HwrhZluVGQRA2FOmaOqsZFLJaHgA4EEqBMQYGoZA3KBiUgcE4GIRZep5Q0I3/HkLNPYCmaXNCyY6thbquj7rDEngikp5GeTIVzxBfVCKh3zmrJJQnYgqRWFol03HF0r+HkmR2JUsmYxniE6V8cDkLqqZ7hGOH9xTlsOp19ExA02MPvfJijDc8cvNzT7zc1TvJO/oCvOXNT3799QTveBfg9V1u7uwZ57aHI/xy9w9+9eUYP3nvK7vwzAcKUv1Ceen2kgzSRk/c/QxlLf30QOsAVLgGoexGP1R1DkFlxxCUuwagom1wva+6OQQH2wZhf+sAHGr/AKWOPnb09keQc9gvNBzZV5zMIG9r7yScf+ql5tVrr8b58TufeF3XCD91f5hffO63El/q9vPO91NWMjN9zYNhK/nZJ17a/jYAnBp+oXLvrk3ml8NJBL6oZESSiM2uZNmXuT9sKq4wdzjFpuMKC8QyTExhlpBV9i2UXN+tKBrzRCQipjAAIz5h985tRQjjSYOuEjTJUcYskmuzmidg/CO5Rl4ziOWjlFm9ST2v6wGhsKCgIDQ/Xx1PJM7kEKqR0ul6cWHBLmcUWy6HbItLS6fnwxH7TPBXUzgStS8uxRoxQrWKotiiomiXZbkOY1xrvhdFsfovgRQ5bJ9prr0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Noisy Signal&quot;
         title=&quot;Noisy Signal&quot;
-        src=&quot;/static/7b17a0f8f1370fa1529624a738c5f4ba/fcda8/audio_0_5_0.png&quot;
-        srcset=&quot;/static/7b17a0f8f1370fa1529624a738c5f4ba/12f09/audio_0_5_0.png 148w,
-/static/7b17a0f8f1370fa1529624a738c5f4ba/e4a3f/audio_0_5_0.png 295w,
-/static/7b17a0f8f1370fa1529624a738c5f4ba/fcda8/audio_0_5_0.png 590w,
+        src=&quot;/static/7b17a0f8f1370fa1529624a738c5f4ba/f058b/audio_0_5_0.png&quot;
+        srcset=&quot;/static/7b17a0f8f1370fa1529624a738c5f4ba/c26ae/audio_0_5_0.png 158w,
+/static/7b17a0f8f1370fa1529624a738c5f4ba/6bdcf/audio_0_5_0.png 315w,
+/static/7b17a0f8f1370fa1529624a738c5f4ba/f058b/audio_0_5_0.png 630w,
 /static/7b17a0f8f1370fa1529624a738c5f4ba/bad1b/audio_0_5_0.png 841w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
@@ -849,7 +896,7 @@ Closest Frequency to Base Freq: 27.5
 Determined Note: A&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -860,18 +907,18 @@ Determined Note: A&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 45.94594594594595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABi0lEQVQoz3VSS04CQRCdA3gjL2DiElSMiQv2GhN1Jyfys3DrFVgqQqIRmAjKMMxMT3+m/1Y1g4LRSl5eV1fV6+qujrz30Xw+3+WcXzDGTgCnlNJTIcRJkiTng8Hgqt/vdx57vc4zMK6n0+klxjEP8xFQf5ZlWTtCwaIoHpxz3lq7AdxbWVlpb+zS/y8XDiFBsCzLm7quAuh1QKK2gJxJba2DPad/5wAUFksp34IgtHxbn4wCG7bcdi7nqvbdX2ZrwXEEtlVV4nol6H8ZdOcrZXwhVFivbP050MXnYFwEwSgvyF0d1goiCi6JjIa8YPK7Q4wJZVwtEuKgbjkcmhZ0HK78kWa3TFmvjVWQbJk0dkGl5cAwDJsxGRh9CowgQqOILYFTKo2A+rzko/oN6T0I+RKuZeqJGfPDMA4PGmHKrML3d55wCQ2YMGGpzTJHiM8g+PL6uk0Jab3HoxYhpDEcDg8JKQLDD2j0np6Ou91uG5kUeTOO41aSzPZns9neZDI5WKRpMx6PjuAf7nwBg3SULNyoR2kAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 45.56962025316456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABk0lEQVQoz3VRS24TQRCdA3AjLoDEMgkYIbHIPhFSwg6fCMKCLVfwkpixlCi2R9jg8Xhm+v+rKlTtMSQReVLpdXW9ft1dVRBRsd1uXxpjLrXWZ1rrc6XUubX2rK7ri9ls9rEsy/H36XT8oyzHvF6v1x+4zjrWcxhj3rdte1qwYd/33xCRAOBB8N4B0kVKsM+f0lprRTaUUn4ezjkiivcDESMgxk77CICRCONjDREFPuy9v8uGWuur4WY2eID9NmJnwpDj/wCD4bIoiuKZc/bTwZAeARDJhUS9DXl9wP12cMrt0MZmw6LrxZehHEMCDBGQmcG80/7vC7lmQ8LBJNcJEUxI1PRqmb/8q2mvdACKCYINCbRPsFMejE8gXYRW+8ycKxdzCBvZBKSN0CifbADqpFkMPVRfbUgkbaA0TCylf+wjkIuQp6wd9x9JGE8xpTxhH9NeY+3vbHhze/tcCTH6WS1GQoij+Xz+Rog+s5TyaHp9/W4ymZwyi747rqpqVNebV5vN5mS1Wr3eNc1xtVy8bdv2xR+DdJQsiFC4wgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;DFT of Noisy Signal&quot;
         title=&quot;DFT of Noisy Signal&quot;
-        src=&quot;/static/4825db09aeeb351bc328bd5ea5af8c0b/fcda8/audio_0_7_1.png&quot;
-        srcset=&quot;/static/4825db09aeeb351bc328bd5ea5af8c0b/12f09/audio_0_7_1.png 148w,
-/static/4825db09aeeb351bc328bd5ea5af8c0b/e4a3f/audio_0_7_1.png 295w,
-/static/4825db09aeeb351bc328bd5ea5af8c0b/fcda8/audio_0_7_1.png 590w,
+        src=&quot;/static/4825db09aeeb351bc328bd5ea5af8c0b/f058b/audio_0_7_1.png&quot;
+        srcset=&quot;/static/4825db09aeeb351bc328bd5ea5af8c0b/c26ae/audio_0_7_1.png 158w,
+/static/4825db09aeeb351bc328bd5ea5af8c0b/6bdcf/audio_0_7_1.png 315w,
+/static/4825db09aeeb351bc328bd5ea5af8c0b/f058b/audio_0_7_1.png 630w,
 /static/4825db09aeeb351bc328bd5ea5af8c0b/8bd7c/audio_0_7_1.png 845w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
