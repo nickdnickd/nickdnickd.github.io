@@ -28,7 +28,7 @@ algorithm later developed to accelerate the DFT (Discrete Fourier Transform).
 What you will see and hear in various forms is an &ldquo;A&rdquo; note.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
 </span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>    <span style=color:#75715e>#import winsound # if you are on windows</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># import winsound # if you are on windows</span>
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    two_pi <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> np<span style=color:#f92672>.</span>pi
 </span></span><span style=display:flex><span>    phase <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>pi<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
@@ -40,7 +40,7 @@ What you will see and hear in various forms is an &ldquo;A&rdquo; note.</p><div 
 </span></span><span style=display:flex><span>    fig_size <span style=color:#f92672>=</span> (<span style=color:#ae81ff>14</span>,<span style=color:#ae81ff>6</span>)
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e># Beeeeep</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e>#winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)</span>
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>createCosineAudioSignal</span>(freq, duration_s, sample_rate):
 </span></span><span style=display:flex><span>        two_pi <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> np<span style=color:#f92672>.</span>pi
@@ -105,7 +105,7 @@ hope to seek the answers to some of these questions in later posts.</p><div clas
 </span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;A&#34;</span> : <span style=color:#ae81ff>27.50</span>,
 </span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Ashp_Bflt&#34;</span> : <span style=color:#ae81ff>29.14</span>,
 </span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;B&#34;</span> : <span style=color:#ae81ff>30.87</span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e>#&#34;C1&#34; : 32.70</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># &#34;C1&#34; : 32.70</span>
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    freq_to_note <span style=color:#f92672>=</span> {val:key <span style=color:#66d9ef>for</span> key, val <span style=color:#f92672>in</span> note_to_freq<span style=color:#f92672>.</span>items()}
@@ -214,6 +214,6 @@ adding noise enery that is distributed across the frequency spectrum. So even
 though the signal is 20 times weaker than the noise, if we know where to look,
 we will find the signal in an even (white) noise distribution. Nosie isn&rsquo;t
 always white and sometimes noise can look a lot like our signal of interest. And
-that is someting we can explore at another time.</p></article></div></div><footer><div class=container><p class="credits copyright"><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href=https://github.com/kaisugi/HugoTeX>HugoTeX</a><br><a href=https://nickdnickd.com/about>Nick D</a>
+that is someting we can explore at another time.</p></article></div></div><footer><div class=container><p class="credits copyright"><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href=https://github.com/kaisugi/HugoTeX>HugoTeX</a><br><a href=https://nickdnickd.com/about></a>
 &copy;
 2021</p></div></footer></body></html>
