@@ -9,3 +9,7 @@ theme = 'HugoTex'
 [author]
   name = "Nick D"
   abstract = "I'm a software engineer and proud new puppy owner."
+
+[module]
+[[module.imports]]
+  path = 'https://github.com/kaisugi/HugoTeX'
