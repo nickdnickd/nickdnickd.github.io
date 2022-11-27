@@ -2,7 +2,7 @@
 title: "Health Insurance Transparency"
 date: 2022-01-01
 description: "How much did the real payers pay?"
-draft: true
+draft: false
 ---
 
 ## A Song of Charge Books and Actuaries
