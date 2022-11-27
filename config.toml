@@ -6,10 +6,6 @@ theme = 'HugoTeX'
 [Params]
   darkmode = true # set true if you prefer dark mode
 
-[author]
-  name = "Nick D"
-  abstract = "I'm a software engineer and proud new puppy owner."
-
 [module]
 [[module.imports]]
   path = 'github.com/kaisugi/HugoTeX'

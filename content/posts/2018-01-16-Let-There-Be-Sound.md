@@ -47,7 +47,7 @@ What you will see and hear in various forms is an "A" note.
 
     import matplotlib.pyplot as plt
     import numpy as np
-    #import winsound # if you are on windows
+    # import winsound # if you are on windows
     
     two_pi = 2 * np.pi
     phase = np.pi/2
@@ -59,7 +59,7 @@ What you will see and hear in various forms is an "A" note.
     fig_size = (14,6)
     
     # Beeeeep
-    #winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)
+    # winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)
     
     def createCosineAudioSignal(freq, duration_s, sample_rate):
         two_pi = 2 * np.pi
@@ -135,7 +135,7 @@ hope to seek the answers to some of these questions in later posts.
         "A" : 27.50,
         "Ashp_Bflt" : 29.14,
         "B" : 30.87
-        #"C1" : 32.70
+        # "C1" : 32.70
     }
     
     freq_to_note = {val:key for key, val in note_to_freq.items()}
