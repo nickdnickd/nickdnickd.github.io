@@ -1,0 +1,219 @@
+<!doctype html><html lang=en-us><meta charset=utf-8><title>Let There Be Sound - Nick D Blog</title><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://nickdnickd.com/css/latex.css><link rel=stylesheet href=https://nickdnickd.com/css/main.css><link rel=stylesheet href=https://nickdnickd.com/css/darkmode.css><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><meta name=generator content="Hugo 0.107.0"><body><header><nav class=navbar><div class=nav><ul class=nav-links></ul></div></nav><div class=intro-header><div class=container><div class=posts-heading><h1>Let There Be Sound</h1></div></div></div></header><div id=content><div class=container role=main><article class=article class=blog-post><div class=postmeta><span class=meta-post><i class="fa fa-calendar-alt"></i>Jan 16, 2018</span></div><br><h2 id=beautiful-soup>Beautiful Soup</h2><p>Does it bother anyone else to think about how we can&rsquo;t completely describe complicated things? Most of us have heard of the <a href=https://en.wikipedia.org/wiki/Uncertainty_principle>Uncertainty principle</a> describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Here breadth, by principle, is sacrificed for depth. On a larger scale, we probably do not have enough compute on planet earth to describe a cold front, let alone weather, in a way that yeilds complete confidence in weather reports. Instead, we&rsquo;d like to know generally if it will rain. This is us sacrificing depth, by lack of resources, for beadth.</p><h2 id=its-all-good-enough>It&rsquo;s All Good&mldr; Enough</h2><p>Small gusts of wind are hard enough to predict but we still have meteorologists
+measuring distributed pressure readings to deliver broad weather patterns. The
+cones and rods of the eye enable us to take in enough data to read, drive and
+explore. Our vocal transmitters and receivers are tuned to receive the propagation of waves through air, enough to say &ldquo;Hey&rdquo; and hear the reply in the same ~16kHz frequency band. In fact several of these disruptions in air are beautiful to us and people devote their lives to shaping and grooming the production of their features. I&rsquo;m talking about audio engineers, musicians, producers and writers.
+This doesn&rsquo;t stop at the ear - mechanical engineers study the characteristics of
+physical vibration through materials and RF (radiofrequency) engineers study the
+propagation of waves that require no medium, just like our eyes, but beyond our
+own capacity to see. What are the tools used that unite all of these seemingly
+disparate people?</p><h2 id=penny-fourier-thoughts>Penny Fourier Thoughts?</h2><p>When I look at a typical audio recording (can you tell me much about
+<a href=https://i.stack.imgur.com/x3mF3.jpg>this</a> image?) I just see chaos,
+and the same goes for a radio signal. But sometimes, on certain music players,
+the display is equipped with an EQ (equalizer). This contains a binned up view of different
+<em>frequencies</em>. Say you hear a large bass boom in the track, when that happens
+the lower ends of the EQ light up. If the EQ is adjustable you can even feel and
+hear the difference as you turn the knob. If these bins give us such a clear
+picture, could we enhance our understanding by creating smaller and smaller bins
+on the EQ? What if the bins were infinitely small? That is for what a French
+mathematician and aid to Napoleon, <a href=https://en.wikipedia.org/wiki/Joseph_Fourier>Joseph
+Fourier</a>, laid the mathematical bedrock. He proposed that one can completely break down
+a (periodic) function into component sine waves, each with their own frequency.
+After some revisions from future mathematicians we are left with the Fourier
+Transform, granting our minds the intuition our ears and eyes had all
+along.</p><p>Still, there is a long way to go from this different interpretation of a signal
+to creating something amazing. So let&rsquo;s start with the simplest wave to the ears
+and eyes, the sine wave. Below we have a plot of a sine wave and its
+corresponding Fourier Transform. FFT below means Fast Fourier Transform, it was an
+algorithm later developed to accelerate the DFT (Discrete Fourier Transform).
+What you will see and hear in various forms is an &ldquo;A&rdquo; note.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span>    <span style=color:#75715e>#import winsound # if you are on windows</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    two_pi <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> np<span style=color:#f92672>.</span>pi
+</span></span><span style=display:flex><span>    phase <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>pi<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>    frequency <span style=color:#f92672>=</span> <span style=color:#ae81ff>440</span> <span style=color:#75715e># &#34;A&#34; note in Hz</span>
+</span></span><span style=display:flex><span>    duration_ms <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span> <span style=color:#75715e># miliseconds</span>
+</span></span><span style=display:flex><span>    snr_level_db <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    duration_s <span style=color:#f92672>=</span> duration_ms<span style=color:#f92672>/</span><span style=color:#ae81ff>1000.0</span>
+</span></span><span style=display:flex><span>    sample_rate <span style=color:#f92672>=</span> <span style=color:#ae81ff>44.1</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>  <span style=color:#75715e># Hz or samples/second</span>
+</span></span><span style=display:flex><span>    fig_size <span style=color:#f92672>=</span> (<span style=color:#ae81ff>14</span>,<span style=color:#ae81ff>6</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Beeeeep</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>#winsound.Beep(frequency, duration_ms) # Beep(frequency in hz, duration in ms)</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>createCosineAudioSignal</span>(freq, duration_s, sample_rate):
+</span></span><span style=display:flex><span>        two_pi <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> np<span style=color:#f92672>.</span>pi
+</span></span><span style=display:flex><span>        x_samples <span style=color:#f92672>=</span> range(int(duration_s<span style=color:#f92672>*</span>sample_rate))
+</span></span><span style=display:flex><span>        x_time <span style=color:#f92672>=</span> [(float(x_sample) <span style=color:#f92672>/</span> float(sample_rate)) <span style=color:#66d9ef>for</span> x_sample <span style=color:#f92672>in</span> x_samples]
+</span></span><span style=display:flex><span>        cosine_signal <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>cos([two_pi <span style=color:#f92672>*</span> frequency <span style=color:#f92672>*</span> time_el <span style=color:#f92672>+</span> phase <span style=color:#66d9ef>for</span> time_el <span style=color:#f92672>in</span> x_time])
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> (cosine_signal, x_samples, x_time)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>computeFourierTransformOfSingal</span>(signal_amplitudes, x_samples, sample_rate_hz):
+</span></span><span style=display:flex><span>        fft_signal <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>fft<span style=color:#f92672>.</span>fft(signal_amplitudes)
+</span></span><span style=display:flex><span>        fft_freq <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>fft<span style=color:#f92672>.</span>fftfreq(len(x_samples), d<span style=color:#f92672>=</span>(<span style=color:#ae81ff>1</span><span style=color:#f92672>/</span>sample_rate_hz))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span>(fft_signal, fft_freq)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x_samples <span style=color:#f92672>=</span> range(int(duration_s<span style=color:#f92672>*</span>sample_rate))
+</span></span><span style=display:flex><span>    x_time <span style=color:#f92672>=</span> [(float(x_sample) <span style=color:#f92672>/</span> float(sample_rate)) <span style=color:#66d9ef>for</span> x_sample <span style=color:#f92672>in</span> x_samples]
+</span></span><span style=display:flex><span>    (y_0, x_samples, x_time) <span style=color:#f92672>=</span> createCosineAudioSignal(frequency, duration_s, sample_rate)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>fig_size)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>plot(x_time, y_0)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;A-note in time and frequency&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlabel(<span style=color:#e6db74>&#39;Time (seconds)&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#39;Magnitude&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    sp <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>fft<span style=color:#f92672>.</span>fft(y_0)
+</span></span><span style=display:flex><span>    freq <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>fft<span style=color:#f92672>.</span>fftfreq(len(x_samples), d<span style=color:#f92672>=</span>(<span style=color:#ae81ff>1</span><span style=color:#f92672>/</span>sample_rate))
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>fig_size)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>plot(freq[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)], abs(sp[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)]))
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlabel(<span style=color:#e6db74>&#34;Frequency (Hz)&#34;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#34;Magnitude&#34;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlim(xmax<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>frequency, xmin <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=/audio_0_1_0.png alt=png></p><p><img src=/audio_0_1_1.png alt=png></p><p>Feel free to adjust the frequency, amplitude and duration to kick the tires. As
+you can see the frequency signal energy can be <em>mostly</em> found at the generating
+frequency. This I attribute to the imperfections of the discrete domain which
+could have its own post. Also, you can rest assured about negative frequencies
+(not shown here). If the original signal is real (and the sine wave is real&mldr;
+whew) there should be a symmetrical graph about 0 Hz. Think of it like turning a wheel in a different direction (more info
+<a href=https://en.wikipedia.org/wiki/Negative_frequency>here</a>).</p><p>At this point it is safe to say that we can design an algorithm to bin the
+frequencies up and infer the signal from an input sine wave. Essentially
+wherever there is more energy in the frequency plot is where we most likely to
+find the frequency of our original wave. Our machine can listen to a perfect
+beep and tell us what note it is. Great. Now, what if we recorded a guitar
+plucking an A note? What if a truck is going by in the background of that
+recording? How does our methodology hold up when we start approaching the
+looming real world? Can we generate audio that sounds like the real world? I
+hope to seek the answers to some of these questions in later posts.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span>    min_freq <span style=color:#f92672>=</span> <span style=color:#ae81ff>16.35</span>
+</span></span><span style=display:flex><span>    max_freq <span style=color:#f92672>=</span> <span style=color:#ae81ff>32.70</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    note_to_freq <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;C&#34;</span> : <span style=color:#ae81ff>16.35</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Cshp_Dflt&#34;</span> : <span style=color:#ae81ff>17.32</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;D&#34;</span> : <span style=color:#ae81ff>18.35</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Dshp_Eflt&#34;</span> : <span style=color:#ae81ff>19.45</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;E&#34;</span> : <span style=color:#ae81ff>20.60</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;F&#34;</span> : <span style=color:#ae81ff>21.83</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Fshp_Gflt&#34;</span> : <span style=color:#ae81ff>23.12</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;G&#34;</span> : <span style=color:#ae81ff>24.50</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Gshp_Aflt&#34;</span> : <span style=color:#ae81ff>25.96</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;A&#34;</span> : <span style=color:#ae81ff>27.50</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Ashp_Bflt&#34;</span> : <span style=color:#ae81ff>29.14</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;B&#34;</span> : <span style=color:#ae81ff>30.87</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#&#34;C1&#34; : 32.70</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    freq_to_note <span style=color:#f92672>=</span> {val:key <span style=color:#66d9ef>for</span> key, val <span style=color:#f92672>in</span> note_to_freq<span style=color:#f92672>.</span>items()}
+</span></span><span style=display:flex><span>    base_freq_arr <span style=color:#f92672>=</span> [val <span style=color:#66d9ef>for</span> key, val <span style=color:#f92672>in</span> note_to_freq<span style=color:#f92672>.</span>items()]
+</span></span><span style=display:flex><span>    freq_arr <span style=color:#f92672>=</span> [val<span style=color:#f92672>*</span>(<span style=color:#ae81ff>2</span><span style=color:#f92672>**</span>mult) <span style=color:#66d9ef>for</span> mult <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>7</span>) <span style=color:#66d9ef>for</span> key, val <span style=color:#f92672>in</span> note_to_freq<span style=color:#f92672>.</span>items()]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getHighestEnergyFreq</span>(amp_list, freq_list, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>):
+</span></span><span style=display:flex><span>        <span style=color:#75715e># We only care about positive frequencies which are the first half</span>
+</span></span><span style=display:flex><span>        amp_freq_list <span style=color:#f92672>=</span> zip(abs(amp_list[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)]), freq_list[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Get max freq</span>
+</span></span><span style=display:flex><span>        max_amp_freq <span style=color:#f92672>=</span> (<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> amp_freq <span style=color:#f92672>in</span> amp_freq_list:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> amp_freq[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;</span> max_amp_freq[<span style=color:#ae81ff>0</span>]:
+</span></span><span style=display:flex><span>                max_amp_freq <span style=color:#f92672>=</span> amp_freq
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> verbosity <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>: 
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Frequncy with most amplitude: &#34;</span> <span style=color:#f92672>+</span> str(max_amp_freq[<span style=color:#ae81ff>1</span>]))
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max_amp_freq[<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getBaseFreqFromSingalFreq</span>(starting_frequency, base_freq_arr, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>):
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;&#34;&#34;reduce the frequency to base frequency&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        target_base_freq <span style=color:#f92672>=</span> starting_frequency
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> target_base_freq <span style=color:#f92672>&gt;</span> base_freq_arr[len(base_freq_arr) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span>            target_base_freq <span style=color:#f92672>=</span> target_base_freq <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> verbosity <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Base Frequeuncy: &#34;</span> <span style=color:#f92672>+</span> str(target_base_freq))
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> target_base_freq
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>takeClosest</span>(myList, myNumber):
+</span></span><span style=display:flex><span>        <span style=color:#f92672>from</span> bisect <span style=color:#f92672>import</span> bisect_left
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        pos <span style=color:#f92672>=</span> bisect_left(myList, myNumber)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> pos <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> myList[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> pos <span style=color:#f92672>==</span> len(myList):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> myList[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>        before <span style=color:#f92672>=</span> myList[pos <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>        after <span style=color:#f92672>=</span> myList[pos]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> after <span style=color:#f92672>-</span> myNumber <span style=color:#f92672>&lt;</span> myNumber <span style=color:#f92672>-</span> before:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> after
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> before
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    sp_highest_freq <span style=color:#f92672>=</span> getHighestEnergyFreq(sp, freq, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    closest_freq <span style=color:#f92672>=</span> takeClosest(base_freq_arr, getBaseFreqFromSingalFreq(sp_highest_freq, base_freq_arr, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Closest Note Frequency to Base Freq: &#34;</span> <span style=color:#f92672>+</span> str(closest_freq))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Determined Note: &#34;</span> <span style=color:#f92672>+</span> freq_to_note[closest_freq])
+</span></span></code></pre></div><pre><code>Frequncy with most amplitude: 440.0
+Base Frequeuncy: 27.5
+Closest Note Frequency to Base Freq: 27.5
+Determined Note: A
+</code></pre><p>Now, I was kind of stuck back there. We can very clearly see in the Frequency
+plot where the peak frequency is. How can we programatically look at that and
+say &ldquo;A&rdquo;? One easy way that came to mind is to select the frequency with the
+maximum amplitude. This works for now, as seen above. When the picture looks
+that clear we could have done things such as count the y = 0 axis crossings of
+the signal over time, but take a look below and you&rsquo;ll see that time-domain
+(signals where the independant variable is time) visual guessing of the
+frequency will not work out in high noise situations.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>addAwgNoiseToSignal</span>(input_discr_signal, snr_dB):
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;&#34;&#34;Calculates signal power and generates additive white gaussian noise to match SNR param&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        sigp_dB <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span> <span style=color:#f92672>*</span> (np<span style=color:#f92672>.</span>log10(np<span style=color:#f92672>.</span>linalg<span style=color:#f92672>.</span>norm(input_discr_signal,<span style=color:#ae81ff>2</span>))<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>/</span>\
+</span></span><span style=display:flex><span>                             len(input_discr_signal)
+</span></span><span style=display:flex><span>        noisep_dB <span style=color:#f92672>=</span> sigp_dB <span style=color:#f92672>-</span> snr_dB
+</span></span><span style=display:flex><span>        noisep <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span><span style=color:#f92672>**</span>(noisep_dB<span style=color:#f92672>/</span><span style=color:#ae81ff>10</span>)
+</span></span><span style=display:flex><span>        noise <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sqrt(noisep)<span style=color:#f92672>*</span>np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(len(input_discr_signal))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> [sig <span style=color:#f92672>+</span> noise <span style=color:#66d9ef>for</span> (sig,noise) <span style=color:#f92672>in</span> zip(input_discr_signal, noise)]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Construct a new signal based off y_0 but with added noise to match the snr</span>
+</span></span><span style=display:flex><span>    y_1 <span style=color:#f92672>=</span> addAwgNoiseToSignal(y_0, <span style=color:#f92672>-</span><span style=color:#ae81ff>15</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>fig_size)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>plot(x_time, y_1)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;A-note in time&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlabel(<span style=color:#e6db74>&#39;Time (seconds)&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#39;Magnitude&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=/audio_0_5_0.png alt="Noisy Signal"></p><p>We took the same signal and just garbagized it. Now, this is a lot more noise
+than we would typically see in an audio setting because our noise is now twenty
+times larger than our signal. Do you think we&rsquo;ll be able to see the signal using
+a fourier transform?</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span>    (F_y_1, freq) <span style=color:#f92672>=</span> computeFourierTransformOfSingal(y_1, x_samples, sample_rate)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    Fy1_highest_freq <span style=color:#f92672>=</span> getHighestEnergyFreq(F_y_1, freq, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    closest_freq <span style=color:#f92672>=</span> takeClosest(base_freq_arr, getBaseFreqFromSingalFreq(Fy1_highest_freq, base_freq_arr, verbosity<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Closest Frequency to Base Freq: &#34;</span> <span style=color:#f92672>+</span> str(closest_freq))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Determined Note: &#34;</span> <span style=color:#f92672>+</span> freq_to_note[closest_freq])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>fig_size)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>plot(freq[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)], abs(F_y_1[:int(len(freq)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)]))
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;A-note in Frequency with a ton of noise&#39;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlabel(<span style=color:#e6db74>&#34;Frequency (Hz)&#34;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#34;Magnitude&#34;</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>xlim(xmax<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>frequency, xmin <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><pre><code>Frequncy with most amplitude: 440.0
+Base Frequeuncy: 27.5
+Closest Frequency to Base Freq: 27.5
+Determined Note: A
+</code></pre><p><img src=/audio_0_7_1.png alt="DFT of Noisy Signal"></p><p>How could this be? The real reason is that when we add &ldquo;white&rdquo; noise, we are
+adding noise enery that is distributed across the frequency spectrum. So even
+though the signal is 20 times weaker than the noise, if we know where to look,
+we will find the signal in an even (white) noise distribution. Nosie isn&rsquo;t
+always white and sometimes noise can look a lot like our signal of interest. And
+that is someting we can explore at another time.</p></article></div></div><footer><div class=container><p class="credits copyright"><p class="credits theme-by">Powered By <a href=https://gohugo.io>Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href=https://github.com/kaisugi/HugoTeX>HugoTeX</a><br><a href=https://nickdnickd.com/about>Nick D</a>
+&copy;
+2021</p></div></footer></body></html>
