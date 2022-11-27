@@ -1,7 +1,7 @@
 baseURL = 'https://nickdnickd.com/'
 languageCode = 'en-us'
 title = 'Nick D Blog'
-theme = 'HugoTex'
+theme = 'HugoTeX'
 
 [Params]
   darkmode = true # set true if you prefer dark mode
