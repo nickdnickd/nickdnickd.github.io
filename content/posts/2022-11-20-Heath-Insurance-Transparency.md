@@ -35,7 +35,7 @@ I picked three JSON files to download:
 
 From a high level, UHC provides all of the rates for each insurer within the UHC network. Each insurer has index
 
-### Large JSON file exploraton
+### Large JSON file exploration
 
 I was unable to open the in-network-rates file on my Macbook with 32 GB of RAM using a typical application. So there were two command line tools used to try to at least get a look at the beginning of the file and then the overall structure.
 
@@ -128,3 +128,44 @@ While I'm waiting on this, I'm going to try to look at the _end_ of the file to 
     ]
     }
 ```
+
+
+There's another way. We can use `ijson`, which helps keep the memory profile low (Thank you to [Itamar's Blog](https://pythonspeed.com/articles/json-memory-streaming/#a-streaming-solution))
+It's a python library but a lot of the implementation is in C.
+
+
+```python3
+import ijson
+
+test_file = "2022-11-01_United-Healthcare-Services--Inc-_Third-Party-Administrator_Optum-Health-Behavioral-Services--OHBS--1018476_C2_in-network-rates.json"
+large_file_path = f"/Users/nickd/Downloads/{test_file}"
+# downloaded from https://transparency-in-coverage.uhc.com/
+
+with open(large_file_path, "rb") as f:
+    for item in ijson.items(f, "in_network.item"):
+        print(item.keys())
+        print(item["negotiation_arrangement"])
+        print(item["name"])
+        print(item["billing_code_type"])
+        print(item["description"])
+        print(item["negotiated_rates"][0])
+        print(item["negotiated_rates"][1])
+        break
+
+```
+
+We got the keys of one of the negotiation arrangements. This seems to be a line item that we can disect.
+
+```shell
+# result
+dict_keys(['negotiation_arrangement', 'name', 'billing_code_type', 'billing_code_type_version', 'billing_code', 'description', 'negotiated_rates'])
+ffs
+IMM ADMN SARSCOV2 30MCG/0.3ML DIL RECON 1ST DOSE
+CPT
+Immunization administration by intramuscular injection of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) (coronavirus disease [COVID-19]) vaccine, mRNA-LNP, spike protein, preservative free, 30 mcg/0.3mL dosage, diluent reconstituted; first dose
+{'provider_references': [30801], 'negotiated_prices': [{'negotiated_rate': Decimal('42.88'), 'service_code': ['11'], 'negotiated_type': 'negotiated', 'expiration_date': '9999-12-31', 'billing_class': 'professional', 'billing_code_modifier': [], 'additional_information': ''}]}
+{'provider_references': [14057], 'negotiated_prices': [{'negotiated_rate': Decimal('67.0'), 'service_code': [], 'negotiated_type': 'negotiated', 'expiration_date': '9999-12-31', 'billing_class': 'institutional', 'billing_code_modifier': [], 'additional_information': 'APC[9397-9397]'}
+```
+
+It looks like a covid vaccine!
+We printed only two of the rates but you can already see there is a difference in the negotiated_rate.
