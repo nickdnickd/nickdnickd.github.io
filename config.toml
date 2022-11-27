@@ -12,4 +12,4 @@ theme = 'HugoTex'
 
 [module]
 [[module.imports]]
-  path = 'https://github.com/kaisugi/HugoTeX'
+  path = 'github.com/kaisugi/HugoTeX'
