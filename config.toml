@@ -1,0 +1,11 @@
+baseURL = 'https://nickdnickd.com/'
+languageCode = 'en-us'
+title = 'Nick D Blog'
+theme = 'HugoTex'
+
+[Params]
+  darkmode = true # set true if you prefer dark mode
+
+[author]
+  name = "Nick D"
+  abstract = "I'm a software engineer and proud new puppy owner."
