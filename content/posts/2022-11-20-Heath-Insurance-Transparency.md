@@ -63,7 +63,7 @@ nickd@Nicholass-MBP nickdnickd.github.io % head -c 5000 /Users/nickd/Downloads/2
             {"npi": [1154522944, 1568498475, 1144203233, 1528215340], "tin": {"type": "ein", "value": "562492885"}},
             {"npi": [1265106967], "tin": {"type": "ein", "value": "452317099"}},
             {"npi": [1932145422], "tin": {"type": "ein", "value": "854304920"}},
-            {"npi":[1114195302], "tin": {"type": "ein", "value": "900449008"}},
+            {"npi": [1114195302], "tin": {"type": "ein", "value": "900449008"}},
             {"npi": [1447693833], "tin": {"type": "ein", "value": "824863664"}},
             {"npi": [1104910157, 1144314105], "tin": {"type": "ein", "value": "261956018"}},
             ...
@@ -170,3 +170,4 @@ Immunization administration by intramuscular injection of severe acute respirato
 
 It looks like a covid vaccine!
 We printed only two of the rates but you can already see there is a difference in the negotiated_rate.
+provider_references seems to be talking about the provider_groups from the beginning of the file.
