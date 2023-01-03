@@ -7,17 +7,28 @@ draft: false
 
 ## A Song of Charge Books and Actuaries
 
-Insurance is a simple question with a complicated answer. How can an insurance company pay the minimal amount while still retaining employers as customers. Hospitals (and the providers that compose them) have a similar question: how can I charge the most that insurance companies and patients will actually pay. This battle happens on the other side of the curtain. They know virtually nothing until they receive their bill submitted through insurance. This provider-insurance battle is well reported on and results in the wild differences in costs of procedures. Even if they could pick their provider, how will they know which decision would actually cost less? I've experienced this and so has anyone else with the misfortune of requiring medical services. In an effort to rebalance the information, the US government has [forced](https://www.npr.org/sections/health-shots/2022/07/27/1113091782/health-insurance-prices-for-care-are-now-out-there-but-finding-them-is-an-ordeal) health insurance companies to make "machine readable" files and place them on the open internet.
+Insurance is a simple question with a complicated answer:
 
-Is there actually useful information in these files? If so, is there an insight that can be derived from multiple insurance companies? Or, does malicious compliance previal and we are just left with more confusion?
+_How can an insurance company pay the minimal amount while still retaining employers as customers?_
 
+Hospitals (and the providers of which they're composed) have a similar question:
+
+_How can I charge the most that enough insurance companies and patients will pay to be profitable?_
+
+This battle happens on the other side of the curtain and patients know virtually nothing until they receive their bill submitted through insurance automatically. This provider-insurance battle is well reported on and results in the wild differences in costs of procedures. A safe guess is just "thousands of dollars". I've experienced this and so has anyone else with the misfortune of requiring medical services. No procedures done and a CT resulted in a $5000 bill right when I was switching employers.
+
+It feels good to think about a total overhaul of a system that centers around comapnies (our employers, our insurers, our hospitals) lording over our financial stability and well being. But it also feels pretty unrealistic.
+In an effort to slowly unwind this web, the US government has [forced](https://www.npr.org/sections/health-shots/2022/07/27/1113091782/health-insurance-prices-for-care-are-now-out-there-but-finding-them-is-an-ordeal) health insurance companies to make "machine readable" files and place them on the open internet detailing the costs and what portion they've agreed to cover.
+Is there actually useful information in these files? If so, is there an insight that can be derived from multiple insurance companies? Or, does malicious compliance previal and we are just left with more confusion? Or have armies of actuaries and developers made something too complicated to dissect by accident?
 Let's try to take a look at these files and see what we can find.
 
 ## Case Study: United Healthcare
 
-Starting with the largest insurer by market share, United Healthcare (UHC), we find their disclosure URL https://transparency-in-coverage.uhc.com/ and try to download a couple files for the month of November, 2022. There are 59,728 files just for November. And next month, I'm not sure what will happen to these files. Do they just get replaced by December's files? I wouldn't be able to know the total download size, but it would definitely hit my current ISP cap. This is yet another reminder of how convoluted our system has become. It started off with employers negotiating group rates and has become the defacto requirement. One could probably see from this data which companies in particular are being ripped off and should renegotiate.
+Starting with the largest insurer by market share (source: lazy google), United Healthcare (UHC), we find their disclosure URL https://transparency-in-coverage.uhc.com/ and try to download a couple files for the month of November, 2022. There are 59,728 files just for November. And next month, they're gone; replaced by the following month. The the old URLs still work however, so we could go backwards and guess the original date. I wouldn't be able to know the total download size each month, but it would definitely hit my current ISP cap. This massive pile of loosely structured data is reminicent of the document dump [legal stragegy](https://en.wikipedia.org/wiki/Document_dump#:~:text=A%20document%20dump%20is%20the,the%20receiver%20of%20the%20information). Right away, this has turned into something that requires a cloud solution due to data size and scale. AWS stands out with cheap ingress and the use of cheap lambdas for quick jobs and maybe ECS/Batch for the bigger jobs. But for now let's explore locally.
 
-This massive pile of loosely structured data is reminicent of the document dump [legal stragegy](https://en.wikipedia.org/wiki/Document_dump#:~:text=A%20document%20dump%20is%20the,the%20receiver%20of%20the%20information). Many of the files exceed the memory of a typical machine and definitely put a strain on disk space in general. My guess is that they took some tables from their database, converted them to json and dumped them to a file. A lot of information is repeated and not efficiently connected together. We only have naming conventions and inferences to go off of.
+My guess is that they took some tables from their database, converted them to json and dumped them to a file. A lot of information is repeated and not efficiently connected together. You can see below just how much repitition there is by comparing the compressed size of the json with the uncompressed size. Something like a SQL database could save space and be queried and joined more efficiently.
+
+[png](/compression_example.png)
 
 Are we able to decipher it?
 
@@ -131,7 +142,7 @@ While I'm waiting on this, I'm going to try to look at the _end_ of the file to 
 
 #### python ijson
 
-There's another way. We can use `ijson`, which helps keep the memory profile low (Thank you to [Itamar's Blog](https://pythonspeed.com/articles/json-memory-streaming/#a-streaming-solution))
+There's another way. We can use `ijson`, which helps keep the memory profile low (Thank you to [Itamar's Blog post](https://pythonspeed.com/articles/json-memory-streaming/#a-streaming-solution))
 It's a python library but a lot of the implementation is in C.
 
 
@@ -170,4 +181,7 @@ Immunization administration by intramuscular injection of severe acute respirato
 
 It looks like a covid vaccine!
 We printed only two of the rates but you can already see there is a difference in the negotiated_rate.
-provider_references seems to be talking about the provider_groups from the beginning of the file.
+provider_references seems to be talking about the provider_groups from the beginning of the file, so in a database those will need to be cross referenced.
+
+## Conclusion
+These files are well structured and I believe this can be reassembled in a database at a smaller size that is queryable. The challenge here is that the real dataset is so large that development should run directly against it.
