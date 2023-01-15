@@ -28,7 +28,7 @@ Starting with the largest insurer by market share (source: lazy google), United 
 
 My guess is that they took some tables from their database, converted them to json and dumped them to a file. A lot of information is repeated and not efficiently connected together. You can see below just how much repitition there is by comparing the compressed size of the json with the uncompressed size. Something like a SQL database could save space and be queried and joined more efficiently.
 
-[png](/compression_example.png)
+![png](/compression_example.png)
 
 Are we able to decipher it?
 
@@ -137,7 +137,7 @@ While I'm waiting on this, I'm going to try to look at the _end_ of the file to 
             ]
         }
     ]
-    }
+}
 ```
 
 #### python ijson
@@ -146,7 +146,7 @@ There's another way. We can use `ijson`, which helps keep the memory profile low
 It's a python library but a lot of the implementation is in C.
 
 
-```python3
+```python
 import ijson
 
 test_file = "2022-11-01_United-Healthcare-Services--Inc-_Third-Party-Administrator_Optum-Health-Behavioral-Services--OHBS--1018476_C2_in-network-rates.json"
@@ -182,6 +182,57 @@ Immunization administration by intramuscular injection of severe acute respirato
 It looks like a covid vaccine!
 We printed only two of the rates but you can already see there is a difference in the negotiated_rate.
 provider_references seems to be talking about the provider_groups from the beginning of the file, so in a database those will need to be cross referenced.
+
+## Case Study: Anthem
+Anthem lays out their disclosure documents a little bit differently
+They have one big index file, and within that are the links we need to download.
+Let's try some of the tools above on Anthem's index file. Starting with `head` and `tail`
+
+Here's a stitching together `head -c 5000` and `tail -c 5000`.
+I cut out some in network files because it was repetitive.
+
+```json
+{
+  "reporting_entity_name": "Anthem Inc",
+  "reporting_entity_type": "health insurance issuer",
+  "reporting_structure": [
+    {
+      "reporting_plans": [
+        {
+          "plan_name": "HOUSE DRESSING LLC",
+          "plan_id_type": "EIN",
+          "plan_id": "332545529",
+          "plan_market_type": "group"
+        }
+      ],
+      "in_network_files": [
+        {
+          "description": "BCBS Massachusetts : Blue Care Elect",
+          "location": "https://anthembcca.mrf.bcbs.com/2023-01_700_23B0_in-network-rates.json.gz?&Expires=1676568451&Signature=yj-FbqwTsXUklnrAdxD86Eg4YmdxUZKEPO8znLnfH8yY6eKcAA6CViP3tyEGQCn3av2h3etEMaWPH1Zocqxlx3zSL~zXNNEUbkPvuHCkFa7do18mdYDabpDYlflHoLG17RZyy5wunVDUVuHTg4fEB5PSBqvHi2NfC97aCr3rUywYiyC~1uCkVUgABxE9HBQGAqBnPQ11dLdYPc58KhCyw9gXxT9lnuONydjglbYq-mhOaDfPGKEp3u1w4b7sInO2NhzeTOiJpFWpD~rAypTTMt9~yPvzT64vnbyBzAKYDm3gJZNUyS~ZNORvBsv0BPPeMvRABziyfUcnVbdMHcgPfQ__&Key-Pair-Id=K27TQMT39R1C8A"
+        },
+        {
+          "description": "BCBS Tennessee, Inc. : Network P",
+          "location": "https://anthembcca.mrf.bcbs.com/2023-01_890_58B0_in-network-rates_54_of_60.json.gz?&Expires=1676568451&Signature=c82FwUx1tjbqk3nsE~-wYjDHf7-PnTEYcuy3f29M5wQkoMEDefWq7KPyCKat8octGiiOCdE3ELFj~PyHphIITSIA6yWtByOKrZn2~qPRE92LmvkHeSYZHHl4nM9Aa1e70qjPKc3hRD6me2zh454fqMrRJuaFiD-XeX8qnZO-WLLKSB~-94iRCNCIjVX0U3CDvt9rlOj3DZ2em3Qt5XNEzzfCIZaFNbqgNzlV8t3UTRL7O4~vkQroZtxw4VZodbwPA7~Mny3BK8u5NtKmu2mQcE9Cap6v4Kt~j91W5XE54M6u~AUDIM0K3UIrCumdR4iYIgzJ5F8IwtOONW93NWyFbA__&Key-Pair-Id=K27TQMT39R1C8A"
+        },
+        {
+          "description": "BCBS Minnesota : Aware",
+          "location": "https://anthembcca.mrf.bcbs.com/2023-01_720_27B0_in-network-rates_58_of_74.json.gz?&Expires=1676568451&Signature=UMTaVyMfuuH1EtDYmH4CuMd5Hoxk9xo-yUerYyhNLsQDjPbEsmqI9MxO-Y7c3t6zUb7DzemfTR2cm6OEnDIZmJ47QUa4m4Br07bTruMMtMFinN9x2Kg~w8WULnEiJb-tje~LTo8~Mo4xiNSa5eVjZlnMtpIplLTXpXyEKynStuzIpho5SyhqrMhYjShH3~s-bM88ZF7caELsD-kL64fi~PimlvDljHCzknlQ5Ymd86tozzGUNbA9qZXy6Z300biREY3ztE41SZyE8F128vYZGMoPZANOQjmFFXn8lCY2oDWEHWfyMYOckntO31m40nHkvk9k1~KebC0dbTNMFowICg__&Key-Pair-Id=K27TQMT39R1C8A"
+        }
+      ]
+    }
+  ],
+  "allowed_amount_files":
+    {
+        "description":"Out-of-Network Allowed Amounts Files",
+        "location":"https://antm-pt-prod-dataz-nogbd-nophi-us-east1.s3.amazonaws.com/anthem/2023-01-01_anthem-oon-multiplan-empty_allowed-amounts.json.gz"
+    }
+}
+```
+
+
+The index file looks like
+`reporting_entity_name, reporting_entity_type, reporting_structure {reporting_plans, in_network_files}, allowed_amount_files`
+
 
 ## Conclusion
 These files are well structured and I believe this can be reassembled in a database at a smaller size that is queryable. The challenge here is that the real dataset is so large that development should run directly against it.
