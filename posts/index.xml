@@ -1,7 +1,285 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Nick D Blog</title><link>https://nickdnickd.com/posts/</link><description>Recent content in Posts on Nick D Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nickdnickd.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Health Insurance Transparency</title><link>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</link><pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</guid><description>A Song of Charge Books and Actuaries Insurance is a simple question with a complicated answer:
-How can an insurance company pay the minimal amount while still retaining employers as customers?
-Hospitals (and the providers of which they&amp;rsquo;re composed) have a similar question:
-How can I charge the most that enough insurance companies and patients will pay to be profitable?
-This battle happens on the other side of the curtain and patients know virtually nothing until they receive their bill submitted through insurance automatically.</description></item><item><title>IRS v BTC</title><link>https://nickdnickd.com/posts/2021-3-1-crypto-taxes/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2021-3-1-crypto-taxes/</guid><description>UPDATE TurboTax has now pulled Coinbase from the list of providers for CSV uploading. While less confusing, the workaround I created no longer allows us to &amp;ldquo;spoof&amp;rdquo; a proper CSV. You can still use the output from this blog to enter into TurboTax&amp;hellip; but unfortunately it&amp;rsquo;s gotta be manual.
-Crypto grows up This year in TurboTax, the paywall maze willed into existance by lobbying, a question will pop up asking if you&amp;rsquo;ve sold or received cryptocurrency in 2020.</description></item><item><title>Asynchronous Uploads</title><link>https://nickdnickd.com/posts/2020-11-1-async-uploads/</link><pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2020-11-1-async-uploads/</guid><description>I will never forget the first time I killed the music in a local coffee shop. Struggling to teach myself &amp;ldquo;machine learning&amp;rdquo;, I decided to download large dataset from the internet. As is typical with these types of workloads, the download size was well over 100 GB. When I clicked download, Google Drive split the file into several chunks available to download simultaneously.
-The competing music streaming device yeilded immediately, and acoustic pop covers were replaced with 4'33&amp;quot; on repeat until I realized what I&amp;rsquo;d done.</description></item><item><title>Avoiding Manual Data Entry</title><link>https://nickdnickd.com/posts/2020-09-12-avoiding-manual-data/</link><pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2020-09-12-avoiding-manual-data/</guid><description>Interview Season Doctors have it rough. After graduating medical school, they enter a period of indentured servitude known as residency. It is not uncommon to hear of over 80 hour weeks, 12 hour shifts and DOMA&amp;rsquo;s. DOMA stands for &amp;ldquo;Day Off, My Ass&amp;rdquo; which describes the period of time between a night shift, letting out at 7am, and a day shift starting at 7am. Technically 24 hours, but most of it is spent asleep.</description></item><item><title>Let There Be Sound</title><link>https://nickdnickd.com/posts/2018-01-16-let-there-be-sound/</link><pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2018-01-16-let-there-be-sound/</guid><description>Beautiful Soup Does it bother anyone else to think about how we can&amp;rsquo;t completely describe complicated things? Most of us have heard of the Uncertainty principle describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Here breadth, by principle, is sacrificed for depth. On a larger scale, we probably do not have enough compute on planet earth to describe a cold front, let alone weather, in a way that yeilds complete confidence in weather reports.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Nick D Blog</title><link>https://nickdnickd.com/posts/</link><description>Recent content in Posts on Nick D Blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nickdnickd.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>S Corp Vs LLC Interactive Graph</title><link>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</guid><description>&lt;p>Here&amp;rsquo;s my interactive Graph&lt;/p>
+&lt;div class="calculator-container">
+ &lt;div class="input-group">
+ &lt;label for="income">Annual Income ($):&lt;/label>
+ &lt;input type="number" id="income" value="300000" min="0" max="1000000" step="1000">
+ &lt;br/>
+ &lt;label for="expenses">Business Expenses ($):&lt;/label>
+ &lt;input type="number" id="expenses" value="50000" min="0" max="1000000" step="1000">
+ &lt;br/>
+ &lt;label for="salary">Reasonable Salary ($):&lt;/label>
+ &lt;input type="number" id="salary" value="160000" min="0" max="1000000" step="1000">
+ &lt;/div>
+ 
+ &lt;div id="myGraph">&lt;/div>
+ &lt;div id="taxBreakdown">&lt;/div>
+&lt;/div>
+
+&lt;style>
+.calculator-container {
+ margin: 20px 0;
+ font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.input-group {
+ margin-bottom: 20px;
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 15px;
+}
+
+.input-group label {
+ display: block;
+ margin-bottom: 5px;
+}
+
+.input-group input {
+ width: 100%;
+ padding: 5px;
+ border: 1px solid #666;
+ border-radius: 4px;
+ background: #292929;
+ color: #dcdcdc;
+}
+&lt;/style>
+
+&lt;script>
+
+ const MEDICARE_TAX_RATE = 0.0145; 
+ const SOCIAL_SECURITY_TAX_RATE = 0.062; 
+ const SOCIAL_SECURITY_BASE_LIMIT = 176_100; 
+ const ADDITIONAL_MEDICARE_THRESHOLD = 200_000; 
+ const ADDITIONAL_MEDICARE_RATE = 0.009; 
+
+ function loadPlotly() {
+ return new Promise((resolve, reject) => {
+ if (typeof Plotly !== 'undefined') {
+ resolve(Plotly);
+ return;
+ }
+
+ const script = document.createElement('script');
+ script.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+ script.onload = () => resolve(Plotly);
+ script.onerror = reject;
+ document.head.appendChild(script);
+ });
+ }
+
+ function calculateFederalIncomeTax(income) {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ const federalIncomeBrackets2025 = [
+ { lower: 0, upper: 11925, rate: 0.10 },
+ { lower: 11925,upper: 48475, rate: 0.12 },
+ { lower: 48475, upper: 103350, rate: 0.22 },
+ { lower: 103350, upper: 197300, rate: 0.24 },
+ { lower: 197300, upper: 250525, rate: 0.32 },
+ { lower: 250525, rate: 0.35 }
+ ];
+
+ let tax = 0.0
+ federalIncomeBrackets2025.forEach(bracket => {
+ if (income > bracket.lower) {
+ const upper = bracket.upper || income;
+ tax += (Math.min(income, upper) - bracket.lower) * bracket.rate;
+ }
+ })
+
+ return tax;
+ }
+
+ function calculateTaxes(income, expenseRate, salaryRate) {
+ const expenses = expenseRate;
+ const netIncome = income - expenses;
+ 
+ 
+ const llcSocialSecurityTax = 2 * Math.min(netIncome, SOCIAL_SECURITY_BASE_LIMIT) * SOCIAL_SECURITY_TAX_RATE;
+ const llcAdditionalMedicareTax = netIncome > ADDITIONAL_MEDICARE_THRESHOLD ?
+ (netIncome - ADDITIONAL_MEDICARE_THRESHOLD) * ADDITIONAL_MEDICARE_RATE : 0;
+ const llcMedicareTax = 2 * netIncome * MEDICARE_TAX_RATE + llcAdditionalMedicareTax; 
+ const llcIncomeTax = calculateFederalIncomeTax(netIncome);
+ const llcTotal = llcSocialSecurityTax + llcMedicareTax + llcIncomeTax; 
+ 
+ 
+ const reasonableSalary = salaryRate;
+ const distributionIncome = netIncome - reasonableSalary;
+ 
+ const sCorpSocialSecurityTax = 2 * Math.min(reasonableSalary, SOCIAL_SECURITY_BASE_LIMIT) * SOCIAL_SECURITY_TAX_RATE;
+ const sCorpAdditionalMedicareTax = reasonableSalary > ADDITIONAL_MEDICARE_THRESHOLD ?
+ (reasonableSalary - ADDITIONAL_MEDICARE_THRESHOLD) * ADDITIONAL_MEDICARE_RATE : 0;
+ const sCorpMedicareTax = 2 * reasonableSalary * MEDICARE_TAX_RATE + sCorpAdditionalMedicareTax; 
+ const sCorpIncomeTax = calculateFederalIncomeTax(distributionIncome + reasonableSalary);
+ const sCorpTotal = sCorpSocialSecurityTax + sCorpMedicareTax + sCorpIncomeTax;
+ 
+ return {
+ llc: {
+ socialSecurityTax: llcSocialSecurityTax,
+ medicareTax: llcMedicareTax,
+ incomeTax: llcIncomeTax,
+ total: llcTotal
+ },
+ sCorp: {
+ socialSecurityTax: sCorpSocialSecurityTax,
+ medicareTax: sCorpMedicareTax,
+ incomeTax: sCorpIncomeTax,
+ total: sCorpTotal
+ }
+ };
+ }
+
+ function updateGraph() {
+ const income = parseFloat(document.getElementById('income').value);
+ const expenses = parseFloat(document.getElementById('expenses').value);
+ const salary = parseFloat(document.getElementById('salary').value);
+ 
+ 
+ const result = calculateTaxes(income, expenses, salary);
+
+ console.log({result});
+ 
+ 
+ const breakdownData = [
+ {
+ x: ['LLC', 'S-Corp'],
+ y: [
+ result.llc.incomeTax,
+ result.sCorp.incomeTax
+ ],
+ name: 'Income Tax',
+ type: 'bar',
+ marker: { color: '#9467bd' }
+ },
+ {
+ x: ['LLC', 'S-Corp'],
+ y: [
+ result.llc.socialSecurityTax,
+ result.sCorp.socialSecurityTax
+ ],
+ name: 'Social Security Tax',
+ type: 'bar',
+ marker: { color: '#1f77b4' }
+ },
+ {
+ x: ['LLC', 'S-Corp'],
+ y: [
+ result.llc.medicareTax,
+ result.sCorp.medicareTax
+ ],
+ name: 'Medicare Tax',
+ type: 'bar',
+ marker: { color: '#2ca02c' }
+ }
+ ];
+
+ const breakdownLayout = {
+ title: 'Tax Breakdown Comparison',
+ paper_bgcolor: 'rgba(0,0,0,0)',
+ plot_bgcolor: 'rgba(0,0,0,0)',
+ font: { color: '#dcdcdc' },
+ barmode: 'stack',
+ yaxis: {
+ title: 'Tax Amount ($)',
+ tickformat: '$,.0f',
+ gridcolor: 'rgba(128,128,128,0.2)',
+ },
+ xaxis: {
+ gridcolor: 'rgba(128,128,128,0.2)',
+ },
+ legend: {
+ bgcolor: 'rgba(0,0,0,0)',
+ bordercolor: '#dcdcdc'
+ },
+ hovermode: 'x unified',
+ hoverlabel: {
+ bgcolor: '#444'
+ },
+ annotations: [{
+ x: 1,
+ y: 1.1,
+ xref: 'paper',
+ yref: 'paper',
+ text: `Annual Income: $${income.toLocaleString()}`,
+ showarrow: false,
+ font: { color: '#dcdcdc' }
+ }]
+ };
+
+ 
+ const incomes = Array.from({length: 10}, (_, i) => income * (0.5 + i * 0.2));
+ const results = incomes.map(inc => calculateTaxes(inc, expenses, salary));
+ 
+ const trendData = [
+ {
+ x: incomes,
+ y: results.map(r => r.llc.total - r.sCorp.total),
+ type: 'scatter',
+ mode: 'lines+markers',
+ name: 'Total Savings',
+ line: {
+ color: '#ff7f0e',
+ width: 3
+ },
+ yaxis: 'y2'
+ }
+ ];
+
+ const trendLayout = {
+ title: 'Potential Savings Over Income Range',
+ paper_bgcolor: 'rgba(0,0,0,0)',
+ plot_bgcolor: 'rgba(0,0,0,0)',
+ font: { color: '#dcdcdc' },
+ xaxis: {
+ title: 'Annual Income ($)',
+ tickformat: '$,.0f',
+ gridcolor: 'rgba(128,128,128,0.2)',
+ },
+ yaxis: {
+ title: 'Savings ($)',
+ tickformat: '$,.0f',
+ gridcolor: 'rgba(128,128,128,0.2)',
+ },
+ showlegend: false,
+ hovermode: 'x unified'
+ };
+
+ const config = {
+ responsive: true,
+ displayModeBar: false
+ };
+
+ 
+ Plotly.newPlot('myGraph', trendData, trendLayout, config);
+ Plotly.newPlot('taxBreakdown', breakdownData, breakdownLayout, config);
+ }
+
+ 
+ loadPlotly().then(() => {
+ updateGraph();
+ 
+ 
+ document.getElementById('income').addEventListener('input', updateGraph);
+ document.getElementById('expenses').addEventListener('input', updateGraph);
+ document.getElementById('salary').addEventListener('input', updateGraph);
+ }).catch(error => {
+ console.error('Failed to load Plotly:', error);
+ });
+&lt;/script></description></item><item><title>Health Insurance Transparency</title><link>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</link><pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</guid><description>&lt;h2 id="a-song-of-charge-books-and-actuaries">A Song of Charge Books and Actuaries&lt;/h2>
+&lt;p>Insurance is a simple question with a complicated answer:&lt;/p>
+&lt;p>&lt;em>How can an insurance company pay the minimal amount while still retaining employers as customers?&lt;/em>&lt;/p>
+&lt;p>Hospitals (and the providers of which they&amp;rsquo;re composed) have a similar question:&lt;/p>
+&lt;p>&lt;em>How can I charge the most that enough insurance companies and patients will pay to be profitable?&lt;/em>&lt;/p>
+&lt;p>This battle happens on the other side of the curtain and patients know virtually nothing until they receive their bill submitted through insurance automatically. This provider-insurance battle is well reported on and results in the wild differences in costs of procedures. A safe guess is just &amp;ldquo;thousands of dollars&amp;rdquo;. I&amp;rsquo;ve experienced this and so has anyone else with the misfortune of requiring medical services. No procedures done and a CT resulted in a $5000 bill right when I was switching employers.&lt;/p></description></item><item><title>IRS v BTC</title><link>https://nickdnickd.com/posts/2021-3-1-crypto-taxes/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2021-3-1-crypto-taxes/</guid><description>&lt;h3 id="update">UPDATE&lt;/h3>
+&lt;p>TurboTax has now pulled Coinbase from the list of providers for CSV uploading. While less confusing, the workaround I created no longer allows us to &amp;ldquo;spoof&amp;rdquo; a proper CSV. You can still use the output from this blog to enter into TurboTax&amp;hellip; but unfortunately it&amp;rsquo;s gotta be manual.&lt;/p>
+&lt;h2 id="crypto-grows-up">Crypto grows up&lt;/h2>
+&lt;p>This year in TurboTax, the paywall maze willed into existance by &lt;a href="https://gimletmedia.com/shows/reply-all/6nhgol">lobbying&lt;/a>, a question will pop up asking if you&amp;rsquo;ve sold or received cryptocurrency in 2020. If you decided to get off the crypto rollercoaster this past year, you will wind up being cornered into paying for TurboTax Premier; for &amp;ldquo;cryptocurrency support&amp;rdquo;.&lt;/p></description></item><item><title>Asynchronous Uploads</title><link>https://nickdnickd.com/posts/2020-11-1-async-uploads/</link><pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2020-11-1-async-uploads/</guid><description>&lt;h2 id="i-will-never-forget-the-first-time-i-killed-the-music-in-a-local-coffee-shop">I will never forget the first time I killed the music in a local coffee shop.&lt;/h2>
+&lt;p>Struggling to teach myself &amp;ldquo;machine learning&amp;rdquo;, I decided to download large dataset from the internet. As is typical with these types of workloads, the download size was well over 100 GB.
+When I clicked download, Google Drive split the file into several chunks available to download simultaneously.&lt;/p>
+&lt;p>The competing music streaming device yeilded immediately, and acoustic pop covers were replaced with &lt;a href="https://en.wikipedia.org/wiki/4%E2%80%B233%E2%80%B3">4'33&amp;quot;&lt;/a> on repeat until I realized what I&amp;rsquo;d done.&lt;/p></description></item><item><title>Avoiding Manual Data Entry</title><link>https://nickdnickd.com/posts/2020-09-12-avoiding-manual-data/</link><pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2020-09-12-avoiding-manual-data/</guid><description>&lt;h2 id="interview-season">Interview Season&lt;/h2>
+&lt;p>Doctors have it rough. After graduating medical school, they enter a period of indentured servitude known as &lt;em>residency&lt;/em>. It is not uncommon to hear of over 80 hour weeks, 12 hour shifts and DOMA&amp;rsquo;s. DOMA stands for &amp;ldquo;Day Off, My Ass&amp;rdquo; which describes the period of time between a night shift, letting out at 7am, and a day shift starting at 7am. Technically 24 hours, but most of it is spent asleep. In between these brutal shifts, a resident very near and dear to my heart has begun interviewing for a fellowship. A fellowship is a brief extension to residency that allows a doctor to focus on a specific area within their field of medicine. One example is ultrasound. This is a rapidly developing subspecialty of emergency medicine because it provides a quick, noninvasive view of a patient&amp;rsquo;s internal state.&lt;/p></description></item><item><title>Let There Be Sound</title><link>https://nickdnickd.com/posts/2018-01-16-let-there-be-sound/</link><pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2018-01-16-let-there-be-sound/</guid><description>&lt;h2 id="beautiful-soup">Beautiful Soup&lt;/h2>
+&lt;p>Does it bother anyone else to think about how we can&amp;rsquo;t completely describe complicated things? Most of us have heard of the &lt;a href="https://en.wikipedia.org/wiki/Uncertainty_principle">Uncertainty principle&lt;/a> describing that a more accurate measurement of position of a particle sacrifies the momentum accuracy. Here breadth, by principle, is sacrificed for depth. On a larger scale, we probably do not have enough compute on planet earth to describe a cold front, let alone weather, in a way that yeilds complete confidence in weather reports. Instead, we&amp;rsquo;d like to know generally if it will rain. This is us sacrificing depth, by lack of resources, for beadth.&lt;/p></description></item></channel></rss>
