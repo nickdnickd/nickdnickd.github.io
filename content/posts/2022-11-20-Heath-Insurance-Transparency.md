@@ -5,8 +5,6 @@ description: "How much did the real payers pay?"
 draft: false
 ---
 
-## A Song of Charge Books and Actuaries
-
 Insurance is a simple question with a complicated answer:
 
 _How can an insurance company pay the minimal amount while still retaining employers as customers?_
