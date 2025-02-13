@@ -269,8 +269,7 @@
  }).catch(error => {
  console.error('Failed to load Plotly:', error);
  });
-&lt;/script></description></item><item><title>Health Insurance Transparency</title><link>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</link><pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</guid><description>&lt;h2 id="a-song-of-charge-books-and-actuaries">A Song of Charge Books and Actuaries&lt;/h2>
-&lt;p>Insurance is a simple question with a complicated answer:&lt;/p>
+&lt;/script></description></item><item><title>Health Insurance Transparency</title><link>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</link><pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2022-11-20-heath-insurance-transparency/</guid><description>&lt;p>Insurance is a simple question with a complicated answer:&lt;/p>
 &lt;p>&lt;em>How can an insurance company pay the minimal amount while still retaining employers as customers?&lt;/em>&lt;/p>
 &lt;p>Hospitals (and the providers of which they&amp;rsquo;re composed) have a similar question:&lt;/p>
 &lt;p>&lt;em>How can I charge the most that enough insurance companies and patients will pay to be profitable?&lt;/em>&lt;/p>
