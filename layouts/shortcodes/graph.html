@@ -1,0 +1,271 @@
+<div class="calculator-container">
+  <div class="input-group">
+    <label for="income">Annual Income ($):</label>
+    <input type="number" id="income" value="300000" min="0" max="1000000" step="1000">
+    <br/>
+    <label for="expenses">Business Expenses ($):</label>
+    <input type="number" id="expenses" value="50000" min="0" max="1000000" step="1000">
+    <br/>
+    <label for="salary">Reasonable Salary ($):</label>
+    <input type="number" id="salary" value="160000" min="0" max="1000000" step="1000">
+  </div>
+  
+  <div id="myGraph"></div>
+  <div id="taxBreakdown"></div>
+</div>
+
+<style>
+.calculator-container {
+  margin: 20px 0;
+  font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #292929;
+  color: #dcdcdc;
+}
+</style>
+
+<script>
+
+  const MEDICARE_TAX_RATE = 0.0145; // Employer and employee each pay 1.45%
+  const SOCIAL_SECURITY_TAX_RATE = 0.062; // Employer and employee each pay 6.2%
+  const SOCIAL_SECURITY_BASE_LIMIT = 176_100; // Social security tax is not paid on income above this limit
+  const ADDITIONAL_MEDICARE_THRESHOLD = 200_000; // Additional Medicare tax kicks in at $200k for single filers
+  const ADDITIONAL_MEDICARE_RATE = 0.009; // Additional 0.9% Medicare tax for high earners
+
+  function loadPlotly() {
+    return new Promise((resolve, reject) => {
+      if (typeof Plotly !== 'undefined') {
+        resolve(Plotly);
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.plot.ly/plotly-2.27.0.min.js';
+      script.onload = () => resolve(Plotly);
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  function calculateFederalIncomeTax(income) {
+    // 2025 tax brackets
+    // 35% for incomes over $250,525 ($501,050 for married couples filing jointly).
+    // 32% for incomes over $197,300 ($394,600 for married couples filing jointly).
+    // 24% for incomes over $103,350 ($206,700 for married couples filing jointly).
+    // 22% for incomes over $48,475 ($96,950 for married couples filing jointly).
+    // 12% for incomes over $11,925 ($23,850 for married couples filing jointly).
+    // 10% for incomes $11,925 or less ($23,850 or less for married couples filing jointly).
+    const federalIncomeBrackets2025 = [
+      { lower: 0, upper: 11925, rate: 0.10 },
+      { lower: 11925,upper: 48475, rate: 0.12 },
+      { lower: 48475, upper: 103350, rate: 0.22 },
+      { lower: 103350, upper: 197300, rate: 0.24 },
+      { lower: 197300, upper: 250525, rate: 0.32 },
+      { lower: 250525, rate: 0.35 }
+    ];
+
+    let tax = 0.0
+    federalIncomeBrackets2025.forEach(bracket => {
+      if (income > bracket.lower) {
+        const upper = bracket.upper || income;
+        tax += (Math.min(income, upper) - bracket.lower) * bracket.rate;
+      }
+    })
+
+    return tax;
+  }
+
+  function calculateTaxes(income, expenseRate, salaryRate) {
+    const expenses = expenseRate;
+    const netIncome = income - expenses;
+    
+    // LLC (Schedule C) calculation
+    const llcSocialSecurityTax = 2 * Math.min(netIncome, SOCIAL_SECURITY_BASE_LIMIT) * SOCIAL_SECURITY_TAX_RATE;
+    const llcAdditionalMedicareTax = netIncome > ADDITIONAL_MEDICARE_THRESHOLD ?
+      (netIncome - ADDITIONAL_MEDICARE_THRESHOLD) * ADDITIONAL_MEDICARE_RATE : 0;
+    const llcMedicareTax = 2 * netIncome * MEDICARE_TAX_RATE + llcAdditionalMedicareTax; // LLC pays both employer and employee portions 2x
+    const llcIncomeTax = calculateFederalIncomeTax(netIncome);
+    const llcTotal = llcSocialSecurityTax + llcMedicareTax + llcIncomeTax; // we want to illustrate these differences
+    
+    // S-Corp calculation
+    const reasonableSalary = salaryRate;
+    const distributionIncome = netIncome - reasonableSalary;
+    
+    const sCorpSocialSecurityTax = 2 * Math.min(reasonableSalary, SOCIAL_SECURITY_BASE_LIMIT) * SOCIAL_SECURITY_TAX_RATE;
+    const sCorpAdditionalMedicareTax = reasonableSalary > ADDITIONAL_MEDICARE_THRESHOLD ?
+      (reasonableSalary - ADDITIONAL_MEDICARE_THRESHOLD) * ADDITIONAL_MEDICARE_RATE : 0;
+    const sCorpMedicareTax = 2 * reasonableSalary * MEDICARE_TAX_RATE + sCorpAdditionalMedicareTax; // S-Corp pays both employer and employee portions 2x
+    const sCorpIncomeTax = calculateFederalIncomeTax(distributionIncome + reasonableSalary);
+    const sCorpTotal = sCorpSocialSecurityTax + sCorpMedicareTax + sCorpIncomeTax;
+    
+    return {
+      llc: {
+        socialSecurityTax: llcSocialSecurityTax,
+        medicareTax: llcMedicareTax,
+        incomeTax: llcIncomeTax,
+        total: llcTotal
+      },
+      sCorp: {
+        socialSecurityTax: sCorpSocialSecurityTax,
+        medicareTax: sCorpMedicareTax,
+        incomeTax: sCorpIncomeTax,
+        total: sCorpTotal
+      }
+    };
+  }
+
+  function updateGraph() {
+    const income = parseFloat(document.getElementById('income').value);
+    const expenses = parseFloat(document.getElementById('expenses').value);
+    const salary = parseFloat(document.getElementById('salary').value);
+    
+    // Calculate for a single income level to show detailed breakdown
+    const result = calculateTaxes(income, expenses, salary);
+
+    console.log({result});
+    
+    // Create bar chart data for tax breakdown comparison
+    const breakdownData = [
+      {
+        x: ['LLC', 'S-Corp'],
+        y: [
+          result.llc.incomeTax,
+          result.sCorp.incomeTax
+        ],
+        name: 'Income Tax',
+        type: 'bar',
+        marker: { color: '#9467bd' }
+      },
+      {
+        x: ['LLC', 'S-Corp'],
+        y: [
+          result.llc.socialSecurityTax,
+          result.sCorp.socialSecurityTax
+        ],
+        name: 'Social Security Tax',
+        type: 'bar',
+        marker: { color: '#1f77b4' }
+      },
+      {
+        x: ['LLC', 'S-Corp'],
+        y: [
+          result.llc.medicareTax,
+          result.sCorp.medicareTax
+        ],
+        name: 'Medicare Tax',
+        type: 'bar',
+        marker: { color: '#2ca02c' }
+      }
+    ];
+
+    const breakdownLayout = {
+      title: 'Tax Breakdown Comparison',
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { color: '#dcdcdc' },
+      barmode: 'stack',
+      yaxis: {
+        title: 'Tax Amount ($)',
+        tickformat: '$,.0f',
+        gridcolor: 'rgba(128,128,128,0.2)',
+      },
+      xaxis: {
+        gridcolor: 'rgba(128,128,128,0.2)',
+      },
+      legend: {
+        bgcolor: 'rgba(0,0,0,0)',
+        bordercolor: '#dcdcdc'
+      },
+      hovermode: 'x unified',
+      hoverlabel: {
+        bgcolor: '#444'
+      },
+      annotations: [{
+        x: 1,
+        y: 1.1,
+        xref: 'paper',
+        yref: 'paper',
+        text: `Annual Income: $${income.toLocaleString()}`,
+        showarrow: false,
+        font: { color: '#dcdcdc' }
+      }]
+    };
+
+    // Calculate savings over income range for trend line
+    const incomes = Array.from({length: 10}, (_, i) => income * (0.5 + i * 0.2));
+    const results = incomes.map(inc => calculateTaxes(inc, expenses, salary));
+    
+    const trendData = [
+      {
+        x: incomes,
+        y: results.map(r => r.llc.total - r.sCorp.total),
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Total Savings',
+        line: {
+          color: '#ff7f0e',
+          width: 3
+        },
+        yaxis: 'y2'
+      }
+    ];
+
+    const trendLayout = {
+      title: 'Potential Savings Over Income Range',
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { color: '#dcdcdc' },
+      xaxis: {
+        title: 'Annual Income ($)',
+        tickformat: '$,.0f',
+        gridcolor: 'rgba(128,128,128,0.2)',
+      },
+      yaxis: {
+        title: 'Savings ($)',
+        tickformat: '$,.0f',
+        gridcolor: 'rgba(128,128,128,0.2)',
+      },
+      showlegend: false,
+      hovermode: 'x unified'
+    };
+
+    const config = {
+      responsive: true,
+      displayModeBar: false
+    };
+
+    // Plot both graphs
+    Plotly.newPlot('myGraph', trendData, trendLayout, config);
+    Plotly.newPlot('taxBreakdown', breakdownData, breakdownLayout, config);
+  }
+
+  // Initialize
+  loadPlotly().then(() => {
+    updateGraph();
+    
+    // Add event listeners to inputs
+    document.getElementById('income').addEventListener('input', updateGraph);
+    document.getElementById('expenses').addEventListener('input', updateGraph);
+    document.getElementById('salary').addEventListener('input', updateGraph);
+  }).catch(error => {
+    console.error('Failed to load Plotly:', error);
+  });
+</script>
