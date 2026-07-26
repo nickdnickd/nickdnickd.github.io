@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Nick D Blog</title><link>https://nickdnickd.com/posts/</link><description>Recent content in Posts on Nick D Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://nickdnickd.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>S Corp Vs LLC Interactive Graph</title><link>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</guid><description>&lt;p&gt;Here&amp;rsquo;s my interactive Graph&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Nick D Blog</title><link>https://nickdnickd.com/posts/</link><description>Recent content in Posts on Nick D Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://nickdnickd.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Ride the Maker</title><link>https://nickdnickd.com/posts/2026-07-26-ride-the-maker/</link><pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2026-07-26-ride-the-maker/</guid><description>&lt;p&gt;The deep desert rewards patience. Read the moving sand before you plant the thumper, choose your position, and do not jump until the maker is close enough to mount.&lt;/p&gt;
+&lt;p&gt;Once you are up, use the maker hooks to turn through the open desert. Smooth corrections keep your balance; sawing at the controls does not.&lt;/p&gt;
+&lt;div class="maker-game" data-maker-game&gt;
+ &lt;div class="maker-game__topline"&gt;
+ &lt;div&gt;
+ &lt;span class="maker-game__eyebrow"&gt;FIELD EXERCISE 01&lt;/span&gt;
+ &lt;h2 class="maker-game__title"&gt;Ride the Maker&lt;/h2&gt;
+ &lt;/div&gt;
+ &lt;button class="maker-game__sound" type="button" data-sound aria-pressed="false" aria-label="Toggle sound"&gt;SOUND OFF&lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;div class="maker-game__stage"&gt;
+ &lt;canvas data-canvas width="960" height="540" aria-label="Desert worm-riding game"&gt;&lt;/canvas&gt;
+ &lt;div class="maker-game__intro" data-intro&gt;
+ &lt;p class="maker-game__kicker"&gt;THE DEEP DESERT&lt;/p&gt;</description></item><item><title>S Corp Vs LLC Interactive Graph</title><link>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://nickdnickd.com/posts/2025-02-16-llc-scorp/</guid><description>&lt;p&gt;Here&amp;rsquo;s my interactive Graph&lt;/p&gt;
 &lt;div class="calculator-container"&gt;
  &lt;div class="input-group"&gt;
  &lt;label for="income"&gt;Annual Income ($):&lt;/label&gt;
