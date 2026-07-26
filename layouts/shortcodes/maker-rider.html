@@ -1,0 +1,88 @@
+<div class="maker-game" data-maker-game>
+  <div class="maker-game__topline">
+    <div>
+      <span class="maker-game__eyebrow">FIELD EXERCISE 01</span>
+      <h2 class="maker-game__title">Ride the Maker</h2>
+    </div>
+    <button class="maker-game__sound" type="button" data-sound aria-pressed="false" aria-label="Toggle sound">SOUND OFF</button>
+  </div>
+
+  <div class="maker-game__stage">
+    <canvas data-canvas width="960" height="540" aria-label="Desert worm-riding game"></canvas>
+    <div class="maker-game__intro" data-intro>
+      <p class="maker-game__kicker">THE DEEP DESERT</p>
+      <p>Read the sand. Call the maker. Time your jump. Ride.</p>
+      <button type="button" data-start>BEGIN THE TEST</button>
+    </div>
+    <div class="maker-game__message" data-message aria-live="polite"></div>
+  </div>
+
+  <div class="maker-game__hud">
+    <div><span>PHASE</span><strong data-phase>READ THE SAND</strong></div>
+    <div><span>GUIDANCE</span><strong data-guidance>Watch for a moving ridge.</strong></div>
+    <div><span>SCORE</span><strong data-score>0000</strong></div>
+  </div>
+
+  <div class="maker-game__controls" aria-label="Game controls">
+    <button type="button" data-left aria-label="Move or steer left"><span>◀</span> LEFT</button>
+    <button class="maker-game__action" type="button" data-action>PLANT THUMPER</button>
+    <button type="button" data-right aria-label="Move or steer right">RIGHT <span>▶</span></button>
+  </div>
+  <p class="maker-game__hint">Keyboard: <kbd>←</kbd> <kbd>→</kbd> to move · <kbd>Space</kbd> to act &nbsp;—&nbsp; Touch: use the controls or tap the sand</p>
+</div>
+
+<style>
+.maker-game{--ink:#241711;--sand:#d89a51;--sun:#ffd88a;--spice:#e76532;--night:#15212b;margin:2rem calc(50% - 48vw);width:96vw;max-width:1100px;color:#f8e8c9;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;background:var(--night);border:1px solid #82563b;box-shadow:0 24px 80px #0008;overflow:hidden;touch-action:manipulation}
+.maker-game *{box-sizing:border-box}.maker-game button{font:inherit}.maker-game__topline{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid #82563b;background:#101920}.maker-game__eyebrow{font-size:.7rem;letter-spacing:.18em;color:#d79b67}.maker-game__title{font-family:Georgia,serif;font-size:clamp(1.35rem,3vw,2.1rem);font-weight:400;line-height:1;margin:.25rem 0 0;color:#ffe6b0}.maker-game__sound{border:1px solid #9f7255;background:transparent;color:#dca97d;padding:8px 10px;cursor:pointer;font-size:.7rem;letter-spacing:.08em}.maker-game__stage{position:relative;aspect-ratio:16/9;background:#cb8b45}.maker-game canvas{display:block;width:100%;height:100%;cursor:crosshair}.maker-game__intro{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:2rem;background:linear-gradient(#1019239e,#101923d9);backdrop-filter:blur(2px)}.maker-game__intro[hidden]{display:none}.maker-game__intro p{max-width:35rem;margin:.35rem auto 1.4rem;font-family:Georgia,serif;font-size:clamp(1.05rem,2.4vw,1.4rem)}.maker-game__intro .maker-game__kicker{margin:0 auto .4rem;color:#ffbd69;font-family:inherit;font-size:.72rem;letter-spacing:.22em}.maker-game__intro button,.maker-game__action{border:1px solid #ffcb86;background:var(--spice);color:#fff6dd;padding:13px 20px;cursor:pointer;box-shadow:4px 4px 0 #5b2d1d;font-weight:700;letter-spacing:.05em}.maker-game__intro button:hover,.maker-game__action:hover{filter:brightness(1.1)}.maker-game__message{position:absolute;top:18px;left:50%;transform:translateX(-50%) translateY(-10px);width:max-content;max-width:85%;padding:9px 14px;background:#101923df;border:1px solid #efb978;color:#fff3d0;text-align:center;font-size:.75rem;letter-spacing:.03em;opacity:0;transition:.18s}.maker-game__message.is-visible{opacity:1;transform:translateX(-50%) translateY(0)}.maker-game__hud{display:grid;grid-template-columns:.8fr 2fr .6fr;border-top:1px solid #82563b;border-bottom:1px solid #82563b;background:#17232c}.maker-game__hud>div{min-width:0;padding:10px 14px;border-right:1px solid #82563b}.maker-game__hud>div:last-child{border:0}.maker-game__hud span{display:block;font-size:.58rem;letter-spacing:.15em;color:#af8060}.maker-game__hud strong{display:block;overflow:hidden;margin-top:4px;color:#ffe5b3;font-size:clamp(.67rem,1.8vw,.86rem);text-overflow:ellipsis;white-space:nowrap}.maker-game__controls{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:10px;padding:12px;background:#101920}.maker-game__controls button{min-height:48px;border:1px solid #795a45;background:#26343d;color:#ffe6ba;cursor:pointer;font-weight:700}.maker-game__controls button:active{transform:translateY(2px)}.maker-game__controls .maker-game__action{background:var(--spice);border-color:#ffbf76}.maker-game__hint{margin:0;padding:0 12px 12px;text-align:center;background:#101920;color:#b99170;font-size:.67rem}.maker-game kbd{padding:1px 5px;border:1px solid #755b49;border-radius:2px;background:#26343d;color:#ffe6ba}@media(max-width:600px){.maker-game{margin:1.5rem calc(50% - 50vw + 4px);width:calc(100vw - 8px);max-width:none}.maker-game__topline{padding:10px 12px}.maker-game__hud{grid-template-columns:1fr 2fr}.maker-game__hud>div:last-child{display:none}.maker-game__controls{gap:6px;padding:8px}.maker-game__controls button{font-size:.7rem}.maker-game__hint{font-size:.58rem;padding-bottom:8px}.maker-game__message{top:8px;font-size:.65rem}.maker-game__stage{aspect-ratio:4/3}}
+@media(prefers-reduced-motion:reduce){.maker-game__message{transition:none}}
+</style>
+
+<script>
+(() => {
+  const root = document.currentScript.previousElementSibling.previousElementSibling;
+  if (!root || !root.matches('[data-maker-game]') || root.dataset.ready) return;
+  root.dataset.ready = 'true';
+  const canvas = root.querySelector('[data-canvas]');
+  const ctx = canvas.getContext('2d');
+  const intro = root.querySelector('[data-intro]');
+  const phaseEl = root.querySelector('[data-phase]');
+  const guidanceEl = root.querySelector('[data-guidance]');
+  const scoreEl = root.querySelector('[data-score]');
+  const messageEl = root.querySelector('[data-message]');
+  const actionEl = root.querySelector('[data-action]');
+  const leftEl = root.querySelector('[data-left]');
+  const rightEl = root.querySelector('[data-right]');
+  const soundEl = root.querySelector('[data-sound]');
+  const W = canvas.width, H = canvas.height;
+  let audio = null, sound = false, raf = 0, last = 0, messageTimer = 0;
+  let held = {left:false,right:false};
+  let game;
+
+  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  function reset(){game={phase:'scout',time:0,score:0,approach:Math.random()<.5?-1:1,signX:Math.random()<.5?120:840,signSeen:0,thumperX:480,thumper:false,riderX:480,wormX:0,wormY:390,wormDistance:1,jump:false,mounted:false,rideX:480,rideSpeed:0,balance:100,gates:0,gateX:rnd(240,720),gateY:180,rideTime:28,ended:false};game.signX=game.approach<0?80:880;updateHud()}
+  function beep(freq=160,dur=.08){if(!sound)return;audio ||= new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.type='triangle';o.frequency.value=freq;g.gain.setValueAtTime(.06,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}
+  function say(text){messageEl.textContent=text;messageEl.classList.add('is-visible');clearTimeout(messageTimer);messageTimer=setTimeout(()=>messageEl.classList.remove('is-visible'),1800)}
+  function updateHud(){const map={scout:['READ THE SAND','Watch the moving ridge. Tap where you want the thumper.','PLANT THUMPER'],position:['TAKE POSITION','Stand between the maker and thumper.','JUMP'],ride:['RIDE','Steer smoothly through the signal flags.','HOLD FAST'],end:['COMPLETE','The desert remembers your passage.','RIDE AGAIN']};const m=map[game.phase];phaseEl.textContent=m[0];guidanceEl.textContent=m[1];actionEl.textContent=m[2];scoreEl.textContent=String(Math.round(game.score)).padStart(4,'0')}
+  function plant(x){if(game.phase!=='scout')return;game.thumperX=clamp(x,120,840);game.thumper=true;game.phase='position';game.time=0;game.riderX=480;game.wormX=game.approach<0?-130:1090;const centerBonus=120-Math.abs(game.thumperX-480)*.18;game.score+=Math.max(25,centerBonus);say('THUMPER ACTIVE — get onto the maker’s approach line.');beep(90,.25);updateHud()}
+  function act(){if(game.phase==='scout'){plant(game.thumperX)}else if(game.phase==='position'){if(game.wormDistance>.43){say('TOO SOON — wait for the ground to rise.');game.score=Math.max(0,game.score-20);beep(70,.14)}else if(game.wormDistance<.13){say('TOO LATE — the maker passed beneath you.');end(false)}else{const ideal=game.thumperX+(game.approach<0?-105:105);const pos=Math.abs(game.riderX-ideal);if(pos>85){say('WRONG LINE — move toward the approaching ridge.');game.score=Math.max(0,game.score-15);beep(70,.14)}else{game.phase='ride';game.mounted=true;game.time=0;game.score+=Math.round(300-pos*2+120*(.43-game.wormDistance));say('HOOKS SET — ride!');beep(260,.16);updateHud()}}}else if(game.phase==='end'){reset();intro.hidden=true;last=performance.now();raf=requestAnimationFrame(loop)}}
+  function end(win){game.phase='end';game.ended=true;if(win){game.score+=Math.round(game.balance*3+game.rideTime*5);say('RIDE COMPLETE — the maker carries you home.');beep(360,.3)}else{say('THE DESERT WINS THIS ROUND.');beep(60,.3)}updateHud()}
+  function update(dt){if(!game||game.ended)return;game.time+=dt;const dir=(held.right?1:0)-(held.left?1:0);if(game.phase==='scout'){game.signX+=game.approach*dt*95;if(game.signX<-80)game.signX=1040;if(game.signX>1040)game.signX=-80;game.signSeen=Math.min(1,game.signSeen+dt*.18);game.thumperX=clamp(game.thumperX+dir*dt*250,120,840)}else if(game.phase==='position'){game.riderX=clamp(game.riderX+dir*dt*250,70,890);game.wormDistance=Math.max(0,1-game.time/8);game.wormX=game.approach<0?-120+(game.thumperX+120)*(1-game.wormDistance):1080-(1080-game.thumperX+120)*(1-game.wormDistance);if(game.wormDistance<=.04)end(false)}else if(game.phase==='ride'){game.rideTime-=dt;game.rideSpeed+=(dir*360-game.rideSpeed*2.6)*dt;game.rideX=clamp(game.rideX+game.rideSpeed*dt,95,865);game.balance-=Math.max(0,Math.abs(game.rideSpeed)-105)*dt*.09;game.balance=Math.min(100,game.balance+dt*1.2);game.gateY+=dt*155;if(game.gateY>430){if(Math.abs(game.rideX-game.gateX)<105){game.gates++;game.score+=150;beep(300+game.gates*25,.07);say('CLEAN LINE  +150')}else{game.balance-=22;say('MISSED SIGNAL — correct gently.');beep(80,.1)}game.gateY=-20;game.gateX=rnd(180,780)}if(game.balance<=0)end(false);else if(game.rideTime<=0)end(true);updateHud()}}
+  function dune(y,amp,color,offset){ctx.beginPath();ctx.moveTo(0,H);for(let x=0;x<=W;x+=18)ctx.lineTo(x,y+Math.sin(x*.009+offset)*amp+Math.sin(x*.021-offset)*amp*.28);ctx.lineTo(W,H);ctx.fillStyle=color;ctx.fill()}
+  function draw(){ctx.clearRect(0,0,W,H);const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#263947');sky.addColorStop(.48,'#d97843');sky.addColorStop(1,'#f4bd68');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);ctx.fillStyle='#ffd789';ctx.beginPath();ctx.arc(790,92,43,0,Math.PI*2);ctx.fill();dune(260,38,'#b96d3f',1.8);dune(315,54,'#cf8145',.3);dune(382,35,'#e4a354',2.2);ctx.strokeStyle='#a7663d55';ctx.lineWidth=2;for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(0,410+i*17);ctx.quadraticCurveTo(460,385+i*12,960,425+i*15);ctx.stroke()}
+    if(!game)return;
+    if(game.phase==='scout'){const x=game.signX;ctx.strokeStyle='#5b4035';ctx.lineWidth=5;for(let i=0;i<5;i++){ctx.beginPath();ctx.arc(x-game.approach*i*18,395+i*3,25+i*8,Math.PI*1.08,Math.PI*1.92);ctx.stroke()}ctx.fillStyle='#5a3a2c88';for(let i=0;i<10;i++){ctx.beginPath();ctx.arc(x+rnd(-55,55),385+rnd(-16,10),rnd(2,5),0,7);ctx.fill()}ctx.setLineDash([7,8]);ctx.strokeStyle='#fff0bd88';ctx.beginPath();ctx.moveTo(game.thumperX,355);ctx.lineTo(game.thumperX,445);ctx.stroke();ctx.setLineDash([])}
+    if(game.thumper){ctx.fillStyle='#2b2420';ctx.fillRect(game.thumperX-5,348,10,65);ctx.fillStyle='#f0b65d';ctx.beginPath();ctx.arc(game.thumperX,344,10+Math.sin(game.time*11)*3,0,7);ctx.fill();for(let r=25;r<90;r+=22){ctx.strokeStyle=`rgba(70,40,28,${1-r/110})`;ctx.beginPath();ctx.ellipse(game.thumperX,405,r,11,0,0,7);ctx.stroke()}}
+    if(game.phase==='position'){const wx=game.wormX;ctx.strokeStyle='#3c2a25';ctx.lineWidth=28;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(wx-game.approach*150,430);ctx.quadraticCurveTo(wx-game.approach*70,350,wx,400);ctx.stroke();ctx.lineWidth=4;for(let i=0;i<5;i++){ctx.beginPath();ctx.arc(wx-game.approach*i*25,400+i*5,25+i*5,0,7);ctx.stroke()}ctx.lineCap='butt';drawRider(game.riderX,365);const closeness=1-game.wormDistance;ctx.fillStyle='#17232ccc';ctx.fillRect(350,18,260,13);ctx.fillStyle=closeness>.57&&closeness<.87?'#70c37b':'#e76532';ctx.fillRect(354,22,252*closeness,5);ctx.strokeStyle='#fff4c8';ctx.strokeRect(350,18,260,13)}
+    if(game.phase==='ride'||game.phase==='end'&&game.mounted){ctx.fillStyle='#17232ccc';ctx.fillRect(30,22,170,38);ctx.fillStyle='#d9a263';ctx.font='15px monospace';ctx.fillText(`BALANCE ${Math.max(0,game.balance).toFixed(0)}%`,42,46);ctx.fillStyle='#17232ccc';ctx.fillRect(760,22,170,38);ctx.fillStyle='#d9a263';ctx.fillText(`${Math.max(0,game.rideTime).toFixed(1)} SEC`,790,46);ctx.strokeStyle='#734235';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(game.gateX-80,game.gateY);ctx.lineTo(game.gateX-80,game.gateY+70);ctx.moveTo(game.gateX+80,game.gateY);ctx.lineTo(game.gateX+80,game.gateY+70);ctx.stroke();ctx.fillStyle='#f5cd77';ctx.fillRect(game.gateX-80,game.gateY,32,15);ctx.fillRect(game.gateX+48,game.gateY,32,15);const x=game.rideX;ctx.strokeStyle='#3b2924';ctx.lineWidth=90;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x,560);ctx.quadraticCurveTo(x-game.rideSpeed*.16,440,x,330);ctx.stroke();ctx.lineWidth=4;for(let y=355;y<540;y+=30){ctx.beginPath();ctx.arc(x, y,44,Math.PI,0);ctx.stroke()}ctx.lineCap='butt';drawRider(x,302,true)}
+  }
+  function drawRider(x,y,riding=false){ctx.save();ctx.translate(x,y);if(riding)ctx.rotate(clamp(game.rideSpeed/600,-.2,.2));ctx.strokeStyle='#171d20';ctx.fillStyle='#171d20';ctx.lineWidth=5;ctx.beginPath();ctx.arc(0,-23,8,0,7);ctx.fill();ctx.beginPath();ctx.moveTo(0,-14);ctx.lineTo(0,13);ctx.moveTo(0,-3);ctx.lineTo(-15,5);ctx.moveTo(0,-3);ctx.lineTo(15,1);ctx.moveTo(0,13);ctx.lineTo(-10,27);ctx.moveTo(0,13);ctx.lineTo(10,27);ctx.stroke();if(riding){ctx.strokeStyle='#d9a263';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-15,5);ctx.lineTo(-33,28);ctx.moveTo(15,1);ctx.lineTo(35,25);ctx.stroke()}ctx.restore()}
+  function loop(t){const dt=Math.min(.034,(t-last)/1000||0);last=t;update(dt);draw();raf=requestAnimationFrame(loop)}
+  function setHeld(key,val){held[key]=val}
+  [['pointerdown',true],['pointerup',false],['pointercancel',false],['pointerleave',false]].forEach(([ev,val])=>{leftEl.addEventListener(ev,e=>{e.preventDefault();setHeld('left',val)});rightEl.addEventListener(ev,e=>{e.preventDefault();setHeld('right',val)})});
+  actionEl.addEventListener('click',act);root.querySelector('[data-start]').addEventListener('click',()=>{intro.hidden=true;reset();last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)});soundEl.addEventListener('click',()=>{sound=!sound;soundEl.textContent=sound?'SOUND ON':'SOUND OFF';soundEl.setAttribute('aria-pressed',sound);beep(220,.08)});
+  canvas.addEventListener('pointerdown',e=>{if(game?.phase==='scout'){const r=canvas.getBoundingClientRect();plant((e.clientX-r.left)/r.width*W)}});
+  window.addEventListener('keydown',e=>{if(!root.isConnected)return;if(['ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();if(e.code==='ArrowLeft')held.left=true;if(e.code==='ArrowRight')held.right=true;if(e.code==='Space'&&!e.repeat)act()});window.addEventListener('keyup',e=>{if(e.code==='ArrowLeft')held.left=false;if(e.code==='ArrowRight')held.right=false});
+  reset();draw();
+})();
+</script>
