@@ -5,9 +5,9 @@ description: "A tiny timing game about calling, mounting, and steering a desert 
 draft: false
 ---
 
-The deep desert rewards patience. Read the moving sand before you plant the thumper, choose your position, and do not jump until the maker is close enough to mount.
+The thumper is already beating. Read the moving sand, choose your launch point on the dune ridge, and commit at the right moment. Your arc has to clear the open maw and meet the armored back behind it.
 
-Once you are up, use the maker hooks to turn through the open desert. Smooth corrections keep your balance; sawing at the controls does not.
+Once you are up, the view shifts overhead. Use the maker hooks to pick a line across the desert map—and evade the Harkonnen and Sardaukar ornithopter patrols hunting from above. Smooth corrections keep your balance; sawing at the controls does not.
 
 {{< maker-rider >}}
 
