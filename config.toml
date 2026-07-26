@@ -1,5 +1,5 @@
 baseURL = 'https://nickdnickd.com/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'Nick D Blog'
 theme = 'HugoTeX'
 

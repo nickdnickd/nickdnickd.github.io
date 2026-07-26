@@ -1,0 +1,20 @@
+<footer>
+  <div class="container">
+    <p class="credits theme-by">
+      {{ if .Site.Params.Legal }}
+      <a href="{{ "legal/" | relURL }}">{{ .Site.Params.Legal }}</a>
+      <br>
+      {{ end }}
+      {{ if .Site.Params.PoweredBy }}
+      Powered By <a href="https://gohugo.io">Hugo</a>&nbsp;/&nbsp;Theme&nbsp;<a href="https://github.com/hugotex-dev/HugoTeX">HugoTeX</a>
+      <br>
+      {{ end }}
+      {{ if .Site.Title }}
+      <a href="{{ "/" | relURL }}">{{ .Site.Title }}</a>,
+      {{ end }}
+      &copy;
+      {{ now.Year }}
+      <a href="{{ "about/" | relURL }}">{{ .Site.Params.Author.name }}</a>
+    </p>
+  </div>
+</footer>
