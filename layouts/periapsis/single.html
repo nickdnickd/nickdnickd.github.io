@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/game.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/guide.css" | relURL }}">
 </head>
 <body>
   <main class="game" data-game>
@@ -54,9 +55,9 @@
           <div class="step-ring" data-ring aria-label="Eleven position signal loop"></div>
           <div class="ring-center"><span data-round>—</span><small data-ring-status>AWAITING CARRIER</small></div>
         </div>
-        <div class="observation" data-observation><span>NETWORK REPORT</span><p>All registered relays nominal. One low-power carrier falls outside the approved clock.</p></div>
+        <div class="observation" data-observation><div><span>NETWORK REPORT</span><p>All registered relays nominal. One low-power carrier falls outside the approved clock.</p></div><button data-open-console hidden>OPEN SIGNAL CONSOLE <b>↓</b></button></div>
       </section>
-      <aside class="console panel">
+      <aside class="console panel" data-console>
         <p class="label">HANDSHAKE CONSOLE</p>
         <p class="console-copy" data-instruction>Listen before deciding what the signal is.</p>
         <section class="call-box"><header><span>RECEIVED CALL</span><b data-call-state>NO DATA</b></header><div class="mini-steps" data-call-steps></div><button class="play-call" data-play-call disabled>▶ PLAY CALL</button></section>
