@@ -2,108 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Periapsis — a procedural orbital crisis puzzle.">
-  <title>Periapsis — Orbital Crisis Puzzle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Periapsis — follow an uncertain signal through the Carillon system.">
+  <title>Periapsis — Echoes Uncertain</title>
+  <meta property="og:title" content="Periapsis — Echoes Uncertain">
+  <meta property="og:description" content="Follow an uncertain signal through the Carillon system.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nickdnickd.com/periapsis/">
+  <meta property="og:image" content="https://nickdnickd.com/periapsis-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Periapsis — Echoes Uncertain">
+  <meta name="twitter:description" content="Follow an uncertain signal through the Carillon system.">
+  <meta name="twitter:image" content="https://nickdnickd.com/periapsis-og.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/game.css" | relURL }}">
 </head>
 <body>
-  <main class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Periapsis home">
-        <span class="brand-mark">P—7</span>
-        <span>PERIAPSIS</span>
-      </a>
-      <div class="mission-meta">
-        <span>ORBITAL CUSTODIAN</span>
-        <span id="seedLabel">SEED —</span>
-      </div>
-      <button class="quiet-button" id="newMission">NEW MISSION</button>
+  <main class="game" data-game>
+    <header class="masthead">
+      <a href="/" class="wordmark"><span>P—7</span> PERIAPSIS</a>
+      <div class="location"><i></i> CARILLON / BELLWEATHER ORBIT</div>
+      <button class="text-button" data-restart>RESTART CONTACT</button>
     </header>
-
-    <section class="game-grid">
-      <aside class="left-panel panel">
-        <div class="eyebrow">COLONY STATUS</div>
-        <div class="status-number"><span id="colonyHealth">100</span><small>%</small></div>
-        <div class="meter"><span id="healthMeter"></span></div>
-
-        <div class="resource-grid">
-          <div><span>ENERGY</span><strong id="energy">6 / 6</strong></div>
-          <div><span>ORBIT</span><strong id="orbitCount">01 / 18</strong></div>
-          <div><span>ALTITUDE</span><strong id="altitude">LOW</strong></div>
-          <div><span>CONTACT</span><strong id="contact">SECTOR —</strong></div>
+    <section class="workspace">
+      <aside class="archive panel">
+        <p class="label">PERSONAL ARCHIVE</p>
+        <div class="record-card">
+          <div class="record-art" aria-hidden="true"><span>JADE</span><b>SURVIVE<br>THIS CITY</b></div>
+          <div><h1>Jade</h1><p>Survive This City</p><small>UNRELEASED RECORDING · 02:51</small></div>
         </div>
-
-        <div class="divider"></div>
-        <div class="eyebrow">KNOWN SITES</div>
-        <div id="siteList" class="site-list"></div>
-
-        <div class="objective">
-          <span class="objective-icon">◇</span>
-          <div><span>PRIMARY DIRECTIVE</span><p>Keep the colony above 0% through orbit 18.</p></div>
+        <audio data-song preload="auto" src="{{ "audio/jade.mp3" | relURL }}"></audio>
+        <div class="transport">
+          <button data-song-play aria-label="Play or pause Jade">▶</button>
+          <div class="track"><span data-progress></span><input data-scrub type="range" min="0" max="171.57" step=".01" value="0" aria-label="Song position"></div>
+          <time data-song-time>0:00</time>
         </div>
+        <div class="archive-tools">
+          <button data-loop-opening><span>↻</span> LOOP OPENING</button>
+          <button data-pulse-view><span>•••</span> PULSE VIEW</button>
+        </div>
+        <div class="memory-note" data-memory-note hidden><p class="label">MEMORY</p><blockquote>He liked the part that made you wonder if the song had stumbled—then proved it knew exactly where it was going.</blockquote></div>
       </aside>
-
-      <section class="viewport" aria-label="Orbital view">
-        <canvas id="space" aria-label="A tiny colony planet and its orbiting satellite"></canvas>
-        <div class="scanlines"></div>
-        <div class="view-label"><span>OPTICAL / TELEMETRY COMPOSITE</span><span id="phaseLabel">DAWN PHASE</span></div>
-        <div class="target-card" id="targetCard">
-          <span class="target-index" id="targetIndex">S—</span>
-          <div><strong id="targetName">NO CONTACT</strong><small id="targetDetail">Awaiting orbital alignment</small></div>
+      <section class="contact panel">
+        <div class="contact-head"><div><p class="label">UNREGISTERED CARRIER</p><h2 data-contact-title>CONTACT PENDING</h2></div><div class="signal-strength"><span></span><span></span><span></span><span></span></div></div>
+        <div class="orbit-stage">
+          <div class="planet" aria-label="Bellweather"><i></i><span>BELLWEATHER</span></div>
+          <div class="orbit-line"></div>
+          <div class="satellite" data-satellite><i></i><b></b></div>
+          <div class="step-ring" data-ring aria-label="Eleven position signal loop"></div>
+          <div class="ring-center"><span data-round>—</span><small data-ring-status>AWAITING CARRIER</small></div>
         </div>
+        <div class="observation" data-observation><span>NETWORK REPORT</span><p>All registered relays nominal. One low-power carrier falls outside the approved clock.</p></div>
       </section>
-
-      <aside class="right-panel panel">
-        <div class="eyebrow">COMMAND ARRAY</div>
-        <p class="instruction">Commands consume one orbit. Actions affect the sector currently beneath the satellite.</p>
-
-        <div class="commands">
-          <button class="command" data-action="scan">
-            <span class="command-key">1</span><span><strong>DEEP SCAN</strong><small>Identify site and diagnose threats</small></span><b>−1</b>
-          </button>
-          <button class="command" data-action="relay">
-            <span class="command-key">2</span><span><strong>SIGNAL RELAY</strong><small>Resolve communication failures</small></span><b>−2</b>
-          </button>
-          <button class="command" data-action="pulse">
-            <span class="command-key">3</span><span><strong>KINETIC PULSE</strong><small>Deflect debris or disrupt machinery</small></span><b>−3</b>
-          </button>
-          <button class="command" data-action="power">
-            <span class="command-key">4</span><span><strong>POWER TRANSFER</strong><small>Stabilize failing surface systems</small></span><b>−2</b>
-          </button>
-          <button class="command" data-action="coast">
-            <span class="command-key">5</span><span><strong>COAST / CHARGE</strong><small>Recover two energy</small></span><b>+2</b>
-          </button>
-        </div>
-
-        <div class="divider"></div>
-        <div class="eyebrow log-title">MISSION LOG <span>RECENT</span></div>
-        <ol class="log" id="log" aria-live="polite"></ol>
+      <aside class="console panel">
+        <p class="label">HANDSHAKE CONSOLE</p>
+        <p class="console-copy" data-instruction>Listen before deciding what the signal is.</p>
+        <section class="call-box"><header><span>RECEIVED CALL</span><b data-call-state>NO DATA</b></header><div class="mini-steps" data-call-steps></div><button class="play-call" data-play-call disabled>▶ PLAY CALL</button></section>
+        <section class="response-box"><header><span>YOUR RESPONSE</span><b>5 STEPS</b></header><div class="response-steps" data-response-steps></div><div class="response-actions"><button data-clear disabled>CLEAR</button><button class="transmit" data-transmit disabled>TRANSMIT</button></div></section>
+        <div class="event-log"><p class="label">CONTACT LOG</p><ol data-log aria-live="polite"></ol></div>
       </aside>
     </section>
-
-    <footer class="footer">
-      <span>Each world is deterministic. Read the signals. Plan the next pass.</span>
-      <span><kbd>1–5</kbd> COMMANDS &nbsp; <kbd>N</kbd> NEW MISSION</span>
-    </footer>
   </main>
-
-  <dialog id="briefing">
-    <div class="dialog-inner">
-      <span class="eyebrow" id="dialogEyebrow">INCOMING DIRECTIVE</span>
-      <h1 id="dialogTitle">The planet is already in trouble.</h1>
-      <p id="dialogText">You are P—7, the colony’s last functioning orbital custodian. Sites below will fail unless you identify their crisis and transmit the correct intervention while passing overhead.</p>
-      <div class="brief-grid">
-        <div><span>SCAN</span><p>Reveals what a site needs.</p></div>
-        <div><span>ACT</span><p>Use the matching command on a later pass.</p></div>
-        <div><span>ENDURE</span><p>Survive all 18 orbital steps.</p></div>
-      </div>
-      <button id="beginMission">BEGIN ORBIT</button>
-    </div>
-  </dialog>
+  <dialog data-intro><div class="intro-inner">
+    <p class="label">LAST KNOWN CONTACT · 41 DAYS AGO</p>
+    <h2>He said he was struggling.<br>Then the signal began to go.</h2>
+    <div class="message"><span>RECOVERED VOICE TRANSCRIPT</span><p>“Okay. Before you panic, I have an extremely good explanation. It is also a lie, but it’s organized, which is basically the same—”</p><i>TRANSMISSION LOST</i></div>
+    <p>You followed the last carrier to Bellweather. The system reports nothing wrong.</p>
+    <button data-begin>BEGIN LISTENING</button>
+  </div></dialog>
+  <dialog data-success><div class="success-inner">
+    <p class="label">UNREGISTERED PARTICIPANT DETECTED</p><div class="echo-mark">11</div>
+    <h2>Something joined on the next beat.</h2>
+    <div class="message recovered"><span>RECOVERED TEXT · TIMESTAMP UNREADABLE</span><p>“That one never made the record. So either it’s you, or I’ve seriously underestimated our audience.”</p></div>
+    <p class="uncertain">Origin could not be verified. A route to Relay 11 is now available.</p><button data-replay>REPLAY CONTACT</button>
+  </div></dialog>
   <script src="{{ "js/game.js" | relURL }}"></script>
 </body>
 </html>
