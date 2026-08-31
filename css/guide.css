@@ -1,0 +1,5 @@
+.observation{display:block}
+.observation>div{display:flex;gap:18px;align-items:flex-start}
+.observation button{width:100%;margin-top:13px;border:1px solid var(--gold);padding:12px;background:#d8a26417;color:var(--gold);font:500 9px DM Mono;letter-spacing:.09em;cursor:pointer}
+.observation button b{float:right;font-size:13px}
+.console{scroll-margin-top:12px}
