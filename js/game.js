@@ -1,74 +1,26 @@
 (() => {
-  const canvas = document.querySelector('#space');
-  const ctx = canvas.getContext('2d');
-  const $ = (s) => document.querySelector(s);
-  const TYPES = [
-    {name:'HABITAT KESTREL', short:'HAB', need:'relay', issue:'COMM ARRAY DESYNCHRONIZED', hint:'Telemetry requests a synchronized signal relay.'},
-    {name:'REACTOR ANNEX', short:'RX', need:'power', issue:'COOLANT GRID BROWNOUT', hint:'External power will restart the coolant pumps.'},
-    {name:'AGRICULTURE DOME', short:'AGR', need:'pulse', issue:'AUTONOMOUS HARVESTER ROGUE', hint:'A focused kinetic pulse can disable its guidance.'},
-    {name:'WEATHER STATION', short:'WX', need:'relay', issue:'FORECAST UPLINK LOST', hint:'The station needs an orbital signal relay.'},
-    {name:'MASS DRIVER', short:'MD', need:'power', issue:'MAGNETIC CONTAINMENT LOW', hint:'Transfer power before the launch capacitor ruptures.'},
-    {name:'DEBRIS APPROACH', short:'OBJ', need:'pulse', issue:'COLLISION VECTOR CONFIRMED', hint:'A kinetic pulse will deflect the object.', isDebris:true}
-  ];
-  let state, stars=[];
-  function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
-  function seedFromText(s){let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0}
-  function missionSeed(){const p=new URLSearchParams(location.search);return p.get('seed')||Math.random().toString(36).slice(2,8).toUpperCase()}
-  function init(seed=missionSeed()){
-    const r=rng(seedFromText(seed));
-    const picked=[TYPES.find(t=>t.isDebris),...TYPES.filter(t=>!t.isDebris).sort(()=>r()-.5).slice(0,3)].sort(()=>r()-.5);
-    state={seed,turn:1,maxTurns:18,energy:6,health:100,angle:-Math.PI/2,sites:picked.map((t,i)=>({...t,angle:i*Math.PI/2+(r()-.5)*.35,known:false,resolved:false,failed:false,deadline:t.isDebris?9:7+i*3+Math.floor(r()*2)})),over:false};
-    stars=Array.from({length:120},()=>({x:r(),y:r(),a:.15+r()*.55,s:r()*1.3+.2}));
-    history.replaceState(null,'',`?seed=${seed}`); $('#seedLabel').textContent=`SEED ${seed}`; log('BOOT','Planetary link established. Four signals detected.'); renderUI(); draw();
-  }
-  function angularDistance(a,b){return Math.abs(Math.atan2(Math.sin(a-b),Math.cos(a-b)))}
-  function currentSite(){return state.sites.find(s=>angularDistance(s.angle,state.angle)<.47)}
-  function log(tag,msg){const li=document.createElement('li');li.innerHTML=`<b>${tag}</b>${msg}`;$('#log').prepend(li);while($('#log').children.length>5)$('#log').lastChild.remove()}
-  function act(action){
-    if(state.over)return; const costs={scan:1,relay:2,pulse:3,power:2,coast:0}; const cost=costs[action]; const site=currentSite();
-    if(state.energy<cost){log('DENIED','Insufficient energy. Coast to recharge.');return}
-    state.energy-=cost;
-    if(action==='coast'){state.energy=Math.min(6,state.energy+2);log('CHARGE','Solar collection restored two energy.')}
-    else if(!site){log('VOID',`${action.toUpperCase()} transmitted with no surface contact.`)}
-    else if(site.failed){log('TOO LATE',`${site.name} can no longer be intercepted.`)}
-    else if(action==='scan'){
-      site.known=true; log(`S${state.sites.indexOf(site)+1}`,`${site.name}: ${site.issue}.`);
-    } else if(!site.known){log('UNKNOWN',`Command reached ${site.name}, but diagnosis was incomplete.`);state.health-=4}
-    else if(site.resolved){log('CLEAR',`${site.name} is already stable.`)}
-    else if(action===site.need){site.resolved=true;log('SUCCESS',`${site.name} stabilized. Colony risk reduced.`)}
-    else {state.health-=8;log('MISMATCH',`Wrong intervention. ${site.issue} persists.`)}
-    advance();
-  }
-  function advance(){
-    state.turn++; state.angle+=Math.PI/3;
-    state.sites.forEach(s=>{if(!s.resolved&&!s.failed&&state.turn===s.deadline){if(s.isDebris){state.health-=28;s.failed=true;log('IMPACT','Orbital debris struck the colony. Integrity −28%.')}else{state.health-=18;log('FAILURE',`${s.known?s.name:'An unidentified site'} failed. Colony integrity −18%.`);s.deadline+=5}}});
-    state.health=Math.max(0,state.health);
-    if(state.health<=0||state.turn>state.maxTurns)finish();else{renderUI();draw()}
-  }
-  function finish(){
-    state.over=true;renderUI();draw();const saved=state.sites.filter(s=>s.resolved).length;$('#dialogEyebrow').textContent=state.health>0?'MISSION COMPLETE':'COLONY SIGNAL LOST';$('#dialogTitle').textContent=state.health>0?`${state.health}% of the colony endured.`:'The orbit went quiet.';$('#dialogText').textContent=`You stabilized ${saved} of ${state.sites.length} crises. The same seed always creates the same planet, so you can replay with what you learned.`;$('#beginMission').textContent='REPLAY THIS SEED';$('#briefing').showModal();
-  }
-  function renderUI(){
-    $('#colonyHealth').textContent=state.health;$('#healthMeter').style.width=`${state.health}%`;$('#healthMeter').style.background=state.health<45?'var(--danger)':'var(--safe)';$('#energy').textContent=`${state.energy} / 6`;$('#orbitCount').textContent=`${String(Math.min(state.turn,state.maxTurns)).padStart(2,'0')} / ${state.maxTurns}`;$('#phaseLabel').textContent=['DAWN PHASE','DAY PHASE','DUSK PHASE','NIGHT PHASE'][Math.floor(((state.angle%(Math.PI*2)+Math.PI*2)%(Math.PI*2))/(Math.PI/2))];
-    const site=currentSite();$('#contact').textContent=site?`SECTOR ${state.sites.indexOf(site)+1}`:'DEEP SPACE';$('#targetIndex').textContent=site?`S—${state.sites.indexOf(site)+1}`:'S—';$('#targetName').textContent=site?(site.known?site.name:'UNRESOLVED SIGNAL'):'NO CONTACT';$('#targetDetail').textContent=site?(site.failed?'IMPACT CONFIRMED':site.resolved?'SITE STABLE':site.known?(site.isDebris?`${site.hint} Impact in ${Math.max(0,site.deadline-state.turn)} orbits.`:site.hint):'Deep scan required'):'Awaiting orbital alignment';
-    $('#siteList').innerHTML=state.sites.map((s,i)=>`<div class="site ${s.known?'known':''} ${s.resolved?'resolved':''}"><i></i><span>S${i+1} · ${s.known?s.name:'UNRESOLVED SIGNAL'}</span><em>${s.failed?'IMPACT':s.resolved?'STABLE':s.known&&s.isDebris?`T−${Math.max(0,s.deadline-state.turn)}`:s.known?'AT RISK':''}</em></div>`).join('');
-    document.querySelectorAll('.command').forEach(b=>{b.disabled=state.over||state.energy<({scan:1,relay:2,pulse:3,power:2,coast:0}[b.dataset.action])});
-  }
-  function resize(){const d=devicePixelRatio||1;const box=canvas.getBoundingClientRect();canvas.width=box.width*d;canvas.height=box.height*d;ctx.setTransform(d,0,0,d,0,0);draw()}
-  function draw(){
-    if(!state)return;const w=canvas.clientWidth,h=canvas.clientHeight,cx=w/2,cy=h/2-5,R=Math.min(w,h)*.22,orbit=R*1.62;ctx.clearRect(0,0,w,h);
-    stars.forEach(s=>{ctx.fillStyle=`rgba(194,221,210,${s.a})`;ctx.fillRect(s.x*w,s.y*h,s.s,s.s)});
-    const glow=ctx.createRadialGradient(cx,cy,R*.6,cx,cy,R*2.2);glow.addColorStop(0,'rgba(61,113,90,.25)');glow.addColorStop(1,'transparent');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-    ctx.strokeStyle='rgba(150,190,175,.16)';ctx.lineWidth=1;ctx.setLineDash([3,7]);ctx.beginPath();ctx.ellipse(cx,cy,orbit,orbit*.72,0,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-    const pg=ctx.createRadialGradient(cx-R*.38,cy-R*.42,R*.08,cx,cy,R);pg.addColorStop(0,'#93bda0');pg.addColorStop(.38,'#37664f');pg.addColorStop(.75,'#153528');pg.addColorStop(1,'#07140f');ctx.fillStyle=pg;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fill();
-    ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.clip();ctx.fillStyle='rgba(8,18,15,.3)';ctx.beginPath();ctx.ellipse(cx+R*.45,cy,R*.7,R*1.1,0,0,Math.PI*2);ctx.fill();for(let i=0;i<7;i++){ctx.strokeStyle=`rgba(175,205,175,${.05+i*.008})`;ctx.beginPath();ctx.arc(cx,cy-R*.55+i*R*.18,R*(.65+i*.04),.2,2.9);ctx.stroke()}ctx.restore();
-    state.sites.forEach((s,i)=>{const x=cx+Math.cos(s.angle)*R*.78,y=cy+Math.sin(s.angle)*R*.78;ctx.fillStyle=s.failed?'#db6f62':s.resolved?'#79c3a3':s.known?'#e2aa6e':'#789087';ctx.beginPath();ctx.arc(x,y,s.known?4:2.5,0,Math.PI*2);ctx.fill();if(s.known){ctx.strokeStyle=s.failed?'rgba(219,111,98,.65)':'rgba(225,169,107,.35)';ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#cddbd5';ctx.font='8px DM Mono';ctx.fillText(`S${i+1}`,x+12,y+3)}});
-    const debris=state.sites.find(s=>s.isDebris);if(debris&&!debris.resolved&&!debris.failed){const remaining=Math.max(0,debris.deadline-state.turn),progress=1-remaining/(debris.deadline-1),distance=R*(2.55-progress*1.55),dx=cx+Math.cos(debris.angle)*distance,dy=cy+Math.sin(debris.angle)*distance;ctx.strokeStyle=debris.known?'rgba(219,111,98,.62)':'rgba(125,145,139,.24)';ctx.setLineDash(debris.known?[5,5]:[2,8]);ctx.beginPath();ctx.moveTo(dx,dy);ctx.lineTo(cx+Math.cos(debris.angle)*R,cy+Math.sin(debris.angle)*R);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=debris.known?'#db6f62':'#71827d';ctx.save();ctx.translate(dx,dy);ctx.rotate(debris.angle);ctx.beginPath();ctx.moveTo(7,0);ctx.lineTo(-5,-4);ctx.lineTo(-3,5);ctx.closePath();ctx.fill();ctx.restore();if(debris.known){ctx.fillStyle='#db8b7e';ctx.font='8px DM Mono';ctx.fillText(`OBJECT / T−${remaining}`,dx+10,dy-8)}}
-    const sx=cx+Math.cos(state.angle)*orbit,sy=cy+Math.sin(state.angle)*orbit*.72;ctx.strokeStyle='rgba(225,169,107,.35)';ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(cx+Math.cos(state.angle)*R,cy+Math.sin(state.angle)*R);ctx.stroke();ctx.save();ctx.translate(sx,sy);ctx.rotate(state.angle+Math.PI/2);ctx.fillStyle='#e6c18e';ctx.fillRect(-5,-5,10,10);ctx.fillStyle='#7d9f99';ctx.fillRect(-23,-3,15,6);ctx.fillRect(8,-3,15,6);ctx.restore();
-  }
-  document.querySelectorAll('.command').forEach(b=>b.addEventListener('click',()=>act(b.dataset.action)));
-  document.addEventListener('keydown',e=>{if($('#briefing').open)return;const map={'1':'scan','2':'relay','3':'pulse','4':'power','5':'coast'};if(map[e.key])act(map[e.key]);if(e.key.toLowerCase()==='n')init(Math.random().toString(36).slice(2,8).toUpperCase())});
-  $('#newMission').addEventListener('click',()=>init(Math.random().toString(36).slice(2,8).toUpperCase()));
-  $('#beginMission').addEventListener('click',()=>{if(state.over)init(state.seed);$('#briefing').close()});
-  addEventListener('resize',resize);init();resize();$('#briefing').showModal();
+  const root=document.querySelector('[data-game]'),$=s=>root.querySelector(s),audio=$('[data-song]');
+  const intro=document.querySelector('[data-intro]'),success=document.querySelector('[data-success]');
+  const riff=[1,0,1,1,0,1,0,1,1,0,1],rounds=[{start:0,call:6},{start:4,call:6},{start:8,call:6}],stepMs=205;
+  let state,songTimer;
+  const seq=(start,count)=>Array.from({length:count},(_,i)=>riff[(start+i)%11]);
+  function reset(){clearTimeout(songTimer);audio.pause();audio.currentTime=0;state={round:-1,response:[0,0,0,0,0],busy:false,pulseView:false};$('[data-log]').innerHTML='';$('[data-contact-title]').textContent='CONTACT PENDING';$('[data-round]').textContent='—';$('[data-ring-status]').textContent='AWAITING CARRIER';$('[data-instruction]').textContent='Listen before deciding what the signal is.';$('[data-call-state]').textContent='NO DATA';$('[data-call-state]').classList.remove('live');$('.signal-strength').classList.remove('receiving');$('[data-ring]').classList.remove('visible');$('[data-satellite]').classList.remove('active');$('[data-memory-note]').hidden=true;$('[data-loop-opening]').classList.remove('active');$('[data-pulse-view]').classList.remove('active');buildRing();renderCall([]);renderResponse();enable(false);updatePlay()}
+  function buildRing(){$('[data-ring]').innerHTML=riff.map((v,i)=>`<span class="ring-step" data-ring-step="${i}" style="--a:${i*360/11}deg">${String(i+1).padStart(2,'0')}</span>`).join('')}
+  function renderCall(values){$('[data-call-steps]').innerHTML=values.map((v,i)=>`<i class="mini-step ${v?'on':''}" data-call-step="${i}"></i>`).join('')}
+  function renderResponse(){$('[data-response-steps]').innerHTML=state.response.map((v,i)=>`<button class="response-step ${v?'on':''}" data-response="${i}" aria-label="Response step ${i+1}, ${v?'on':'off'}">${i+1}</button>`).join('');document.querySelectorAll('[data-response]').forEach(b=>b.addEventListener('click',()=>{if(state.busy)return;const i=+b.dataset.response;state.response[i]^=1;renderResponse()}))}
+  function enable(on){$('[data-play-call]').disabled=!on;$('[data-clear]').disabled=!on;$('[data-transmit]').disabled=!on}
+  function beep(on,time=0,kind='call'){if(!on)return;const C=window.AudioContext||window.webkitAudioContext;state.ctx||=new C();const o=state.ctx.createOscillator(),g=state.ctx.createGain(),at=state.ctx.currentTime+time;o.type=kind==='call'?'sine':'triangle';o.frequency.value=kind==='call'?520:330;g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.07,at+.015);g.gain.exponentialRampToValueAtTime(.0001,at+.13);o.connect(g).connect(state.ctx.destination);o.start(at);o.stop(at+.15)}
+  function play(values,kind='call'){if(state.busy)return Promise.resolve();state.busy=true;const nodes=kind==='call'?document.querySelectorAll('[data-call-step]'):document.querySelectorAll('[data-response]');values.forEach((v,i)=>{beep(v,i*stepMs/1000,kind);setTimeout(()=>nodes[i]?.classList.add('playing'),i*stepMs);setTimeout(()=>nodes[i]?.classList.remove('playing'),i*stepMs+150)});return new Promise(r=>setTimeout(()=>{state.busy=false;r()},values.length*stepMs+100))}
+  function log(tag,text){const li=document.createElement('li');li.innerHTML=`<b>${tag}</b>${text}`;$('[data-log]').prepend(li);while($('[data-log]').children.length>5)$('[data-log]').lastChild.remove()}
+  async function begin(){intro.close();audio.currentTime=5.8;await audio.play().catch(()=>{});updatePlay();log('ARCHIVE','Personal media playback started.');$('[data-contact-title]').textContent='PASSIVE LISTENING';songTimer=setTimeout(interrupt,6500)}
+  function interrupt(){audio.pause();updatePlay();$('.signal-strength').classList.add('receiving');$('[data-satellite]').classList.add('active');$('[data-contact-title]').textContent='CARRIER INTERRUPT';$('[data-memory-note]').hidden=false;log('CARRIER','Unregistered timing exchange interrupted local audio.');$('[data-instruction]').textContent='The carrier repeats on an eleven-step cycle. It may be waiting for the rest.';setTimeout(()=>startRound(0),700)}
+  function startRound(n){state.round=n;state.response=[0,0,0,0,0];const r=rounds[n],call=seq(r.start,r.call);renderCall(call);renderResponse();enable(true);$('[data-ring]').classList.add('visible');$('[data-round]').textContent=`0${n+1}`;$('[data-ring-status]').textContent=`HANDSHAKE ${n+1} / 3`;$('[data-call-state]').textContent='REPEATING';$('[data-call-state]').classList.add('live');document.querySelectorAll('[data-ring-step]').forEach((el,i)=>el.classList.toggle('on',riff[i]&&state.pulseView));log(`ROUND ${n+1}`,'Carrier issued a partial cycle.');play(call)}
+  async function transmit(){if(state.busy)return;enable(false);await play(state.response,'response');const r=rounds[state.round],want=seq(r.start+r.call,5),ok=state.response.every((v,i)=>v===want[i]);if(!ok){log('NO LOCK','Response broke continuity. Carrier restarted the round.');$('[data-instruction]').textContent='The signal did not continue through your response. Compare where the received phrase stopped.';state.response=[0,0,0,0,0];renderResponse();enable(true);setTimeout(()=>play(seq(r.start,r.call)),450);return}log('PHASE LOCK',`Continuation ${state.round+1} accepted.`);flash(r.start);if(state.round<2){$('[data-instruction]').textContent='It answered—but began the same cycle somewhere else.';setTimeout(()=>startRound(state.round+1),1300)}else setTimeout(complete,1400)}
+  function flash(start){document.querySelectorAll('[data-ring-step]').forEach((el,i)=>{const d=((i-start+11)%11)*stepMs;setTimeout(()=>el.classList.add('playing'),d);setTimeout(()=>el.classList.remove('playing'),d+170)})}
+  function complete(){enable(false);$('[data-contact-title]').textContent='RELAY 11 RESOLVED';$('[data-ring-status]').textContent='UNREGISTERED PARTICIPANT';$('[data-round]').textContent='11';log('CONTACT','A hidden relay joined the Bellweather network.');$('[data-observation] p').textContent='Registered relays nominal. An eleventh participant now shares their clock.';setTimeout(()=>success.showModal(),700)}
+  const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`,updatePlay=()=>$('[data-song-play]').textContent=audio.paused?'▶':'Ⅱ';
+  audio.addEventListener('timeupdate',()=>{const p=audio.currentTime/(audio.duration||171.57)*100;$('[data-progress]').style.width=`${p}%`;$('[data-scrub]').value=audio.currentTime;$('[data-song-time]').textContent=fmt(audio.currentTime);if($('[data-loop-opening]').classList.contains('active')&&audio.currentTime>15.1)audio.currentTime=5.8});audio.addEventListener('play',updatePlay);audio.addEventListener('pause',updatePlay);
+  $('[data-song-play]').addEventListener('click',()=>audio.paused?audio.play():audio.pause());$('[data-scrub]').addEventListener('input',e=>audio.currentTime=+e.target.value);$('[data-loop-opening]').addEventListener('click',e=>{e.currentTarget.classList.toggle('active');if(e.currentTarget.classList.contains('active')){audio.currentTime=5.8;audio.play()}});$('[data-pulse-view]').addEventListener('click',e=>{state.pulseView=!state.pulseView;e.currentTarget.classList.toggle('active',state.pulseView);document.querySelectorAll('[data-ring-step]').forEach((el,i)=>el.classList.toggle('on',state.pulseView&&riff[i]))});
+  $('[data-play-call]').addEventListener('click',()=>play(seq(rounds[state.round].start,rounds[state.round].call)));$('[data-clear]').addEventListener('click',()=>{state.response=[0,0,0,0,0];renderResponse()});$('[data-transmit]').addEventListener('click',transmit);$('[data-begin]').addEventListener('click',begin);$('[data-restart]').addEventListener('click',()=>{reset();intro.showModal()});$('[data-replay]').addEventListener('click',()=>{success.close();reset();intro.showModal()});
+  reset();intro.showModal();
 })();
