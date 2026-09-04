@@ -35,6 +35,15 @@
         <circle class="destination" data-destination cx="0" cy="0" r="7"></circle>
       </svg>
 
+      <nav class="orbit-anchors" data-anchors aria-label="Orbital intercept anchors">
+        <button data-anchor="A" style="--x:21.6%;--y:34.4%" aria-label="Set course for orbit anchor A"><i></i><span>A</span></button>
+        <button data-anchor="B" style="--x:53.2%;--y:21.5%" aria-label="Set course for orbit anchor B"><i></i><span>B</span></button>
+        <button data-anchor="C" style="--x:84.4%;--y:35.4%" aria-label="Set course for orbit anchor C"><i></i><span>C</span></button>
+        <button data-anchor="D" style="--x:83.8%;--y:68.9%" aria-label="Set course for orbit anchor D"><i></i><span>D</span></button>
+        <button data-anchor="E" style="--x:51.4%;--y:82.5%" aria-label="Set course for orbit anchor E"><i></i><span>E</span></button>
+        <button data-anchor="F" style="--x:20.9%;--y:67.2%" aria-label="Set course for orbit anchor F"><i></i><span>F</span></button>
+      </nav>
+
       <button class="space-object feedback" data-object="feedback" aria-label="Intercept Feedback recording drone">
         <span class="object-ping"></span>
         <img src="{{ "images/feedback-drone.png" | relURL }}" alt="">
@@ -67,7 +76,7 @@
 
       <div class="tutorial" data-tutorial hidden>
         <b data-tutorial-title>INTERCEPT THE UNLISTED RECORDER</b>
-        <span data-tutorial-copy>Tap where it will be. Your craft commits to that course.</span>
+        <span data-tutorial-copy>Tap an orbit anchor ahead of it. Your craft will commit and wait there.</span>
       </div>
 
       <aside class="object-readout" data-readout hidden aria-live="polite">

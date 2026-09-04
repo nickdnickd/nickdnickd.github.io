@@ -19,6 +19,7 @@
   const baseAudio = root.querySelector('[data-music-base]');
   const feedbackAudio = root.querySelector('[data-music-feedback]');
   const soundButton = root.querySelector('[data-sound]');
+  const anchorEls = [...root.querySelectorAll('[data-anchor]')];
   const $ = (selector) => root.querySelector(selector);
 
   const state = {
@@ -36,6 +37,14 @@
   };
 
   const waveHeights = [20,42,76,34,58,88,45,70,28,82,48,67,32,91,55,38,72,25,63,84,41,69,31,78];
+  const anchors = {
+    A: { x: .216, y: .344, angle: -2.6 },
+    B: { x: .532, y: .215, angle: -1.55 },
+    C: { x: .844, y: .354, angle: -.55 },
+    D: { x: .838, y: .689, angle: .55 },
+    E: { x: .514, y: .825, angle: 1.6 },
+    F: { x: .209, y: .672, angle: 2.6 }
+  };
   waveEl.innerHTML = waveHeights.map((h) => `<i style="--h:${h}%"></i>`).join('');
 
   function feedbackPosition(angle = state.feedback.angle) {
@@ -77,7 +86,7 @@
     if (state.mode === 'intro' || state.joined) return;
     const now = performance.now();
     const isRapidCorrection = now - state.lastCommand < 1700;
-    const isNearFeedback = percentDistance(state.craft, state.feedback) < 240;
+    const isNearFeedback = percentDistance(state.craft, state.feedback) < 300;
     if (state.mode === 'navigating' && isRapidCorrection && isNearFeedback) {
       state.fleeUntil = now + 2600;
       state.feedback.angle += .12;
@@ -91,10 +100,11 @@
       y: Math.max(.07, Math.min(.92, point.y))
     };
     state.targetKind = kind;
+    anchorEls.forEach((anchor) => anchor.classList.toggle('selected', kind === `anchor-${anchor.dataset.anchor}`));
     state.lastCommand = now;
     craftEl.classList.add('moving');
-    feedbackEl.classList.toggle('locked', kind === 'feedback');
-    statusEl.textContent = kind === 'feedback' ? 'INTERCEPT COMMITTED' : 'COURSE COMMITTED';
+    feedbackEl.classList.toggle('locked', kind === 'feedback' || kind.startsWith('anchor-'));
+    statusEl.textContent = kind.startsWith('anchor-') ? `${kind.replace('anchor-', 'ANCHOR ')} COMMITTED` : kind === 'feedback' ? 'INTERCEPT COMMITTED' : 'COURSE COMMITTED';
     if (state.mode === 'proximity') {
       state.proximityAt = performance.now();
       $('[data-calibration-title]').textContent = 'TOO LOUD. IT PULLED AWAY.';
@@ -176,6 +186,7 @@
     readout.hidden = true;
     companionEl.hidden = true;
     feedbackEl.classList.remove('joined', 'locked', 'fleeing');
+    anchorEls.forEach((anchor) => anchor.classList.remove('selected', 'next'));
     craftEl.classList.remove('moving');
     partyEl.textContent = 'PARTY 1 / 4';
     statusEl.textContent = 'AWAITING PILOT';
@@ -192,7 +203,7 @@
 
     if (state.mode !== 'intro' && state.mode !== 'proximity' && !state.joined) {
       const fleeing = now < state.fleeUntil;
-      state.feedback.angle += dt * (fleeing ? .52 : .12);
+      state.feedback.angle += dt * (fleeing ? .78 : .21);
       feedbackEl.classList.toggle('fleeing', fleeing);
       Object.assign(state.feedback, feedbackPosition());
     }
@@ -209,7 +220,7 @@
         state.targetKind = null;
         craftEl.classList.remove('moving');
         destinationEl.classList.remove('active');
-        statusEl.textContent = 'HOLDING POSITION';
+        statusEl.textContent = arrivedKind?.startsWith('anchor-') ? `WAITING AT ${arrivedKind.replace('anchor-', 'ANCHOR ')}` : 'HOLDING POSITION';
         if (arrivedKind === 'relay' || arrivedKind === 'tug') inspect(arrivedKind);
       } else {
         state.craft.x += dx / distance * speed * dt;
@@ -219,7 +230,23 @@
     }
 
     const feedbackDistance = percentDistance(state.craft, state.feedback);
-    rangeEl.textContent = `RANGE ${Math.round(feedbackDistance)} km`;
+    const fleeing = now < state.fleeUntil;
+    rangeEl.textContent = fleeing ? `FLEEING ×3.7 · ${Math.round(feedbackDistance)} km` : `RANGE ${Math.round(feedbackDistance)} km`;
+    if (state.mode === 'navigating') {
+      const tau = Math.PI * 2;
+      const current = ((state.feedback.angle % tau) + tau) % tau;
+      let nextName = null;
+      let nextDistance = Infinity;
+      Object.entries(anchors).forEach(([name, anchor]) => {
+        const angle = ((anchor.angle % tau) + tau) % tau;
+        const distance = (angle - current + tau) % tau;
+        if (distance < nextDistance) {
+          nextDistance = distance;
+          nextName = name;
+        }
+      });
+      anchorEls.forEach((anchor) => anchor.classList.toggle('next', anchor.dataset.anchor === nextName));
+    }
     if (!state.joined && state.mode === 'navigating' && now >= state.fleeUntil && feedbackDistance < 68) enterProximity();
 
     if (state.mode === 'proximity') {
@@ -290,10 +317,22 @@
   feedbackEl.addEventListener('click', (event) => {
     event.stopPropagation();
     if (state.mode === 'intro' || state.joined) return;
-    const lead = feedbackPosition(state.feedback.angle + .29);
+    const lead = feedbackPosition(state.feedback.angle + .75);
     setCourse(lead, 'feedback');
     tutorial.querySelector('[data-tutorial-title]').textContent = 'COURSE LOCKED AHEAD OF TARGET';
-    tutorial.querySelector('[data-tutorial-copy]').textContent = 'Let the recorder come to you. Repeated corrections will make it bolt.';
+    tutorial.querySelector('[data-tutorial-copy]').textContent = 'For more control, choose any labeled anchor on its orbit. Repeated corrections make it bolt.';
+  });
+
+  anchorEls.forEach((anchorEl) => {
+    anchorEl.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (state.mode === 'intro' || state.joined) return;
+      const name = anchorEl.dataset.anchor;
+      setCourse(anchors[name], `anchor-${name}`);
+      tutorial.hidden = false;
+      $('[data-tutorial-title]').textContent = `COURSE SET FOR ANCHOR ${name}`;
+      $('[data-tutorial-copy]').textContent = 'P—7 will wait there. Pick another anchor too quickly and Feedback will hear the correction.';
+    });
   });
 
   root.querySelectorAll('[data-object="relay"],[data-object="tug"]').forEach((object) => {
