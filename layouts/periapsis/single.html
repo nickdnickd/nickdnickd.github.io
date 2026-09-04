@@ -100,7 +100,9 @@
 
     <footer class="hud-bottom">
       <div class="soundtrack">
-        <button data-sound aria-label="Toggle soundtrack">♪</button>
+        <audio data-music-base preload="auto" loop playsinline src="{{ "audio/jade-frequency-base.mp3" | relURL }}"></audio>
+        <audio data-music-feedback preload="auto" loop playsinline src="{{ "audio/jade-frequency-feedback.mp3" | relURL }}"></audio>
+        <button data-sound aria-label="Toggle soundtrack">♪ PLAY</button>
         <div><b>JADE / ORBITAL ARRANGEMENT</b><small data-music-state>VOICE 01 · STANDBY</small></div>
         <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
       </div>
