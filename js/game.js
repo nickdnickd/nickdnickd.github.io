@@ -1,27 +1,325 @@
 (() => {
-  const root=document.querySelector('[data-game]'),$=s=>root.querySelector(s),audio=$('[data-song]');
-  const intro=document.querySelector('[data-intro]'),success=document.querySelector('[data-success]');
-  const riff=[1,0,1,1,0,1,0,1,1,0,1],rounds=[{start:0,call:6},{start:4,call:6},{start:8,call:6}],stepMs=205;
-  let state,songTimer;
-  const seq=(start,count)=>Array.from({length:count},(_,i)=>riff[(start+i)%11]);
-  function reset(){clearTimeout(songTimer);audio.pause();audio.currentTime=0;state={round:-1,response:[0,0,0,0,0],busy:false,pulseView:false};$('[data-log]').innerHTML='';$('[data-contact-title]').textContent='CONTACT PENDING';$('[data-round]').textContent='—';$('[data-ring-status]').textContent='AWAITING CARRIER';$('[data-instruction]').textContent='Listen before deciding what the signal is.';$('[data-call-state]').textContent='NO DATA';$('[data-call-state]').classList.remove('live');$('.signal-strength').classList.remove('receiving');$('[data-ring]').classList.remove('visible');$('[data-satellite]').classList.remove('active');$('[data-memory-note]').hidden=true;$('[data-open-console]').hidden=true;$('[data-loop-opening]').classList.remove('active');$('[data-pulse-view]').classList.remove('active');buildRing();renderCall([]);renderResponse();enable(false);updatePlay()}
-  function buildRing(){$('[data-ring]').innerHTML=riff.map((v,i)=>`<span class="ring-step" data-ring-step="${i}" style="--a:${i*360/11}deg">${String(i+1).padStart(2,'0')}</span>`).join('')}
-  function renderCall(values){$('[data-call-steps]').innerHTML=values.map((v,i)=>`<i class="mini-step ${v?'on':''}" data-call-step="${i}"></i>`).join('')}
-  function renderResponse(){$('[data-response-steps]').innerHTML=state.response.map((v,i)=>`<button class="response-step ${v?'on':''}" data-response="${i}" aria-label="Response step ${i+1}, ${v?'on':'off'}">${i+1}</button>`).join('');document.querySelectorAll('[data-response]').forEach(b=>b.addEventListener('click',()=>{if(state.busy)return;const i=+b.dataset.response;state.response[i]^=1;renderResponse()}))}
-  function enable(on){$('[data-play-call]').disabled=!on;$('[data-clear]').disabled=!on;$('[data-transmit]').disabled=!on}
-  function beep(on,time=0,kind='call'){if(!on)return;const C=window.AudioContext||window.webkitAudioContext;state.ctx||=new C();const o=state.ctx.createOscillator(),g=state.ctx.createGain(),at=state.ctx.currentTime+time;o.type=kind==='call'?'sine':'triangle';o.frequency.value=kind==='call'?520:330;g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.07,at+.015);g.gain.exponentialRampToValueAtTime(.0001,at+.13);o.connect(g).connect(state.ctx.destination);o.start(at);o.stop(at+.15)}
-  function play(values,kind='call'){if(state.busy)return Promise.resolve();state.busy=true;const nodes=kind==='call'?document.querySelectorAll('[data-call-step]'):document.querySelectorAll('[data-response]');values.forEach((v,i)=>{beep(v,i*stepMs/1000,kind);setTimeout(()=>nodes[i]?.classList.add('playing'),i*stepMs);setTimeout(()=>nodes[i]?.classList.remove('playing'),i*stepMs+150)});return new Promise(r=>setTimeout(()=>{state.busy=false;r()},values.length*stepMs+100))}
-  function log(tag,text){const li=document.createElement('li');li.innerHTML=`<b>${tag}</b>${text}`;$('[data-log]').prepend(li);while($('[data-log]').children.length>5)$('[data-log]').lastChild.remove()}
-  async function begin(){intro.close();audio.currentTime=5.8;await audio.play().catch(()=>{});updatePlay();log('ARCHIVE','Personal media playback started.');$('[data-contact-title]').textContent='PASSIVE LISTENING';songTimer=setTimeout(interrupt,6500)}
-  function interrupt(){audio.pause();updatePlay();$('.signal-strength').classList.add('receiving');$('[data-satellite]').classList.add('active');$('[data-contact-title]').textContent='CARRIER INTERRUPT';$('[data-memory-note]').hidden=false;$('[data-open-console]').hidden=false;log('CARRIER','Unregistered timing exchange interrupted local audio.');$('[data-instruction]').textContent='Play the received call. Tap the five steps that continue its cycle, then transmit.';setTimeout(()=>startRound(0),700)}
-  function startRound(n){state.round=n;state.response=[0,0,0,0,0];const r=rounds[n],call=seq(r.start,r.call);renderCall(call);renderResponse();enable(true);$('[data-ring]').classList.add('visible');$('[data-round]').textContent=`0${n+1}`;$('[data-ring-status]').textContent=`HANDSHAKE ${n+1} / 3`;$('[data-call-state]').textContent='REPEATING';$('[data-call-state]').classList.add('live');document.querySelectorAll('[data-ring-step]').forEach((el,i)=>el.classList.toggle('on',riff[i]&&state.pulseView));log(`ROUND ${n+1}`,'Carrier issued a partial cycle.');play(call)}
-  async function transmit(){if(state.busy)return;enable(false);await play(state.response,'response');const r=rounds[state.round],want=seq(r.start+r.call,5),ok=state.response.every((v,i)=>v===want[i]);if(!ok){log('NO LOCK','Response broke continuity. Carrier restarted the round.');$('[data-instruction]').textContent='The signal did not continue through your response. Compare where the received phrase stopped.';state.response=[0,0,0,0,0];renderResponse();enable(true);setTimeout(()=>play(seq(r.start,r.call)),450);return}log('PHASE LOCK',`Continuation ${state.round+1} accepted.`);flash(r.start);if(state.round<2){$('[data-instruction]').textContent='It answered—but began the same cycle somewhere else.';setTimeout(()=>startRound(state.round+1),1300)}else setTimeout(complete,1400)}
-  function flash(start){document.querySelectorAll('[data-ring-step]').forEach((el,i)=>{const d=((i-start+11)%11)*stepMs;setTimeout(()=>el.classList.add('playing'),d);setTimeout(()=>el.classList.remove('playing'),d+170)})}
-  function complete(){enable(false);$('[data-contact-title]').textContent='RELAY 11 RESOLVED';$('[data-ring-status]').textContent='UNREGISTERED PARTICIPANT';$('[data-round]').textContent='11';log('CONTACT','A hidden relay joined the Bellweather network.');$('[data-observation] p').textContent='Registered relays nominal. An eleventh participant now shares their clock.';setTimeout(()=>success.showModal(),700)}
-  const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`,updatePlay=()=>$('[data-song-play]').textContent=audio.paused?'▶':'Ⅱ';
-  audio.addEventListener('timeupdate',()=>{const p=audio.currentTime/(audio.duration||171.57)*100;$('[data-progress]').style.width=`${p}%`;$('[data-scrub]').value=audio.currentTime;$('[data-song-time]').textContent=fmt(audio.currentTime);if($('[data-loop-opening]').classList.contains('active')&&audio.currentTime>15.1)audio.currentTime=5.8});audio.addEventListener('play',updatePlay);audio.addEventListener('pause',updatePlay);
-  $('[data-song-play]').addEventListener('click',()=>audio.paused?audio.play():audio.pause());$('[data-scrub]').addEventListener('input',e=>audio.currentTime=+e.target.value);$('[data-loop-opening]').addEventListener('click',e=>{e.currentTarget.classList.toggle('active');if(e.currentTarget.classList.contains('active')){audio.currentTime=5.8;audio.play()}});$('[data-pulse-view]').addEventListener('click',e=>{state.pulseView=!state.pulseView;e.currentTarget.classList.toggle('active',state.pulseView);document.querySelectorAll('[data-ring-step]').forEach((el,i)=>el.classList.toggle('on',state.pulseView&&riff[i]))});
-  $('[data-play-call]').addEventListener('click',()=>play(seq(rounds[state.round].start,rounds[state.round].call)));$('[data-clear]').addEventListener('click',()=>{state.response=[0,0,0,0,0];renderResponse()});$('[data-transmit]').addEventListener('click',transmit);$('[data-begin]').addEventListener('click',begin);$('[data-restart]').addEventListener('click',()=>{reset();intro.showModal()});$('[data-replay]').addEventListener('click',()=>{success.close();reset();intro.showModal()});
-  $('[data-open-console]').addEventListener('click',()=>{$('[data-console]').scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>play(seq(rounds[state.round].start,rounds[state.round].call)),500)});
-  reset();intro.showModal();
+  const root = document.querySelector('[data-game]');
+  const space = root.querySelector('[data-space]');
+  const craftEl = root.querySelector('[data-craft]');
+  const feedbackEl = root.querySelector('[data-object="feedback"]');
+  const companionEl = root.querySelector('[data-companion]');
+  const courseEl = root.querySelector('[data-course]');
+  const destinationEl = root.querySelector('[data-destination]');
+  const tutorial = root.querySelector('[data-tutorial]');
+  const calibration = root.querySelector('[data-calibration]');
+  const trace = root.querySelector('[data-trace]');
+  const readout = root.querySelector('[data-readout]');
+  const calmEl = root.querySelector('[data-calm]');
+  const statusEl = root.querySelector('[data-status]');
+  const partyEl = root.querySelector('[data-party]');
+  const rangeEl = root.querySelector('[data-feedback-range]');
+  const noiseEl = root.querySelector('[data-noise-label]');
+  const waveEl = root.querySelector('[data-waveform]');
+  const $ = (selector) => root.querySelector(selector);
+
+  const state = {
+    mode: 'intro',
+    craft: { x: .12, y: .5 },
+    target: null,
+    targetKind: null,
+    feedback: { x: .73, y: .2, angle: -1.02 },
+    lastTime: performance.now(),
+    lastCommand: 0,
+    proximityAt: 0,
+    joined: false,
+    audioOn: false,
+    musicTimer: null,
+    audioContext: null,
+    songStep: 0
+  };
+
+  const waveHeights = [20,42,76,34,58,88,45,70,28,82,48,67,32,91,55,38,72,25,63,84,41,69,31,78];
+  waveEl.innerHTML = waveHeights.map((h) => `<i style="--h:${h}%"></i>`).join('');
+
+  function feedbackPosition(angle = state.feedback.angle) {
+    return {
+      x: .525 + Math.cos(angle) * .365,
+      y: .52 + Math.sin(angle) * .305
+    };
+  }
+
+  function percentDistance(a, b) {
+    const rect = space.getBoundingClientRect();
+    return Math.hypot((a.x - b.x) * rect.width, (a.y - b.y) * rect.height);
+  }
+
+  function setElementPosition(el, point) {
+    el.style.left = `${point.x * 100}%`;
+    el.style.top = `${point.y * 100}%`;
+  }
+
+  function toSvg(point) {
+    return { x: point.x * 1000, y: point.y * 700 };
+  }
+
+  function drawCourse() {
+    if (!state.target || state.mode === 'intro') {
+      courseEl.setAttribute('d', '');
+      destinationEl.classList.remove('active');
+      return;
+    }
+    const a = toSvg(state.craft);
+    const b = toSvg(state.target);
+    courseEl.setAttribute('d', `M ${a.x} ${a.y} L ${b.x} ${b.y}`);
+    destinationEl.setAttribute('cx', b.x);
+    destinationEl.setAttribute('cy', b.y);
+    destinationEl.classList.add('active');
+  }
+
+  function setCourse(point, kind = 'space') {
+    if (state.mode === 'intro' || state.joined) return;
+    state.target = {
+      x: Math.max(.045, Math.min(.955, point.x)),
+      y: Math.max(.07, Math.min(.92, point.y))
+    };
+    state.targetKind = kind;
+    state.lastCommand = performance.now();
+    craftEl.classList.add('moving');
+    feedbackEl.classList.toggle('locked', kind === 'feedback');
+    statusEl.textContent = kind === 'feedback' ? 'INTERCEPT COMMITTED' : 'COURSE COMMITTED';
+    if (state.mode === 'proximity') {
+      state.proximityAt = performance.now();
+      $('[data-calibration-title]').textContent = 'TOO LOUD. IT PULLED AWAY.';
+      $('[data-calibration-copy]').textContent = 'Let go of the controls. Match its drift.';
+    }
+    drawCourse();
+  }
+
+  function begin() {
+    state.mode = 'navigating';
+    root.dataset.state = 'navigating';
+    $('[data-intro]').hidden = true;
+    tutorial.hidden = false;
+    statusEl.textContent = 'FREE NAVIGATION';
+    $('[data-music-state]').textContent = 'VOICE 01 · PLAYING';
+    startMusic();
+  }
+
+  function enterProximity() {
+    if (state.mode === 'proximity') return;
+    state.mode = 'proximity';
+    root.dataset.state = 'proximity';
+    state.target = null;
+    state.targetKind = null;
+    state.proximityAt = performance.now();
+    craftEl.classList.remove('moving');
+    feedbackEl.classList.remove('locked');
+    tutorial.hidden = true;
+    calibration.hidden = false;
+    statusEl.textContent = 'PROXIMITY AUDIO OPEN';
+    drawCourse();
+  }
+
+  function completeEncounter() {
+    state.joined = true;
+    state.mode = 'joined';
+    root.dataset.state = 'joined';
+    calibration.hidden = true;
+    feedbackEl.classList.add('joined');
+    companionEl.hidden = false;
+    partyEl.textContent = 'PARTY 2 / 4';
+    statusEl.textContent = 'HIDDEN ROUTE RECOVERED';
+    $('[data-music-state]').textContent = 'VOICE 01 + FEEDBACK · PLAYING';
+    trace.hidden = false;
+    playJoinChord();
+  }
+
+  function inspect(kind) {
+    const messages = {
+      relay: ['OBJECT SCAN', 'KESTREL—4', 'Registered courier relay. Forty-one days of perfect diagnostics. It has nothing interesting to say.'],
+      tug: ['OBJECT SCAN', 'CINDER TUG', 'Automated mining tow. Its manifests are painfully complete—except for one missing live-audio recorder.']
+    };
+    const message = messages[kind];
+    if (!message) return;
+    $('[data-readout-kicker]').textContent = message[0];
+    $('[data-readout-title]').textContent = message[1];
+    $('[data-readout-copy]').textContent = message[2];
+    readout.hidden = false;
+  }
+
+  function reset() {
+    state.mode = 'intro';
+    state.craft = { x: .12, y: .5 };
+    state.target = null;
+    state.targetKind = null;
+    state.feedback.angle = -1.02;
+    state.feedback = { ...state.feedback, ...feedbackPosition(-1.02) };
+    state.joined = false;
+    state.proximityAt = 0;
+    root.dataset.state = 'intro';
+    $('[data-intro]').hidden = false;
+    tutorial.hidden = true;
+    calibration.hidden = true;
+    trace.hidden = true;
+    readout.hidden = true;
+    companionEl.hidden = true;
+    feedbackEl.classList.remove('joined', 'locked');
+    craftEl.classList.remove('moving');
+    partyEl.textContent = 'PARTY 1 / 4';
+    statusEl.textContent = 'AWAITING PILOT';
+    calmEl.style.width = '0%';
+    setElementPosition(craftEl, state.craft);
+    setElementPosition(feedbackEl, state.feedback);
+    drawCourse();
+  }
+
+  function animate(now) {
+    const dt = Math.min(.035, (now - state.lastTime) / 1000);
+    state.lastTime = now;
+
+    if (state.mode !== 'intro' && state.mode !== 'proximity' && !state.joined) {
+      state.feedback.angle += dt * .12;
+      Object.assign(state.feedback, feedbackPosition());
+    }
+
+    if (state.target && !state.joined) {
+      const dx = state.target.x - state.craft.x;
+      const dy = state.target.y - state.craft.y;
+      const distance = Math.hypot(dx, dy);
+      const speed = .19;
+      if (distance < .006) {
+        state.craft = { ...state.target };
+        const arrivedKind = state.targetKind;
+        state.target = null;
+        state.targetKind = null;
+        craftEl.classList.remove('moving');
+        destinationEl.classList.remove('active');
+        statusEl.textContent = 'HOLDING POSITION';
+        if (arrivedKind === 'relay' || arrivedKind === 'tug') inspect(arrivedKind);
+      } else {
+        state.craft.x += dx / distance * speed * dt;
+        state.craft.y += dy / distance * speed * dt;
+        craftEl.style.transform = `translate(-50%,-50%) rotate(${Math.atan2(dy, dx) * 180 / Math.PI}deg)`;
+      }
+    }
+
+    const feedbackDistance = percentDistance(state.craft, state.feedback);
+    rangeEl.textContent = `RANGE ${Math.round(feedbackDistance)} km`;
+    if (!state.joined && state.mode === 'navigating' && feedbackDistance < 68) enterProximity();
+
+    if (state.mode === 'proximity') {
+      state.feedback.x = state.craft.x + .07;
+      state.feedback.y = state.craft.y - .045 + Math.sin(now / 420) * .008;
+      const calm = Math.max(0, Math.min(1, (now - state.proximityAt) / 3600));
+      calmEl.style.width = `${calm * 100}%`;
+      noiseEl.textContent = `FEEDBACK ${Math.round((1 - calm) * 100)}%`;
+      waveEl.style.opacity = `${.35 + (1 - calm) * .65}`;
+      if (calm > .35) {
+        $('[data-calibration-title]').textContent = 'IT IS MATCHING YOUR DRIFT.';
+        $('[data-calibration-copy]').textContent = 'No command needed. Stay with it.';
+      }
+      if (calm >= 1) completeEncounter();
+    }
+
+    setElementPosition(craftEl, state.craft);
+    setElementPosition(feedbackEl, state.feedback);
+    if (state.joined) {
+      const follow = { x: state.craft.x - .055, y: state.craft.y + .055 + Math.sin(now / 500) * .006 };
+      setElementPosition(companionEl, follow);
+    }
+    drawCourse();
+    requestAnimationFrame(animate);
+  }
+
+  function audioContext() {
+    if (!state.audioContext) state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    if (state.audioContext.state === 'suspended') state.audioContext.resume();
+    return state.audioContext;
+  }
+
+  function tone(frequency, start, duration, type = 'square', volume = .025) {
+    const context = audioContext();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, start);
+    gain.gain.setValueAtTime(.0001, start);
+    gain.gain.exponentialRampToValueAtTime(volume, start + .012);
+    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
+    oscillator.connect(gain).connect(context.destination);
+    oscillator.start(start);
+    oscillator.stop(start + duration + .02);
+  }
+
+  function tickMusic() {
+    if (!state.audioOn) return;
+    const context = audioContext();
+    const melody = [293.66,349.23,440,392,349.23,293.66,261.63,293.66,349.23,440,523.25];
+    const step = state.songStep % 11;
+    tone(melody[step], context.currentTime, .13, 'square', .017);
+    if (state.joined) {
+      const bass = [73.42,73.42,87.31,87.31,65.41,65.41,73.42,73.42,98,87.31,73.42];
+      tone(bass[step], context.currentTime, .17, 'triangle', .032);
+      if ([0,3,6,8].includes(step)) tone(105 + step * 2, context.currentTime, .055, 'sawtooth', .012);
+    }
+    state.songStep += 1;
+  }
+
+  function startMusic() {
+    state.audioOn = true;
+    root.classList.add('music-on');
+    audioContext();
+    clearInterval(state.musicTimer);
+    tickMusic();
+    state.musicTimer = setInterval(tickMusic, 205);
+  }
+
+  function stopMusic() {
+    state.audioOn = false;
+    root.classList.remove('music-on');
+    clearInterval(state.musicTimer);
+  }
+
+  function playJoinChord() {
+    if (!state.audioOn) return;
+    const at = audioContext().currentTime;
+    [146.83, 220, 293.66, 369.99].forEach((note, index) => tone(note, at + index * .055, .65, index ? 'square' : 'triangle', .022));
+  }
+
+  space.addEventListener('click', (event) => {
+    if (event.target.closest('button,aside')) return;
+    const rect = space.getBoundingClientRect();
+    setCourse({ x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height });
+  });
+
+  feedbackEl.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (state.mode === 'intro' || state.joined) return;
+    const lead = feedbackPosition(state.feedback.angle + .29);
+    setCourse(lead, 'feedback');
+    tutorial.querySelector('[data-tutorial-title]').textContent = 'COURSE LOCKED AHEAD OF TARGET';
+    tutorial.querySelector('[data-tutorial-copy]').textContent = 'Let the recorder come to you. Repeated corrections will make it bolt.';
+  });
+
+  root.querySelectorAll('[data-object="relay"],[data-object="tug"]').forEach((object) => {
+    object.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const rect = space.getBoundingClientRect();
+      const objectRect = object.getBoundingClientRect();
+      setCourse({ x: (objectRect.left + objectRect.width / 2 - rect.left) / rect.width, y: (objectRect.top + objectRect.height / 2 - rect.top) / rect.height }, object.dataset.object);
+    });
+  });
+
+  $('[data-begin]').addEventListener('click', begin);
+  $('[data-restart]').addEventListener('click', reset);
+  $('[data-close-readout]').addEventListener('click', () => { readout.hidden = true; });
+  $('[data-close-trace]').addEventListener('click', () => { trace.hidden = true; tutorial.hidden = false; $('[data-tutorial-title]').textContent = 'A SECOND VOICE CHANGED THE ARRANGEMENT'; $('[data-tutorial-copy]').textContent = 'Feedback is following you. A faint route beyond Bellweather is now audible.'; });
+  $('[data-sound]').addEventListener('click', () => {
+    if (state.audioOn) {
+      stopMusic();
+      $('[data-music-state]').textContent = 'MUTED';
+    } else {
+      startMusic();
+      $('[data-music-state]').textContent = state.joined ? 'VOICE 01 + FEEDBACK · PLAYING' : 'VOICE 01 · PLAYING';
+    }
+  });
+
+  reset();
+  requestAnimationFrame(animate);
 })();
