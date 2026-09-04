@@ -16,6 +16,9 @@
   const rangeEl = root.querySelector('[data-feedback-range]');
   const noiseEl = root.querySelector('[data-noise-label]');
   const waveEl = root.querySelector('[data-waveform]');
+  const baseAudio = root.querySelector('[data-music-base]');
+  const feedbackAudio = root.querySelector('[data-music-feedback]');
+  const soundButton = root.querySelector('[data-sound]');
   const $ = (selector) => root.querySelector(selector);
 
   const state = {
@@ -26,12 +29,10 @@
     feedback: { x: .73, y: .2, angle: -1.02 },
     lastTime: performance.now(),
     lastCommand: 0,
+    fleeUntil: 0,
     proximityAt: 0,
     joined: false,
-    audioOn: false,
-    musicTimer: null,
-    audioContext: null,
-    songStep: 0
+    audioOn: false
   };
 
   const waveHeights = [20,42,76,34,58,88,45,70,28,82,48,67,32,91,55,38,72,25,63,84,41,69,31,78];
@@ -74,12 +75,23 @@
 
   function setCourse(point, kind = 'space') {
     if (state.mode === 'intro' || state.joined) return;
+    const now = performance.now();
+    const isRapidCorrection = now - state.lastCommand < 1700;
+    const isNearFeedback = percentDistance(state.craft, state.feedback) < 240;
+    if (state.mode === 'navigating' && isRapidCorrection && isNearFeedback) {
+      state.fleeUntil = now + 2600;
+      state.feedback.angle += .12;
+      feedbackEl.classList.add('fleeing');
+      tutorial.hidden = false;
+      $('[data-tutorial-title]').textContent = 'FEEDBACK HEARD THE CORRECTION — IT BOLTED';
+      $('[data-tutorial-copy]').textContent = 'Chasing makes it faster. Commit ahead of it, then leave the controls alone.';
+    }
     state.target = {
       x: Math.max(.045, Math.min(.955, point.x)),
       y: Math.max(.07, Math.min(.92, point.y))
     };
     state.targetKind = kind;
-    state.lastCommand = performance.now();
+    state.lastCommand = now;
     craftEl.classList.add('moving');
     feedbackEl.classList.toggle('locked', kind === 'feedback');
     statusEl.textContent = kind === 'feedback' ? 'INTERCEPT COMMITTED' : 'COURSE COMMITTED';
@@ -127,7 +139,7 @@
     statusEl.textContent = 'HIDDEN ROUTE RECOVERED';
     $('[data-music-state]').textContent = 'VOICE 01 + FEEDBACK · PLAYING';
     trace.hidden = false;
-    playJoinChord();
+    startFeedbackStem();
   }
 
   function inspect(kind) {
@@ -144,6 +156,9 @@
   }
 
   function reset() {
+    stopMusic();
+    baseAudio.currentTime = 0;
+    feedbackAudio.currentTime = 0;
     state.mode = 'intro';
     state.craft = { x: .12, y: .5 };
     state.target = null;
@@ -152,6 +167,7 @@
     state.feedback = { ...state.feedback, ...feedbackPosition(-1.02) };
     state.joined = false;
     state.proximityAt = 0;
+    state.fleeUntil = 0;
     root.dataset.state = 'intro';
     $('[data-intro]').hidden = false;
     tutorial.hidden = true;
@@ -159,10 +175,11 @@
     trace.hidden = true;
     readout.hidden = true;
     companionEl.hidden = true;
-    feedbackEl.classList.remove('joined', 'locked');
+    feedbackEl.classList.remove('joined', 'locked', 'fleeing');
     craftEl.classList.remove('moving');
     partyEl.textContent = 'PARTY 1 / 4';
     statusEl.textContent = 'AWAITING PILOT';
+    $('[data-music-state]').textContent = 'VOICE 01 · STANDBY';
     calmEl.style.width = '0%';
     setElementPosition(craftEl, state.craft);
     setElementPosition(feedbackEl, state.feedback);
@@ -174,7 +191,9 @@
     state.lastTime = now;
 
     if (state.mode !== 'intro' && state.mode !== 'proximity' && !state.joined) {
-      state.feedback.angle += dt * .12;
+      const fleeing = now < state.fleeUntil;
+      state.feedback.angle += dt * (fleeing ? .52 : .12);
+      feedbackEl.classList.toggle('fleeing', fleeing);
       Object.assign(state.feedback, feedbackPosition());
     }
 
@@ -201,7 +220,7 @@
 
     const feedbackDistance = percentDistance(state.craft, state.feedback);
     rangeEl.textContent = `RANGE ${Math.round(feedbackDistance)} km`;
-    if (!state.joined && state.mode === 'navigating' && feedbackDistance < 68) enterProximity();
+    if (!state.joined && state.mode === 'navigating' && now >= state.fleeUntil && feedbackDistance < 68) enterProximity();
 
     if (state.mode === 'proximity') {
       state.feedback.x = state.craft.x + .07;
@@ -227,59 +246,39 @@
     requestAnimationFrame(animate);
   }
 
-  function audioContext() {
-    if (!state.audioContext) state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    if (state.audioContext.state === 'suspended') state.audioContext.resume();
-    return state.audioContext;
-  }
-
-  function tone(frequency, start, duration, type = 'square', volume = .025) {
-    const context = audioContext();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = type;
-    oscillator.frequency.setValueAtTime(frequency, start);
-    gain.gain.setValueAtTime(.0001, start);
-    gain.gain.exponentialRampToValueAtTime(volume, start + .012);
-    gain.gain.exponentialRampToValueAtTime(.0001, start + duration);
-    oscillator.connect(gain).connect(context.destination);
-    oscillator.start(start);
-    oscillator.stop(start + duration + .02);
-  }
-
-  function tickMusic() {
-    if (!state.audioOn) return;
-    const context = audioContext();
-    const melody = [293.66,349.23,440,392,349.23,293.66,261.63,293.66,349.23,440,523.25];
-    const step = state.songStep % 11;
-    tone(melody[step], context.currentTime, .13, 'square', .017);
-    if (state.joined) {
-      const bass = [73.42,73.42,87.31,87.31,65.41,65.41,73.42,73.42,98,87.31,73.42];
-      tone(bass[step], context.currentTime, .17, 'triangle', .032);
-      if ([0,3,6,8].includes(step)) tone(105 + step * 2, context.currentTime, .055, 'sawtooth', .012);
-    }
-    state.songStep += 1;
-  }
-
-  function startMusic() {
+  async function startMusic() {
     state.audioOn = true;
     root.classList.add('music-on');
-    audioContext();
-    clearInterval(state.musicTimer);
-    tickMusic();
-    state.musicTimer = setInterval(tickMusic, 205);
+    baseAudio.volume = .9;
+    feedbackAudio.volume = .62;
+    soundButton.textContent = '♪ OFF';
+    try {
+      await baseAudio.play();
+      if (state.joined) startFeedbackStem();
+      $('[data-music-state]').textContent = state.joined ? 'VOICE 01 + FEEDBACK · PLAYING' : 'VOICE 01 · PLAYING';
+    } catch (error) {
+      state.audioOn = false;
+      root.classList.remove('music-on');
+      soundButton.textContent = '♪ PLAY';
+      $('[data-music-state]').textContent = 'TAP PLAY FOR SOUND';
+    }
   }
 
   function stopMusic() {
     state.audioOn = false;
     root.classList.remove('music-on');
-    clearInterval(state.musicTimer);
+    baseAudio.pause();
+    feedbackAudio.pause();
+    soundButton.textContent = '♪ PLAY';
   }
 
-  function playJoinChord() {
+  function startFeedbackStem() {
     if (!state.audioOn) return;
-    const at = audioContext().currentTime;
-    [146.83, 220, 293.66, 369.99].forEach((note, index) => tone(note, at + index * .055, .65, index ? 'square' : 'triangle', .022));
+    feedbackAudio.currentTime = baseAudio.currentTime;
+    feedbackAudio.play().catch(() => {
+      soundButton.textContent = '♪ PLAY';
+      $('[data-music-state]').textContent = 'TAP PLAY TO ADD FEEDBACK';
+    });
   }
 
   space.addEventListener('click', (event) => {
