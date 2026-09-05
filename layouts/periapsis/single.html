@@ -67,6 +67,16 @@
       </div>
       <div class="companion" data-companion hidden><img src="{{ "images/feedback-drone.png" | relURL }}" alt="Feedback following your craft"></div>
 
+      <div class="amplifier-array" data-amplifier-array hidden aria-label="Dormant signal amplifier array">
+        <button data-amplifier="1" style="--x:31%;--y:28%" aria-label="Navigate to signal amplifier one"><i><b></b></i><span>AMP—01<br><small>DORMANT</small></span></button>
+        <button data-amplifier="2" style="--x:72%;--y:48%" aria-label="Navigate to signal amplifier two"><i><b></b></i><span>AMP—02<br><small>DORMANT</small></span></button>
+        <button data-amplifier="3" style="--x:43%;--y:73%" aria-label="Navigate to signal amplifier three"><i><b></b></i><span>AMP—03<br><small>DORMANT</small></span></button>
+      </div>
+
+      <button class="hidden-route" data-hidden-route hidden aria-label="Open the newly revealed route to Cinder">
+        <i></i><span>UNLISTED ROUTE<small>CINDER APPROACH</small></span>
+      </button>
+
       <aside class="mission-card" data-intro>
         <p>LAST CONTACT · 41 DAYS AGO</p>
         <h1>P. stopped answering.</h1>
@@ -105,12 +115,25 @@
         <blockquote>“Check. Check. Punishment. Vengeance. Great, that works.”</blockquote>
         <footer><i></i> FEEDBACK JOINED YOUR ROUTE</footer>
       </aside>
+
+      <aside class="trace next-route" data-next-route hidden>
+        <p>AMPLIFIER ARRAY · ROUTE RECOVERED</p>
+        <button data-close-next-route aria-label="Close recovered route">×</button>
+        <h2>Bellweather was only the soundcheck.</h2>
+        <dl>
+          <div><dt>DESTINATION</dt><dd>CINDER APPROACH</dd></div>
+          <div><dt>ENGINEER</dt><dd>P.</dd></div>
+          <div><dt>NOTE</dt><dd>EVERYTHING SOUNDS MORE LIKE ITSELF THROUGH THIS THING.</dd></div>
+        </dl>
+        <blockquote>“If this works, you brought something weird with you. Good.”</blockquote>
+        <footer><i></i> OUTER ROUTE AVAILABLE</footer>
+      </aside>
     </section>
 
     <footer class="hud-bottom">
       <div class="soundtrack">
-        <audio data-music-base preload="auto" loop playsinline src="{{ "audio/jade-frequency-base.mp3" | relURL }}"></audio>
-        <audio data-music-feedback preload="auto" loop playsinline src="{{ "audio/jade-frequency-feedback.mp3" | relURL }}"></audio>
+        <audio data-music-base preload="auto" loop playsinline src="{{ "audio/jade-original-base.mp3" | relURL }}"></audio>
+        <audio data-music-feedback preload="auto" loop playsinline src="{{ "audio/jade-original-feedback.mp3" | relURL }}"></audio>
         <button data-sound aria-label="Toggle soundtrack">♪ PLAY</button>
         <div><b>JADE / ORBITAL ARRANGEMENT</b><small data-music-state>VOICE 01 · STANDBY</small></div>
         <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>

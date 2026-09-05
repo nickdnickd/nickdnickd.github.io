@@ -20,6 +20,10 @@
   const feedbackAudio = root.querySelector('[data-music-feedback]');
   const soundButton = root.querySelector('[data-sound]');
   const anchorEls = [...root.querySelectorAll('[data-anchor]')];
+  const amplifierArray = root.querySelector('[data-amplifier-array]');
+  const amplifierEls = [...root.querySelectorAll('[data-amplifier]')];
+  const hiddenRoute = root.querySelector('[data-hidden-route]');
+  const nextRoute = root.querySelector('[data-next-route]');
   const $ = (selector) => root.querySelector(selector);
 
   const state = {
@@ -33,6 +37,7 @@
     fleeUntil: 0,
     proximityAt: 0,
     joined: false,
+    activatedAmplifiers: new Set(),
     audioOn: false
   };
 
@@ -44,6 +49,11 @@
     D: { x: .838, y: .689, angle: .55 },
     E: { x: .514, y: .825, angle: 1.6 },
     F: { x: .209, y: .672, angle: 2.6 }
+  };
+  const amplifierPoints = {
+    1: { x: .31, y: .28 },
+    2: { x: .72, y: .48 },
+    3: { x: .43, y: .73 }
   };
   waveEl.innerHTML = waveHeights.map((h) => `<i style="--h:${h}%"></i>`).join('');
 
@@ -83,7 +93,7 @@
   }
 
   function setCourse(point, kind = 'space') {
-    if (state.mode === 'intro' || state.joined) return;
+    if (state.mode === 'intro' || state.mode === 'route-found') return;
     const now = performance.now();
     const isRapidCorrection = now - state.lastCommand < 1700;
     const isNearFeedback = percentDistance(state.craft, state.feedback) < 300;
@@ -152,6 +162,36 @@
     startFeedbackStem();
   }
 
+  function startAmplifierArray() {
+    state.mode = 'array';
+    root.dataset.state = 'array';
+    amplifierArray.hidden = false;
+    tutorial.hidden = false;
+    anchorEls.forEach((anchor) => anchor.classList.remove('selected', 'next'));
+    $('[data-tutorial-title]').textContent = 'THREE DORMANT AMPLIFIERS ANSWERED FEEDBACK';
+    $('[data-tutorial-copy]').textContent = 'Your ship cannot wake them. Lead your new companion through each array node.';
+    statusEl.textContent = 'AMPLIFIER ARRAY 0 / 3';
+    if (state.audioOn) feedbackAudio.volume = .24;
+  }
+
+  function activateAmplifier(id) {
+    if (state.activatedAmplifiers.has(id)) return;
+    state.activatedAmplifiers.add(id);
+    const node = amplifierEls.find((element) => element.dataset.amplifier === id);
+    node?.classList.add('active');
+    const nodeStatus = node?.querySelector('small');
+    if (nodeStatus) nodeStatus.textContent = 'AMPLIFYING';
+    const count = state.activatedAmplifiers.size;
+    if (state.audioOn) feedbackAudio.volume = .24 + count * .12;
+    statusEl.textContent = `AMPLIFIER ARRAY ${count} / 3`;
+    $('[data-tutorial-title]').textContent = count < 3 ? `AMPLIFIER ${id} IS REPEATING FEEDBACK` : 'THE ARRAY FOUND SOMETHING P. HID UNDER THE NOISE';
+    $('[data-tutorial-copy]').textContent = count < 3 ? `${3 - count} dormant node${count === 2 ? '' : 's'} remain. Feedback gets louder each time.` : 'An unlisted route has appeared beyond Bellweather.';
+    if (count === 3) {
+      hiddenRoute.hidden = false;
+      statusEl.textContent = 'UNLISTED ROUTE DETECTED';
+    }
+  }
+
   function inspect(kind) {
     const messages = {
       relay: ['OBJECT SCAN', 'KESTREL—4', 'Registered courier relay. Forty-one days of perfect diagnostics. It has nothing interesting to say.'],
@@ -176,6 +216,7 @@
     state.feedback.angle = -1.02;
     state.feedback = { ...state.feedback, ...feedbackPosition(-1.02) };
     state.joined = false;
+    state.activatedAmplifiers = new Set();
     state.proximityAt = 0;
     state.fleeUntil = 0;
     root.dataset.state = 'intro';
@@ -183,7 +224,15 @@
     tutorial.hidden = true;
     calibration.hidden = true;
     trace.hidden = true;
+    nextRoute.hidden = true;
     readout.hidden = true;
+    amplifierArray.hidden = true;
+    hiddenRoute.hidden = true;
+    amplifierEls.forEach((node) => {
+      node.classList.remove('active');
+      const nodeStatus = node.querySelector('small');
+      if (nodeStatus) nodeStatus.textContent = 'DORMANT';
+    });
     companionEl.hidden = true;
     feedbackEl.classList.remove('joined', 'locked', 'fleeing');
     anchorEls.forEach((anchor) => anchor.classList.remove('selected', 'next'));
@@ -208,7 +257,7 @@
       Object.assign(state.feedback, feedbackPosition());
     }
 
-    if (state.target && !state.joined) {
+    if (state.target && state.mode !== 'route-found') {
       const dx = state.target.x - state.craft.x;
       const dy = state.target.y - state.craft.y;
       const distance = Math.hypot(dx, dy);
@@ -268,6 +317,11 @@
     if (state.joined) {
       const follow = { x: state.craft.x - .055, y: state.craft.y + .055 + Math.sin(now / 500) * .006 };
       setElementPosition(companionEl, follow);
+      if (state.mode === 'array') {
+        Object.entries(amplifierPoints).forEach(([id, point]) => {
+          if (percentDistance(follow, point) < 62) activateAmplifier(id);
+        });
+      }
     }
     drawCourse();
     requestAnimationFrame(animate);
@@ -301,6 +355,7 @@
 
   function startFeedbackStem() {
     if (!state.audioOn) return;
+    feedbackAudio.volume = state.mode === 'array' || state.mode === 'array-complete' ? .24 + state.activatedAmplifiers.size * .12 : .62;
     feedbackAudio.currentTime = baseAudio.currentTime;
     feedbackAudio.play().catch(() => {
       soundButton.textContent = '♪ PLAY';
@@ -326,13 +381,36 @@
   anchorEls.forEach((anchorEl) => {
     anchorEl.addEventListener('click', (event) => {
       event.stopPropagation();
-      if (state.mode === 'intro' || state.joined) return;
+      if (state.mode === 'intro' || state.mode === 'route-found') return;
       const name = anchorEl.dataset.anchor;
       setCourse(anchors[name], `anchor-${name}`);
       tutorial.hidden = false;
       $('[data-tutorial-title]').textContent = `COURSE SET FOR ANCHOR ${name}`;
       $('[data-tutorial-copy]').textContent = 'P—7 will wait there. Pick another anchor too quickly and Feedback will hear the correction.';
     });
+  });
+
+  amplifierEls.forEach((node) => {
+    node.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (state.mode !== 'array' || node.classList.contains('active')) return;
+      const id = node.dataset.amplifier;
+      const point = amplifierPoints[id];
+      setCourse({ x: point.x + .055, y: point.y - .055 }, `amplifier-${id}`);
+      $('[data-tutorial-title]').textContent = `LEADING FEEDBACK TO AMPLIFIER ${id}`;
+      $('[data-tutorial-copy]').textContent = 'The course ends beyond the node so your companion—not your ship—passes through it.';
+    });
+  });
+
+  hiddenRoute.addEventListener('click', (event) => {
+    event.stopPropagation();
+    state.mode = 'route-found';
+    root.dataset.state = 'route-found';
+    state.target = null;
+    craftEl.classList.remove('moving');
+    tutorial.hidden = true;
+    nextRoute.hidden = false;
+    drawCourse();
   });
 
   root.querySelectorAll('[data-object="relay"],[data-object="tug"]').forEach((object) => {
@@ -347,7 +425,8 @@
   $('[data-begin]').addEventListener('click', begin);
   $('[data-restart]').addEventListener('click', reset);
   $('[data-close-readout]').addEventListener('click', () => { readout.hidden = true; });
-  $('[data-close-trace]').addEventListener('click', () => { trace.hidden = true; tutorial.hidden = false; $('[data-tutorial-title]').textContent = 'A SECOND VOICE CHANGED THE ARRANGEMENT'; $('[data-tutorial-copy]').textContent = 'Feedback is following you. A faint route beyond Bellweather is now audible.'; });
+  $('[data-close-trace]').addEventListener('click', () => { trace.hidden = true; startAmplifierArray(); });
+  $('[data-close-next-route]').addEventListener('click', () => { nextRoute.hidden = true; state.mode = 'array-complete'; root.dataset.state = 'array-complete'; tutorial.hidden = false; $('[data-tutorial-title]').textContent = 'CINDER APPROACH IS NOW AVAILABLE'; $('[data-tutorial-copy]').textContent = 'The next route is only a trace for now. Bellweather remains open to explore.'; });
   $('[data-sound]').addEventListener('click', () => {
     if (state.audioOn) {
       stopMusic();
