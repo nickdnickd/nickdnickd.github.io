@@ -1,0 +1,18 @@
+.at-cinder .scene-art{filter:sepia(.8) hue-rotate(325deg) brightness(.55)}
+.at-cinder .orbit-anchors,.at-cinder .relay,.at-cinder .tug,.at-cinder .nav-layer .orbit{display:none}
+.cinder-field{position:absolute;inset:0;pointer-events:none;z-index:10}
+.cinder-field>svg{width:100%;height:100%;position:absolute;inset:0;opacity:.10;transition:opacity 1s}
+.cinder-field.listening>svg{opacity:.8}
+.cinder-field button{pointer-events:auto;cursor:pointer;font-family:var(--pixel);color:var(--ink)}
+.convoy-contact{position:absolute;width:48px;height:48px;transform:translate(-50%,-50%);border:0;background:#0a152aaa;border-radius:50%}
+.convoy-contact span{font-size:30px;color:#ffd7a0}.convoy-contact small{position:absolute;top:44px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;text-shadow:0 2px 5px #000}
+.convoy-contact.ghost-visible{box-shadow:0 0 24px var(--pink);outline:2px dashed var(--pink)}
+.crossing-anchor{position:absolute;width:44px;height:44px;border:1px dashed #8ce7de;background:#071221a8;transform:translate(-50%,-50%);font-size:14px;border-radius:50%}
+.cinder-listen{position:absolute;left:16px;bottom:110px;padding:12px;border:1px solid var(--cyan);background:#091124;font-size:14px;min-height:44px}
+.cinder-listen[aria-pressed=true]{background:#164b47}.cinder-report{position:absolute;left:16px;right:16px;bottom:14px;min-height:72px;max-width:640px;padding:12px 16px;background:#080d21ee;border-left:2px solid var(--amber);font:14px/1.5 var(--pixel);color:#e3d9c6}
+.cinder-dock{position:absolute;left:87%;top:63%;transform:translate(-50%,-50%);width:110px;padding:12px 6px;background:#21192c;border:1px solid var(--pink);font-size:12px}
+.cinder-dock small{display:block;font-size:11px;color:var(--pink);margin-top:6px}.patch-follower{position:absolute;transform:translate(-50%,-50%);font-size:30px;color:var(--pink);text-shadow:0 0 10px var(--pink)}.patch-follower small{display:block;font:12px var(--pixel)}
+.next-route .travel-cinder{position:static;display:block;padding:12px;margin-top:18px;background:#143d3b;border:1px solid var(--cyan);font:14px var(--pixel);color:var(--ink);min-height:44px}
+.at-cinder .tutorial b{font-size:14px}.at-cinder .tutorial span{font-size:13px}.at-cinder .tutorial{max-width:600px}.at-cinder .companion{z-index:14}.at-cinder .craft{z-index:15}
+@media(max-width:600px){.cinder-report{font-size:12px;max-height:100px;overflow:auto}.cinder-listen{bottom:122px;font-size:12px}.convoy-contact small{font-size:10px}.at-cinder .tutorial b{font-size:12px}.at-cinder .tutorial span{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.cinder-field>svg{transition:none}}

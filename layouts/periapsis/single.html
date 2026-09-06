@@ -15,7 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@500;650;750&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ "css/game.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/game.css" | relURL }}?v=cinder1">
+  <link rel="stylesheet" href="{{ "css/cinder.css" | relURL }}?v=cinder1">
 </head>
 <body>
   <main class="game" data-game data-state="intro">
@@ -127,6 +128,7 @@
         </dl>
         <blockquote>“If this works, you brought something weird with you. Good.”</blockquote>
         <footer><i></i> OUTER ROUTE AVAILABLE</footer>
+        <button class="travel-cinder" onclick="document.querySelector('[data-close-next-route]').click()">TRAVEL TO CINDER →</button>
       </aside>
     </section>
 
@@ -141,6 +143,7 @@
       <div class="status"><span data-status>AWAITING PILOT</span><b data-party>PARTY 1 / 4</b></div>
     </footer>
   </main>
-  <script src="{{ "js/game.js" | relURL }}"></script>
+  <script src="{{ "js/cinder.js" | relURL }}?v=cinder1"></script>
+  <script src="{{ "js/game.js" | relURL }}?v=cinder1"></script>
 </body>
 </html>
