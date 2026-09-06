@@ -206,6 +206,7 @@
   }
 
   function reset() {
+    window.cinderChapter?.reset();
     stopMusic();
     baseAudio.currentTime = 0;
     feedbackAudio.currentTime = 0;
@@ -317,6 +318,7 @@
     if (state.joined) {
       const follow = { x: state.craft.x - .055, y: state.craft.y + .055 + Math.sin(now / 500) * .006 };
       setElementPosition(companionEl, follow);
+      window.cinderChapter?.update(dt, follow, state.craft);
       if (state.mode === 'array') {
         Object.entries(amplifierPoints).forEach(([id, point]) => {
           if (percentDistance(follow, point) < 62) activateAmplifier(id);
@@ -426,7 +428,14 @@
   $('[data-restart]').addEventListener('click', reset);
   $('[data-close-readout]').addEventListener('click', () => { readout.hidden = true; });
   $('[data-close-trace]').addEventListener('click', () => { trace.hidden = true; startAmplifierArray(); });
-  $('[data-close-next-route]').addEventListener('click', () => { nextRoute.hidden = true; state.mode = 'array-complete'; root.dataset.state = 'array-complete'; tutorial.hidden = false; $('[data-tutorial-title]').textContent = 'CINDER APPROACH IS NOW AVAILABLE'; $('[data-tutorial-copy]').textContent = 'The next route is only a trace for now. Bellweather remains open to explore.'; });
+  $('[data-close-next-route]').addEventListener('click', () => {
+    nextRoute.hidden = true;
+    state.mode = 'cinder';
+    root.dataset.state = 'cinder';
+    state.craft = { x: .15, y: .55 };
+    state.target = null;
+    window.cinderChapter.start({ setCourse });
+  });
   $('[data-sound]').addEventListener('click', () => {
     if (state.audioOn) {
       stopMusic();
