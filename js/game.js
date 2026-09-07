@@ -437,6 +437,7 @@
     window.cinderChapter.start({ setCourse });
   });
   $('[data-sound]').addEventListener('click', () => {
+    if (window.cinderChapter?.sound?.()) return;
     if (state.audioOn) {
       stopMusic();
       $('[data-music-state]').textContent = 'MUTED';
