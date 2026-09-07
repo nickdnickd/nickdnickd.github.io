@@ -16,3 +16,10 @@
 .at-cinder .tutorial b{font-size:14px}.at-cinder .tutorial span{font-size:13px}.at-cinder .tutorial{max-width:600px}.at-cinder .companion{z-index:14}.at-cinder .craft{z-index:15}
 @media(max-width:600px){.cinder-report{font-size:12px;max-height:100px;overflow:auto}.cinder-listen{bottom:122px;font-size:12px}.convoy-contact small{font-size:10px}.at-cinder .tutorial b{font-size:12px}.at-cinder .tutorial span{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.cinder-field>svg{transition:none}}
+.sound-buoy,.maintenance{position:absolute;transform:translate(-50%,-50%);width:62px;height:62px;border:1px solid var(--cyan);background:#091727;border-radius:50%;font-size:30px;box-shadow:0 0 24px #63e5e022}
+.sound-buoy small,.maintenance small{position:absolute;top:66px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;text-shadow:0 2px 5px #000}.sound-buoy.solo{outline:3px solid var(--amber)}.sound-buoy.cut{opacity:.42;border-color:var(--pink);box-shadow:none}.sound-buoy.answering{box-shadow:0 0 35px var(--jade);border-color:var(--jade)}
+.maintenance{width:44px;height:44px;font-size:25px;border-color:var(--amber);background:#352314;z-index:2}.maintenance small{top:48px;font-size:10px}.maintenance.tracking{border-color:var(--pink);box-shadow:0 0 28px var(--pink)}
+.broadcast,.all-channels{position:absolute;bottom:125px;padding:12px;min-height:44px;border:1px solid var(--cyan);background:#0c2030;font-size:13px}.broadcast{left:16px}.all-channels{right:16px}.broadcast[aria-pressed=true]{background:#692c56;border-color:var(--pink)}
+.phrase-display{position:absolute;top:105px;left:16px;display:grid;gap:7px;color:var(--muted);font:12px var(--pixel);background:#081323bb;padding:8px}.phrase-display progress{width:145px;height:6px;accent-color:var(--jade)}
+.cinder-report{pointer-events:auto;max-height:104px;overflow:auto}.cinder-field audio{display:none}
+@media(max-width:600px){.sound-buoy{width:48px;height:48px}.sound-buoy small{top:52px;font-size:11px}.broadcast,.all-channels{font-size:11px;padding:10px;bottom:128px}.phrase-display{top:90px;font-size:11px}.phrase-display progress{width:100px}}
