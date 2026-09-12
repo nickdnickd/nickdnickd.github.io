@@ -337,6 +337,7 @@
     soundButton.textContent = '♪ OFF';
     try {
       await baseAudio.play();
+      if (state.mode === 'cinder') { baseAudio.volume = .13; return; }
       if (state.joined) startFeedbackStem();
       $('[data-music-state]').textContent = state.joined ? 'VOICE 01 + FEEDBACK · PLAYING' : 'VOICE 01 · PLAYING';
     } catch (error) {
@@ -425,6 +426,16 @@
   });
 
   $('[data-begin]').addEventListener('click', begin);
+  $('[data-preview-port]')?.addEventListener('click', () => {
+    state.mode = 'cinder';
+    root.dataset.state = 'cinder';
+    state.joined = true;
+    state.target = null;
+    $('[data-intro]').hidden = true;
+    feedbackEl.classList.add('joined');
+    partyEl.textContent = 'YOU + FEEDBACK';
+    window.cinderChapter.start({ setCourse });
+  });
   $('[data-restart]').addEventListener('click', reset);
   $('[data-close-readout]').addEventListener('click', () => { readout.hidden = true; });
   $('[data-close-trace]').addEventListener('click', () => { trace.hidden = true; startAmplifierArray(); });
