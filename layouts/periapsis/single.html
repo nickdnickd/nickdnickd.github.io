@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@500;650;750&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/game.css" | relURL }}?v=cinder1">
   <link rel="stylesheet" href="{{ "css/cinder.css" | relURL }}?v=soundcheck1">
+  <link rel="stylesheet" href="{{ "css/port.css" | relURL }}?v=port1">
 </head>
 <body>
   <main class="game" data-game data-state="intro">
@@ -83,6 +84,7 @@
         <h1>P. stopped answering.</h1>
         <div class="route-copy">His last recorded route ended at <b>Bellweather.</b> The system says everything here is normal.</div>
         <button data-begin>ENTER ORBIT <span>→</span></button>
+        <button class="preview-port" data-preview-port>EXPLORE CINDER <span>→</span></button>
       </aside>
 
       <div class="tutorial" data-tutorial hidden>
@@ -143,7 +145,7 @@
       <div class="status"><span data-status>AWAITING PILOT</span><b data-party>PARTY 1 / 4</b></div>
     </footer>
   </main>
-  <script src="{{ "js/soundcheck.js" | relURL }}?v=soundcheck1"></script>
-  <script src="{{ "js/game.js" | relURL }}?v=soundcheck1"></script>
+  <script src="{{ "js/port.js" | relURL }}?v=port1"></script>
+  <script src="{{ "js/game.js" | relURL }}?v=port1"></script>
 </body>
 </html>
